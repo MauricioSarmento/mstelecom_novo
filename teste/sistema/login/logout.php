@@ -1,0 +1,12 @@
+<?php
+session_start();
+    $_SESSION['numLogin']=null;
+	$_SESSION['numIpp']=null;
+	$_SESSION['$vreg[1]']=null;
+	$_SESSION['$vreg[2]']=null;
+	$_SESSION['$vreg[3]']=null;
+	$_SESSION['$vreg[4]']=null;
+	$_SESSION['$vreg[5]']=null;
+	$_SESSION['$num']=null;
+	header("Location:../index.php");
+?>

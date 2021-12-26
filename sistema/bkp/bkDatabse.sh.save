@@ -1,0 +1,12 @@
+DATA=`/bin/date +%d-%m-%Y`
+#NOME="/var/www/html/sistema/bkp/mstelecom-$DATA.sql"
+# variaveis do MySQL
+HOST="localhost"
+USER="root"
+PASSWORD="88255925"
+DATABASE="mstelecom"
+
+mysqldump -h $HOST -u $USER -p$PASSWORD $DATABASE > $NOME
+#testando se posso fazer varios comandos
+NOME="/var/www/html/sistema/bkp/MSTelecom-$DATA.sql"
+mysqldump -h $HOST -u $USER -p$PASSWORD $DATABASE > $NOME
