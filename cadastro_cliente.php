@@ -2,6 +2,7 @@
 include "sistema/examples/conexao/conect.php";
 
 ?>
+<!doctype html>
 <html lang="pt">
 
 <head>
@@ -13,109 +14,32 @@ include "sistema/examples/conexao/conect.php";
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <link href="assets/css/main.css" rel="stylesheet" type="text/css"> 
   <!-- Material Kit CSS -->
   <link href="assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
 </head>
-
+     	<center>
+<img alt="..."  width="500" height="300" class="img-circle" src="ms.png"/>
+        </center>
 <body>
-  <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white">
-      <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-      Tip 2: you can also add an image using data-image tag
-  -->
-      <div class="logo">
-        <a href="sistema/index.php">
-        <img src='ms.png' width='250' height='150'>
-		</a>
-      </div>
-      <div class="sidebar-wrapper">
-	   <!-- INICIO DE MENU -->
-        <ul class="nav">
-          <li class="nav-item  active ">
-            <a class="nav-link" href="index.php">
-              <i class="material-icons">dashboard</i>
-              <p>INICIO</p>
-            </a>
-          </li>
-		  <li class="nav-item   ">
-            <a class="nav-link" href="cobertura.php">
-              <i class="material-icons">Cobertura</i>
-              <p>COBERTURA</p>
-			</a>
-		  </li>
-		  <li class="nav-item   ">
-            <a class="nav-link" href="pagamento.php">
-              <i class="material-icons">Pagamento</i>
-              <p>PAGAMENTO</p>
-            </a>
-          </li>
-		  <li class="nav-item   ">
-            <a class="nav-link" href="download.php">
-              <i class="material-icons">Download</i>
-              <p>DOWNLOADS</p>
-            </a>
-          </li>
-		  <li class="nav-item   ">
-            <a class="nav-link" href="servicos.php">
-              <i class="material-icons">Servi</i>
-              <p>SERVIÇOS</p>
-            </a>
-          </li>
-		  <li class="nav-item   ">
-            <a class="nav-link" href="sobre.php">
-              <i class="material-icons">Sobre</i>
-              <p>SOBRE NÓS</p>
-            </a>
-          </li>
-		  <li class="nav-item   ">
-            <a class="nav-link" href="sistema/index.php">
-              <i class="material-icons">Login</i>
-              <p>AREA PRIVADA</p>
-            </a>
-          </li>
-            </a>
-          </li>
-        </ul>
-		 <!-- FIM DE MENU -->
-      </div>
-    </div>
-    <div class="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">INICIO</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:;">
-                  
-                </a>
-              </li>
-              <!-- your navbar here -->
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
 	  
       <!-- Navbar -->
+  <div class="wrapper ">
+  
 	  <div class="content">
         <div class="container-fluid">
-          
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h3 class="card-title">Sistema de gestão para provedores</h3>
+              <p class="card-category">Cadastro para utilizar o sistema de gerenciamento de provedores
+              </p>
+            </div>
+			   <div class="card-body">
+                 <div class="row">
+</div>
 
-
-
-<center><h1>
+<center>
+<h1>
 Cadastro de usuario.
 </h1>
 
@@ -125,12 +49,18 @@ Cadastro de usuario.
   System under development, being developed by Mauricio Ferreira Sarmento.
   <br>
   Sistema en desarrollo, desarrollado por Mauricio Ferreira Sarmento.
-  <br>
-https://www.facebook.com/mauricio.sarmento
- <br>
-https://www.youtube.com/channel/UCxXSF2vwx4diCbWJsh8__YQ?view_as=subscriber
- <br>
-.</p>
+<li>
+                                <a href="https://www.facebook.com/Mstelecom.com.br"><i class="fa fa-facebook-square"></i> Facebook</a>
+                            </li>
+                          
+                            <li>
+                                <a href="https://www.instagram.com/mstelecomprovedor/"><i class="fa fa-instagram"></i> Instagram</a>
+                            </li>
+
+							<li>
+                                <a href="https://www.youtube.com/channel/UCxXSF2vwx4diCbWJsh8__YQ?view_as=subscriber"><i class="fa fa-youtube"></i> Youtube</a>
+                            </li>
+</p>
 <input type="hidden" name="acao" value="nada" /> 
 
 <table align="center" border="0" cellpadding="2" cellspacing="2">
@@ -164,11 +94,11 @@ https://www.youtube.com/channel/UCxXSF2vwx4diCbWJsh8__YQ?view_as=subscriber
 </td>
 </tr>
 </table>
-</form></center>
+</form>
+</center>
 <!---------------FIM DE FORMULARIO-------------->
 
-
-
+</div>
 
 <!---------------INICIO DE CADASTRO-------------->
 <?php
@@ -228,6 +158,7 @@ if($lin == 1 ){
 		  
 		  <!-- End Navbar -->
         </div>
+        </div>
       </div>
       <!-- End Navbar -->
      
@@ -253,7 +184,7 @@ if($lin == 1 ){
         </div>
       </footer>
     </div>
-  </div>
+
 </body>
 
 </html>
