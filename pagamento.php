@@ -14,99 +14,12 @@
   <!-- Material Kit CSS -->
   <link href="assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
 </head>
-
+     	<center>
+<img alt="..."  width="500" height="300" class="img-circle" src="ms.png"/>
+        </center>
 <body>
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white">
-      <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-      Tip 2: you can also add an image using data-image tag
-  -->
-      <div class="logo">
-         <a href="sistema/index.php">
-        <img src='ms.png' width='250' height='150'>
-		</a>
-      </div>
-      <div class="sidebar-wrapper">
-       <!-- INICIO DE MENU -->
-        <ul class="nav">
-          <li class="nav-item  active ">
-            <a class="nav-link" href="index.php">
-              <i class="material-icons">dashboard</i>
-              <p>INICIO</p>
-            </a>
-          </li>
-		  <li class="nav-item   ">
-            <a class="nav-link" href="cobertura.php">
-              <i class="material-icons">Cobertura</i>
-              <p>COBERTURA</p>
-			</a>
-		  </li>
-		  <li class="nav-item   ">
-            <a class="nav-link" href="pagamento.php">
-              <i class="material-icons">Pagamento</i>
-              <p>PAGAMENTO</p>
-            </a>
-          </li>
-		  <li class="nav-item   ">
-            <a class="nav-link" href="download.php">
-              <i class="material-icons">Download</i>
-              <p>DOWNLOADS</p>
-            </a>
-          </li>
-		  <li class="nav-item   ">
-            <a class="nav-link" href="servicos.php">
-              <i class="material-icons">Servi</i>
-              <p>SERVIÇOS</p>
-            </a>
-          </li>
-		  <li class="nav-item   ">
-            <a class="nav-link" href="sobre.php">
-              <i class="material-icons">Sobre</i>
-              <p>SOBRE NÓS</p>
-            </a>
-          </li>
-		  <li class="nav-item   ">
-            <a class="nav-link" href="sistema/index.php">
-              <i class="material-icons">Login</i>
-              <p>AREA PRIVADA</p>
-            </a>
-          </li>
-            </a>
-          </li>
-        </ul>
-		 <!-- FIM DE MENU -->
-      </div>
-    </div>
-    <div class="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">FORMAS DE PAGAMENTOS</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:;">
-                  
-                </a>
-              </li>
-              <!-- your navbar here -->
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
-      <!-- End Navbar -->
-	  
+  
 	  <div class="content">
         <div class="container-fluid">
           <div class="card">
@@ -278,18 +191,100 @@ if($status == 1){$status = "<font color='red'>Atrasado</font>";}else{$status = "
 				</table>
 					
 				</div> 
-					<br>
-<strong> Chave do Pix CPF = 03994386535.<br> Mauricio Ferreira Sarmento </strong></center>
-<br/>
-<br/>
 				
 ";}
-				 
+		
+?>
+
+  
+            <div class="box-login">	
+				 <h3>CONFIRA ABAIXO AS CONTAS PARA O DEPOSITO REFERENTE AO PAGAMENTO DE SERVIÇOS PRESTADOS OU DA MENSALIDADE DA INTERNET.</h3>
+				
+                
+                 <div class="box-login">
+              
+                        
+                           
+                   <div class="timeline" align="center">
+					<div class="spine"></div>
+						<div class="date_separator">
+							<span>CONTAS PARA DEPÓSITO</span>
+						</div>
+						<ul class="columns">
+							<li>
+								<div class="timeline_element teal">
+									<div class="timeline_title">
+										<span class="timeline_label"></span><span class="timeline_date"></span>
+									</div>
+									<div class="content">
+										<p>Caixa Econômica Federal</p>
+										<p>
+											Marileia Bispo dos Santos Sarmento</br>
+											Agência: 4799</br>
+											Conta: 00002645-8</br>
+											Variação: 013
+										</p>
+										<b>POR FAVOR AO EFETUAR O DEPÓSITO, ENVIAR O COMPROVANTE PELO WHATZAPP:</b> 
+										<i class="clip-phone-2"></i> (071) 98720-9903 / 98757-8923
+									</div>
+									<div class="readmore">
+										<a href="#" class="btn btn-info">
+											Obrigado <i class="clip-thumbs-up"></i>
+										</a>
+									</div>
+							</li>
+							<li>
+								<div class="timeline_element teal">
+									<div class="timeline_title">
+										<span class="timeline_label"></span><span class="timeline_date"></span>
+									</div>
+									<div class="content">
+										<p>Bradesco</p>
+										<p>
+											Mauricio Ferreira Sarmento</br>
+											Agência: 3266</br>
+											c/c: 4406-7
+										</p>
+										<b>POR FAVOR AO EFETUAR O DEPÓSITO, ENVIAR O COMPROVANTE PELO WHATZAPP:</b> 
+										<i class="clip-phone-2"></i> (071) 98720-9903 / 98757-8923
+									</div>
+									<div class="readmore">
+										<a href="#" class="btn btn-info">
+											Obrigado <i class="clip-thumbs-up"></i>
+										</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+
+					</div> 
+					<br>
+					<center>
+<strong> Chave do Pix CPF = 03994386535.<br> Mauricio Ferreira Sarmento </strong>
+                    </center>
+<br/>
+<br/>
+</div> 
+</div> 
+</div> 
+
+<?php
+
+
+
+
+
+
+
+
+		
 };
 ?>	
+
 		</center>				 
-						 
-						 
+			
+
+
 						 
 						 
 	               </div>
@@ -299,6 +294,11 @@ if($status == 1){$status = "<font color='red'>Atrasado</font>";}else{$status = "
 	  </div>
 	  </div>
 	  </div>
+	  <center>
+                <a href="index.html" class="navbar-brand">
+                    Voltar a pagina principal!
+                </a>			 
+</center>
 	  </div>
       <!-- End Navbar -->
       <footer class="footer">
