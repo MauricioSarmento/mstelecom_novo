@@ -24,12 +24,12 @@
         <div class="container-fluid">
           <div class="card">
             <div class="card-header card-header-primary">
-              <h3 class="card-title">Formas de pagamento</h3>
-              <p class="card-category">Veja como pode ser feito os pagamentos de nossos serviços...
+              <h3 class="card-title">Area do cliente</h3>
+              <p class="card-category">Digite seu CPF e veja alguns dados do seu cadastro.
               </p>
             </div>
 			   <div class="card-body">
-                 <div class="row">
+
                    
 
 	                     
@@ -41,7 +41,7 @@
 						<center>
 			<form method="post" name="cpf" id="cpf" >
 <font face="Verdana" size="2">
-Informe o CPF e veja se como esta sua condição financeira com a empresa 'Apenas para cliente!': 
+Digite seu CPF, apenas numeros sem . ou -: 
 <input name="cpf" type="text" size='6' value=''/> 
 <input type="submit" value="Entrar">
 </font>
@@ -167,14 +167,14 @@ if($status == 1){$status = "<font color='red'>Atrasado</font>";}else{$status = "
 		<center>
 				<table border='1' align='center'>
 				<tr>
-				    <td scope='col' width='350' align='center'> NOME    </td>
+				    <td scope='col' width='350' align='center'> NOME COMPLETO   </td>
 				    <td scope='col' width='150' align='center'> CPF </td>
 				    <td scope='col' width='200' align='center'> TELEFONE   </td>
 				    <td scope='col' width='150' align='center'> DATA DO CONTRATO   </td>
 				    <td scope='col' width='250' align='center'> ENDEREÇO    </td>
 				    <td scope='col' width='50' align='center'> PLANO</td>
 				    <td scope='col' width='50' align='center'> VALOR   </td>
-				    <td scope='col' width='50' align='center'> VEN</td>
+				    <td scope='col' width='50' align='center'> VENCIMENTO</td>
 				    <td scope='col' width='50' align='center'> STATUS     </td>
 				</tr>
 				<tr>
@@ -293,7 +293,6 @@ if($status == 1){$status = "<font color='red'>Atrasado</font>";}else{$status = "
 	  </div>
 	  </div>
 	  </div>
-	  </div>
 	  <center>
                 <a href="index.html" class="navbar-brand">
                     Voltar a pagina principal!
@@ -322,10 +321,6 @@ if($status == 1){$status = "<font color='red'>Atrasado</font>";}else{$status = "
           <!-- your footer here -->
         </div>
       </footer>
-    </div>
-  </div>
-</body>
-
 </html>
 
   <!--   Core JS Files   -->
