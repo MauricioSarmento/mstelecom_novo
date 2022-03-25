@@ -536,6 +536,7 @@ $(document).ready(function(){
                                              <select name="data" class="form-control">
                                                 <option value="05"> Data </option>
                                                 <option value="05"> 05 </option>
+                                                <option value="10"> 10 </option>
                                                 <option value="15"> 15 </option>
                                                 <option value="20"> 20 </option>
                                                 <option value="25"> 25 </option>

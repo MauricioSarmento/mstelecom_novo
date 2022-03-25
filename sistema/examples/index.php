@@ -44,9 +44,7 @@ $id_serv = $_SESSION['$id_servidor'];
       <!-- PESQUISA E NOTIFICAÇÕES -->
      
 		 <?php 
-		 
-		 
-		 $_SESSION['numIpp'];
+$_SESSION['numIpp'];
 $t = $_SESSION['numIpp'];
 if($t == "Sem_Servidor"){echo"<center><br>VOCÊ NÃO TEM SERVIDOR CADASTRADO, POR FAVOR CADASTRE UM.<br>";
 ?>
@@ -228,7 +226,7 @@ $lin3 = $lin + $lin2;
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 				
 <?php
-	$sql="SELECT * FROM cadastro where id_cliente = '1' and id_servidor = '$id_serv'";
+$sql="SELECT * FROM cadastro where id_cliente = '1'";
 $res= mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 echo '<a class="dropdown-item" href="confirmar.php">Instalação =  '. $vreg[10] .'</a>';
@@ -310,6 +308,43 @@ $inteface = "ether1";//Interface para principal do Mikrotik
 	echo "<h3>Grafico semanal media de 30 min</h3>";
 	echo "<img src=\"http://$ip:$portwww/graphs/iface/$inteface/weekly.gif\"";	
 echo '</div></td><tr></table></center>';
+
+
+
+
+
+		 if(isset($_POST["localizar"])){
+$localizar=$_POST["localizar"];
+echo 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+$sql="SELECT * FROM historico where nome LIKE '%$localizar%' limit 50";
+$res=mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+	$n = $vreg[1];	
+    $usuario=$vreg[2];
+	$data=$vreg[4];
+	$oq=$vreg[5];
+	$quem=$vreg[6];
+		$end=$vreg[7];
+			$compl=$vreg[8];
+				$plano=$vreg[9];
+					$contato=$vreg[10];
+						$inst=$vreg[11];
+	
+echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";} }} echo $n . "</a>"; 
+echo "</a></td>";
+echo "<td>";
+if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<a href='acao.php?id=$usuario'><font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<a href='acao.php?id=$usuario'><font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";}} } echo $usuario . " </a></td>";
+echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<a href='acao.php?id=$usuario'><font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<a href='acao.php?id=$usuario'><font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";} }} echo $plano." </a></td>";
+echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<a href='acao.php?id=$usuario'><font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<a href='acao.php?id=$usuario'><font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";} }} echo $contato ."</a></td>";
+echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<a href='acao.php?id=$usuario'><font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<a href='acao.php?id=$usuario'><font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";} }} echo $inst ."</a></td>";
+echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<a href='acao.php?id=$usuario'><font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<a href='acao.php?id=$usuario'><font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";} }} echo $oq ."</a></td>";
+echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<a href='acao.php?id=$usuario'><font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<a href='acao.php?id=$usuario'><font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";} }} echo $quem ."</a></td></font>";
+
+
+	echo "</td>";
+echo "</tr>";		
+
+}}
  ?>	  
 
 

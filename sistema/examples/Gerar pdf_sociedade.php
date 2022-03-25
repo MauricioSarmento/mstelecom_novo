@@ -5,14 +5,16 @@ echo "<meta charset='utf-8'>
 <table border='1'>
 <td colspan='2' aling='center'>Planilha de Clientes</td>
 <tr>
+<td>Id</td>
 <td>Nome de Usuario</td>
 </tr>";
 #puxando Dados da tabela
 
-$sql="SELECT * FROM db_clientes where id_cliente='133'";
+$sql="SELECT * FROM sociedade";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
-$html .= "<td>'" . $vreg[2] . "',</td>";
+$html .= '<td>' . $vreg[1] . ' </td>';
+$html .= '<td>' . $vreg[2] . ' </td>';
 $html .= '</tr>';
 }
 

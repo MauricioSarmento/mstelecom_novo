@@ -866,7 +866,16 @@ array(
 "name" => $n4,
 "profile" => $p4,  
 "comment" => $com, 
-"service" => "pppoe",	))  ;}}
+"service" => "pppoe",	))  ;
+
+
+$API->comm("/ppp/secret/set",
+array(
+".id" => $arrID[0][".id"],
+
+"caller-id" => "",	));
+
+}}
 if(!isset($nome1))
 $nome1 = null;
 if(isset($_POST["nome1"])){
@@ -1118,10 +1127,10 @@ $_SESSION['$n4']=$n4;
 <input type="text" class="form-control" name="macr" size="30" maxlength="20" value="<?php echo $macr; ?>" onchange="carregatexto(this.value)" />
 </td>
 <td><font color='black' class="bmd-label-floating"><strong>Amarrar Mac:</strong></font></td><td>
-<select name="amarrar_mac" class="form-control" id="select" >
+<select name="amarrarmac" class="form-control" id="select" >
 <option>Selecione</option>
 <option>Sim</option>
-<option>Não</option>
+<option>Remover</option>
 </select>
 </td>
 </tr>
@@ -1189,15 +1198,15 @@ Valor R$:
 <td>
 <font color='black' class="bmd-label-floating">
 <strong>
-IP fixo:
+Fixar IP:
 </strong>
 </font>
 </td>
 <td>
-<select name="ip_fixo" class="form-control" id="select" >
+<select name="amarraip" class="form-control" id="select" >
 <option>Selecione</option>
-<option>Sim</option>
-<option>Não</option>
+<option>Amarrar</option>
+<option>Remover</option>
 </select>
 </td>
 </tr>
@@ -1206,14 +1215,14 @@ IP fixo:
 <font color='black'class="bmd-label-floating"><strong>IP:</strong></font>
 </td>
 <td>
-<input type="text" class="form-control" name="ip_r" size="13" maxlength="16" value="<?php echo $ipp;?>" onchange="carregatexto(this.value)" />
+<input type="text" class="form-control" name="amarraip2" size="16" maxlength="16" value="<?php echo $ipp;?>"/>
 </td>
 </tr>
 <tr>
 <td>
 </td>
 <td>
-<?php echo "<button><a href='http://$ipp:8888' target='_blank' class='form-control'>Gerenciamento emoto</a></button>";
+<?php echo "<button><a href='http://$ipp:8888' target='_blank' class='form-control'>Gerenciamento Remoto</a></button>";
 echo "<button><a href='http://$servidor_mikrotik:8099/graphs/iface/<pppoe-$n1>/' target='_blank' class='form-control'>Grafico</a></button>";?>
 </td>
 </tr>
@@ -1229,118 +1238,102 @@ echo "<button><a href='http://$servidor_mikrotik:8099/graphs/iface/<pppoe-$n1>/'
 </tr>
 </table>
 </form>
-<?PHP
-if(!isset($nomer))
-$nomer = $nomer;
-if(isset($_POST["nomer"])){
-$nomer=$_POST["nomer"];
-////////
-if(!isset($aquisicaor))
-$aquisicaor = $pagamento;
-if(isset($_POST["aquisicaor"])){
-$aquisicaor=$_POST["aquisicaor"];}
-if(isset($_POST["ip_r"])){
-$ip_r=$_POST["ip_r"];}
-if(isset($_POST["ip_fixo"])){
-$ip_fixo=$_POST["ip_fixo"];
-if($ip_fixo == 'Selecione'){}else{if($ip_fixo == 'Sim'){$ip_fixo = $ip_r;}else{if($ip_fixo == 'Não'){$ip_fixo = "default";}}
-	
-if ($API->connect("$servidor_mikrotik","$login_servidor_mikrotik","$senha_servidor_mikrotik")) {
-$ARRAY = $API->comm("/ppp/secret/print");
-if(!isset($n1))
-$n1 = null;
-$arrID=$API->comm("/ppp/secret/getall", 
-array(
-".proplist"=> ".id",
-"?name" => $n1,));
-if(!isset($p))
-$p="null";
-if(!isset($arrID[0]))
-$arrID[0] = "";
-$API->comm("/ppp/secret/set",
-array(
-".id" => $arrID[0][".id"],
-// "password" => $s4,
-"remote-address" => $ip_fixo,
-));
-$API->write('/interface/pppoe-server/print
-?user='."$n1".'
-.id=.id');
-$find = $API->read();
-//Remove ID encontrado
-foreach ($find as $find):
-$API->write('/interface/pppoe-server/remove', false);
-$API->write('=.id='.$find['.id']);
-$API->read();
-endforeach;
-}}}
-//////////////////////////////////////AMARRANDO MAC\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-if(isset($_POST["amarrar_mac"])){
-$mac_address=$_POST["amarrar_mac"];
-////////////////////////////////
-if(isset($_POST["macr"])){
-$mac_add=$_POST["macr"];
-if($mac_address == 'Selecione'){}else{if($mac_address == 'Sim'){$mac_address = $mac_add;}else{if($mac_address == 'Não'){$mac_address = "default";}}
-	
-if ($API->connect("$servidor_mikrotik","$login_servidor_mikrotik","$senha_servidor_mikrotik")) {
-$ARRAY = $API->comm("/ppp/secret/print");
-if(!isset($n1))
-$n1 = null;
-$arrID=$API->comm("/ppp/secret/getall", 
-array(
-".proplist"=> ".id",
-"?name" => $n1,));
-if(!isset($p))
-$p="null";
-if(!isset($arrID[0]))
-$arrID[0] = "";
-$API->comm("/ppp/secret/set",
-array(
-".id" => $arrID[0][".id"],
-// "password" => $s4,
-"caller-id" => $mac_address,
-));
-$API->write('/interface/pppoe-server/print
-?user='."$n1".'
-.id=.id');
-$find = $API->read();
-//Remove ID encontrado
-foreach ($find as $find):
-$API->write('/interface/pppoe-server/remove', false);
-$API->write('=.id='.$find['.id']);
-$API->read();
-endforeach;
-}}}}
+<?php
 
-////////
-if(!isset($valorr))
-$valorr = $valor2;
-if(isset($_POST["valorr"])){
-$valorr=$_POST["valorr"];}
-////////
-if(!isset($datar))
-$datar = $data2;
-if(isset($_POST["datar"])){
-$datar=$_POST["datar"];}
-////////
-if(!isset($macr))
-$macr = $macr;
+///////////////////////////////////////////////////////////////////////////////
+///////////////////AMARRAR E REMOVER MAC///////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+if(isset($_POST["amarrarmac"])){
+$amarrarmac=$_POST["amarrarmac"];}
 if(isset($_POST["macr"])){
 $macr=$_POST["macr"];}
-////////
-if(!isset($remotor))
-$remotor = $remoto;
-if(isset($_POST["remotor"])){
-$remotor=$_POST["remotor"];}
-////////////////////////////////////////////////////
-$sql="UPDATE roteador SET cliente = '$nomer' , parcelas = '$aquisicaor' , valor = '$valorr' , data = '$datar' , acesso_remoto = '$remotor' , mac = '$macr'  WHERE id = $id_cr";
-$res=mysqli_query($con,$sql);
-echo '
-<script type="text/javascript"> 
-var urlAtual = window.location.href;
-window.location.href=urlAtual;
-</script>';
+
+if($amarrarmac == 'Sim'){
+if ($API->connect("$servidor_mikrotik","$login_servidor_mikrotik","$senha_servidor_mikrotik")) {
+$ARRAY = $API->comm("/ppp/secret/print");
+if(!isset($n1))
+$n1 = null;
+$arrID=$API->comm("/ppp/secret/getall", 
+array(
+".proplist"=> ".id",
+"?name" => $n1,));
+if(!isset($p))
+$p="null";
+if(!isset($arrID[0]))
+$arrID[0] = "";
+$API->comm("/ppp/secret/set",
+array(
+".id" => $arrID[0][".id"],
+"caller-id" => $macr,	));
 }
+}
+
+if($amarrarmac == 'Remover'){
+if ($API->connect("$servidor_mikrotik","$login_servidor_mikrotik","$senha_servidor_mikrotik")) {
+$ARRAY = $API->comm("/ppp/secret/print");
+if(!isset($n1))
+$n1 = null;
+$arrID=$API->comm("/ppp/secret/getall", 
+array(
+".proplist"=> ".id",
+"?name" => $n1,));
+if(!isset($p))
+$p="null";
+if(!isset($arrID[0]))
+$arrID[0] = "";
+$API->comm("/ppp/secret/set",
+array(
+".id" => $arrID[0][".id"],
+"caller-id" => "",	));
+}
+}
+///////////////////////////////////////////////////////////////////////////////
+///////////////////AMARRAR E REMOVER IP///////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+if(isset($_POST["amarraip2"])){
+$amarraip2=$_POST["amarraip2"];}
+if(isset($_POST["amarraip"])){
+$amarraip=$_POST["amarraip"];}
+
+if($amarraip == 'Amarrar'){
+if ($API->connect("$servidor_mikrotik","$login_servidor_mikrotik","$senha_servidor_mikrotik")) {
+$ARRAY = $API->comm("/ppp/secret/print");
+if(!isset($n1))
+$n1 = null;
+$arrID=$API->comm("/ppp/secret/getall", 
+array(
+".proplist"=> ".id",
+"?name" => $n1,));
+if(!isset($p))
+$p="null";
+if(!isset($arrID[0]))
+$arrID[0] = "";
+$API->comm("/ppp/secret/set",
+array(
+".id" => $arrID[0][".id"],
+"local-address" => $amarraip2,	));
+}
+}
+if($amarraip == 'Remover'){
+if ($API->connect("$servidor_mikrotik","$login_servidor_mikrotik","$senha_servidor_mikrotik")) {
+$ARRAY = $API->comm("/ppp/secret/print");
+if(!isset($n1))
+$n1 = null;
+$arrID=$API->comm("/ppp/secret/getall", 
+array(
+".proplist"=> ".id",
+"?name" => $n1,));
+if(!isset($p))
+$p="null";
+if(!isset($arrID[0]))
+$arrID[0] = "";
+$API->comm("/ppp/secret/set",
+array(
+".id" => $arrID[0][".id"],
+"local-address" => "0.0.0.0",	));
+}
+}
+
 ?>
 
 

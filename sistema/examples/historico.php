@@ -188,6 +188,15 @@ while($vreg=mysqli_fetch_row($res)){
 <input type="text" class='form-control' name="localizar" size="30" maxlength="25" placeholder="Pesquisar..."/>
 </td>
 <td>
+<select name="dia" id="select">
+<option>Todos</option>
+<option>Cliente Novo</option>
+<option>Cliente Excluido</option>
+<option>Cliente Recuperado</option>
+<option>Atualização Cadastral</option>
+<option>Pagamento</option>
+<option>Liberação de Internet</option>
+</td>
 <td>
 <button type="submit" value="Localizar" class="btn btn-white btn-round btn-just-icon">
 <i class="material-icons">search</i>
@@ -285,7 +294,7 @@ $id_servserv = $vreg[7];
 } 
 if(isset($_POST["localizar"])){
 $localizar=$_POST["localizar"];
-$sql="SELECT * FROM historico where id_servidor = $id_servserv and nome LIKE '%$localizar%' limit 50";
+$sql="SELECT * FROM historico where id_servidor = $id_servserv $a and nome LIKE '%$localizar%' limit 50";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 	$n = $vreg[1];	

@@ -440,8 +440,6 @@ else
 {echo "<a href='acao.php?id=$n' class='form-control' target='_blank'>"; echo "<table border='0' width='160'><center>".$regtable['last-logged-out']."</table></center>";}};
 ////////////////////////////////////////////////////////////////////////////////////////
 }echo "</a></td>";
-
-
 echo "<td>";
 ///////////////////////// SE O PERFIL FOR BLOQUEIO EXIBIR O NOME EM VERMELHO ///////////
 if($regtable['profile'] == 'Bloqueio2'){
