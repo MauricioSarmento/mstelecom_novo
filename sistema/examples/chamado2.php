@@ -215,7 +215,7 @@ while($vreg=mysqli_fetch_row($res)){
 </tr>
 <tr>
 <td>Data do atendimento: </td><td>
-<?php echo date("d/m/Y"); ?>"
+<?php echo date('d/m/y H:i:s'); ?>"
 </td>
 </tr>
 <tr>

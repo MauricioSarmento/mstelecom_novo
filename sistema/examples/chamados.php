@@ -228,7 +228,7 @@ ABRIR CHAMADOS
 </tr>
 <tr>
 <td>Descrição do problema: </td><td>
-<textarea id="story" name="descricao" rows="5" cols="33"></textarea>
+<textarea id="story" name="descricao" rows="5" value="<?php echo $user1;  ?>" cols="33"></textarea>
 </td>
 </tr>
 <tr>
@@ -293,11 +293,11 @@ $id_servserv = $vreg[7];
 }
 $defalt = null;
 $status = "1";
-$date = date("d/m/Y");
+$date = date('d/m/y H:i:s');
 $data_con = "Em aberto";
 $tecnico = "No aguardo";
 $observacao = "Sem observações";
-$descri = "Nome: " .$cliente . " , Endereço: " . $endereco . " , Contato: " . $contato . " , Descrição: " . $descricao;
+$descri = "Nome: " .$cliente . " , Endereço: " . $endereco . " , Contato: " . $contato . " , Descrição: "  . $descricao . " , Usuario: " . $user1;
 if($nome == "Instalação"){
 	$res=mysqli_query($con,"insert into chamado values
 (NULL, '$status', '$nome', '$cliente ', '$date', '$data_con', '$tecnico', '$descricao', '$id_servserv');");
