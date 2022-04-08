@@ -203,6 +203,7 @@ ABRIR CHAMADOS
 <td>Tipo de chamado: </td><td>
 <select name="nome" id="select">
 <option>Sem internet</option>
+<option>Desconectado</option>
 <option>Internet Lenta</option>
 <option>Instalação</option>
 <option>Pagamento</option>
@@ -281,6 +282,7 @@ if(isset($_POST["contato"])){
 $contato=$_POST["contato"];}
 if(isset($nome)){
 $user1 = $_SESSION['$vreg[2]'];
+$usuario = $_SESSION['$vreg[2]'];
 $sql="SELECT * FROM clientes where usuario = '$user1'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
@@ -297,10 +299,10 @@ $date = date('d/m/y H:i:s');
 $data_con = "Em aberto";
 $tecnico = "No aguardo";
 $observacao = "Sem observações";
-$descri = "Nome: " .$cliente . " , Endereço: " . $endereco . " , Contato: " . $contato . " , Descrição: "  . $descricao . " , Usuario: " . $user1;
+$descri = "Nome: " .$cliente . " , Endereço: " . $endereco . " , Contato: " . $contato . " , Descrição: "  . $descricao . " , Usuario: " . $usuario;
 if($nome == "Instalação"){
 	$res=mysqli_query($con,"insert into chamado values
-(NULL, '$status', '$nome', '$cliente ', '$date', '$data_con', '$tecnico', '$descricao', '$id_servserv');");
+(NULL, '$status', '$nome', '$cliente ', '$date', '$data_con', '$tecnico', '$usuario', '$id_servserv');");
 }else{
 $res=mysqli_query($con,"insert into chamado values
 (NULL, '$status', '$nome', '$descri ', '$date', '$data_con', '$tecnico', '$observacao', '$id_servserv');");
