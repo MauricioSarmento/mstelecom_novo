@@ -200,16 +200,18 @@ $lin4 = $lin + $lin2 + $lin3;
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
+           <form class="navbar-form" name="login" method="post" action="">
+             <input type="hidden" name="acao" value="nada" /> 
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
+                
+				<input type="text" name="localizar" size="15" class="form-control" maxlength="25" value="" placeholder="Procurar...">
                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
                   <i class="material-icons">search</i>
                   <div class="ripple-container"></div>
                 </button>
               </div>
             </form>
-            <ul class="navbar-nav">
+			 <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="status.php">
                   <i class="material-icons">dashboard</i>
@@ -243,11 +245,6 @@ while($vreg=mysqli_fetch_row($res)){
 	echo '<a class="dropdown-item" href="chamados.php">'. $vreg[2] .' ver em chamados</a>';
 	}
 }						
-//$sql="SELECT * FROM cadastro";
-//$res= mysqli_query($con,$sql);
-//while($vreg=mysqli_fetch_row($res)){
-//echo '<a class="dropdown-item" href="#">Boleto =  '. $vreg[10] .'</a>';
-//	                                }
 ?>
                   
                 </div>
@@ -294,33 +291,33 @@ while($vreg=mysqli_fetch_row($res)){
 	  <!--- carrega a pagina auto_refresh_index.php-->	
 <?php  
 echo '<br>' . $painel; 
-echo '<center><table><tr><td><div>';
-$ip = $servidor_mikrotik;//ip do Mikrotik
-$login = $login_servidor_mikrotik;//login do Mikrotik
-$senha = $senha_servidor_mikrotik;//senha do Mikrotik
-$portwww = "8099";//porta WWW do Mikrotik
-$inteface = "ether1";//Interface para principal do Mikrotik
-	echo "<h3>Grafico Diario media de 5 min</h3>";
-	echo "<img src=\"http://$ip:$portwww/graphs/iface/$inteface/daily.gif\"";	
-	echo '</div></td><td>';
+ ?>	  
+
+
+<!--- ATUALIZAÇÕES -->
 	
-	echo '<div>';
-	$ip = $servidor_mikrotik;//ip do Mikrotik
-$login = $login_servidor_mikrotik;//login do Mikrotik
-$senha = $senha_servidor_mikrotik;//senha do Mikrotik
-$portwww = "8099";//porta WWW do Mikrotik
-$inteface = "ether1";//Interface para principal do Mikrotik
-	echo "<h3>Grafico semanal media de 30 min</h3>";
-	echo "<img src=\"http://$ip:$portwww/graphs/iface/$inteface/weekly.gif\"";	
-echo '</div></td><tr></table></center>';
+			 <div class="col-md-12">
+              <div class="card card-plain">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title mt-0"> Alterações</h4>
+                  <p class="card-category"> Ultimas alterações feitas</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead class="">
 
-
-
-
-
-		 if(isset($_POST["localizar"])){
+<th scope="col">USUARIO</th>
+<th scope="col">PLANO</th>
+<th scope="col">CONTATO</th>
+<th scope="col">DATA</th>
+<th scope="col">ALTERAÇÃO</th>
+<th scope="col">USUARIO</th>
+</tr>
+</thead>
+<?php
+if(isset($_POST["localizar"])){
 $localizar=$_POST["localizar"];
-echo 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 $sql="SELECT * FROM historico where nome LIKE '%$localizar%' limit 50";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
@@ -349,32 +346,7 @@ echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'>
 	echo "</td>";
 echo "</tr>";		
 
-}}
- ?>	  
-
-
-<!--- ATUALIZAÇÕES -->
-	
-			 <div class="col-md-12">
-              <div class="card card-plain">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title mt-0"> Alterações</h4>
-                  <p class="card-category"> Ultimas alterações feitas</p>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead class="">
-
-<th scope="col">USUARIO</th>
-<th scope="col">PLANO</th>
-<th scope="col">CONTATO</th>
-<th scope="col">DATA</th>
-<th scope="col">ALTERAÇÃO</th>
-<th scope="col">USUARIO</th>
-</tr>
-</thead>
-<?php
+}}else{
 $sql="SELECT * FROM historico where id_servidor = $id_servserv ORDER BY data DESC limit 15";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
@@ -405,7 +377,7 @@ echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'>
 echo "</tr>";	
 
 }
-}
+}}
 ?>
   </tbody>
                     </table>
