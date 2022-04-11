@@ -192,27 +192,7 @@ $lin=mysqli_num_rows($res);
 </div>
 </div>
 		
-		<?php echo '<center><table><tr><td><div>';
-$ip = $servidor_mikrotik;//ip do Mikrotik
-$login = $login_servidor_mikrotik;//login do Mikrotik
-$senha = $senha_servidor_mikrotik;//senha do Mikrotik
-$portwww = "8099";//porta WWW do Mikrotik
-$inteface = "ether1";//Interface para principal do Mikrotik
-	echo "<h3>Grafico Diario media de 5 min</h3>";
-	echo "<img src=\"http://$ip:$portwww/graphs/iface/$inteface/daily.gif\"";	
-	echo '</div></td><td>';
-	
-	echo '<div>';
-	$ip = $servidor_mikrotik;//ip do Mikrotik
-$login = $login_servidor_mikrotik;//login do Mikrotik
-$senha = $senha_servidor_mikrotik;//senha do Mikrotik
-$portwww = "8099";//porta WWW do Mikrotik
-$inteface = "ether1";//Interface para principal do Mikrotik
-	echo "<h3>Grafico semanal media de 30 min</h3>";
-	echo "<img src=\"http://$ip:$portwww/graphs/iface/$inteface/weekly.gif\"";	
-echo '</div></td><tr></table></center>';
-?>
-		<!--- ATUALIZAÇÕES -->
+			<!--- ATUALIZAÇÕES -->
 	
 			 <div class="col-md-12">
               <div class="card card-plain">
