@@ -388,6 +388,115 @@ include 'desconectar.php';
 </div>
 </div>
 <!------------>
+<!------------>
+<button type='button' class='btn btn-warning' data-toggle='modal' data-target='#chamado'>
+	ABRIR CHAMADO
+</button>
+<!-- Modal -->
+<div class='modal fade' id='chamado' tabindex='-1' role='dialog' aria-labelledby='chamado' aria-hidden='true'>
+<div class='modal-dialog' role='document'>
+<div class='modal-content'>
+<div class='modal-header'>
+<h2 class='modal-title' id='chamado'>Deseja abrir chamado para o cliente:?</h2>
+<button type='button' class='close' data-dismiss='modal' aria-label='Fechar'>
+<span aria-hidden='true'>&times;</span>
+</button>
+</div>
+<div class='modal-body'><center>
+
+<form name="login" method="post" action="">
+<input type="hidden" name="acao" value="nada" /> 
+<table align="center" border="1" cellpadding="2" cellspacing="2" >
+<tr>
+<td>Tipo de chamado: </td><td>
+<select name="nome" id="select">
+<option>Sem internet</option>
+<option>Desconectado</option>
+<option>Internet Lenta</option>
+<option>Pagamento</option>
+<option>Retorno ao Cliente</option>
+<option>Mudança de endereço</option>
+<option>Trocar Cabeamento</option>
+<option>Trocar Climp</option>
+<option>Problemas na rede</option>
+</td>
+</tr>
+<tr>
+<td>Nome de usuario:</td><td>
+<input type="text" name="cliente" size="15" maxlength="25" value="<?php echo $user2; ?>" />
+</td>
+</tr>
+<td>Endereço:</td><td>
+<input type="text" name="endereco" size="15" maxlength="50" value="<?php echo $endereço . "  Nº " . $numero; ?>" />
+</td>
+</tr>
+<td>Contato:</td><td>
+<input type="text" name="contato" size="15" maxlength="25" value="<?php echo $tel; ?>" />
+</td>
+</tr>
+<tr>
+<td>Descrição do problema: </td><td>
+<textarea id="story" name="descricao" rows="5" value="" cols="33"></textarea>
+</td>
+</tr>
+<tr>
+<td>Data:</td><td>
+<input type="text" name="data" size="9" maxlength="25" value="<?php echo date('d/m/y H:i:s'); ?>" />
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<input type="submit" name="entrar" value="Cadastrar" />
+</td>
+</tr>
+</table>
+</form>
+
+<?php
+if(isset($_POST["nome"])){
+$nome=$_POST["nome"];
+if(isset($_POST["endereco"])){
+$endereco=$_POST["endereco"];}
+if(isset($_POST["descricao"])){
+$descricao=$_POST["descricao"];}
+if(isset($_POST["data"])){
+$data=$_POST["data"];}
+if(!isset($endereco)){
+$endereco=null;}
+if(isset($_POST["cliente"])){
+$cliente=$_POST["cliente"];}
+if(isset($_POST["contato"])){
+$contato=$_POST["contato"];}
+if(isset($nome)){
+$user1 = $_SESSION['$vreg[2]'];
+$usuario = $_SESSION['$vreg[2]'];
+$sql="SELECT * FROM clientes where usuario = '$user1'";
+$res=mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+$user1 = $vreg[1];
+}
+$sql="SELECT * FROM clientes where nome = '$user1' and usuario = '$user1'";
+$res=mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+$id_servserv = $vreg[7];
+}
+$defalt = null;
+$status = "1";
+$date = date('d/m/y H:i:s');
+$data_con = "Em aberto";
+$tecnico = "No aguardo";
+$observacao = "Sem observações";
+$descri = "Nome: " .$cliente . " , Endereço: " . $endereco . " , Contato: " . $contato . " , Descrição: "  . $descricao . " , Usuario: " . $usuario;
+$res=mysqli_query($con,"insert into chamado values
+(NULL, '$status', '$nome', '$descri ', '$date', '$data_con', '$tecnico', '$observacao', '$id_servserv');");
+}}
+?>
+</center>
+</div>
+</div>
+</div>
+</div>
+
 </td>
 </table>
 <!-------------------------------------------- FIM DA TABELA MENU --------------------------------------------->
