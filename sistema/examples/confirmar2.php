@@ -259,84 +259,83 @@ $data=$vreg[12];}
    <table width="800">
      <tr>
        <td>
-<font color='black' class="bmd-label-floating"><strong>Nome:</strong></font>
-       </td>
+        <font color='black' class="bmd-label-floating"><strong>Nome:</strong></font>
+         </td>
        <td>
-<input type="text" class="form-control" name="nome1"   value="<?php echo $nome; ?>" onchange="carregatexto(this.value)" />
-        </td>
+        <input type="text" class="form-control" name="nome1"   value="<?php echo $nome; ?>" onchange="carregatexto(this.value)" />
+         </td>
        <td>
-<font color='black' class="bmd-label-floating"><strong>CPF:</strong></font>
-        </td>
+        <font color='black' class="bmd-label-floating"><strong>CPF:</strong></font>
+         </td>
        <td>
-<input type="text" name="cpf" value="<?php echo $cpf; ?>" class="form-control" onkeypress="$(this).mask('000.000.000-00');" size="30" maxlength="18"  onchange="carregatexto(this.value)" />
-        </td>
+        <input type="text" name="cpf" value="<?php echo $cpf; ?>" class="form-control" onkeypress="$(this).mask('000.000.000-00');" size="30" maxlength="18"  onchange="carregatexto(this.value)" />
+         </td>
        <td>
-<font color='black' class="bmd-label-floating"><strong>Apelido:</strong></font>
-        </td>
+         <font color='black' class="bmd-label-floating"><strong>Apelido:</strong></font>
+         </td>
        <td>
-<input type="text" class="form-control" name="apelido" size="30" maxlength="35" value="<?php if(!isset($apelido))$c = null; echo $apelido;?>" onchange="carregatexto(this.value)" />
-        </td>
-     </tr>
-
-    <tr>
-       <td>
-<font color='black' class="bmd-label-floating"><strong>E-mail:</strong></font>
-        </td>
-       <td>
-<input type="text" class="form-control" name="email" size="30" maxlength="35" value="<?php echo $email;?>" onchange="carregatexto(this.value)" />
-        </td>
-       <td>
-<font color='black' class="bmd-label-floating"><strong>Endereço:</strong></font>
-        </td>
-       <td>
-<input type="text" class="form-control" name="endereco" size="30" maxlength="200" value="<?php echo $rua; ?>" onchange="carregatexto(this.value)" />
-        </td>
-       <td>
-<font color='black' class="bmd-label-floating"><strong>Numero:</strong></font>
-        </td>
-       <td>
-<input type="text" class="form-control" name="numero" size="30" maxlength="35" value="<?php echo $numero;  ?>" onchange="carregatexto(this.value)" />
-        </td>
+        <input type="text" class="form-control" name="apelido" size="30" maxlength="35" value="<?php if(!isset($apelido))$c = null; echo $apelido;?>" onchange="carregatexto(this.value)" />
+         </td>
      </tr>
     <tr>
        <td>
-<font color='black' class="bmd-label-floating"><strong>Complemento:</strong></font>
-        </td>
+        <font color='black' class="bmd-label-floating"><strong>E-mail:</strong></font>
+         </td>
        <td>
-<input type="text" class="form-control" name="complemento" size="30" maxlength="55" value="<?php echo $complemento;  ?>" onchange="carregatexto(this.value)" />
-        </td>
+        <input type="text" class="form-control" name="email" size="30" maxlength="35" value="<?php echo $email;?>" onchange="carregatexto(this.value)" />
+         </td>
        <td>
-<font color='black' class="bmd-label-floating"><strong>Tel:</strong></font>
-        </td>
+        <font color='black' class="bmd-label-floating"><strong>Endereço:</strong></font>
+         </td>
        <td>
-<input type="text" class="form-control" name="contato" size="30" maxlength="50" value="<?php echo $telefone;  ?>" onchange="carregatexto(this.value)" />
-        </td>
+        <input type="text" class="form-control" name="endereco" size="30" maxlength="200" value="<?php echo $rua; ?>" onchange="carregatexto(this.value)" />
+         </td>
        <td>
-<font color='black' class="bmd-label-floating"><strong>Data instalação:</strong></font>
-        </td>
+        <font color='black' class="bmd-label-floating"><strong>Numero:</strong></font>
+         </td>
        <td>
-<input type="txt" class="form-control" name="data" size="25" maxlength="35" value="<?php echo $d = date("d/m/Y");?>" onchange="carregatexto(this.value)" />
-        </td>
+        <input type="text" class="form-control" name="numero" size="30" maxlength="35" value="<?php echo $numero;  ?>" onchange="carregatexto(this.value)" />
+         </td>
      </tr>
     <tr>
        <td>
-<font color='black' class="bmd-label-floating"><strong>Usuario:<font color='red'>*</font></strong></font>
-        </td>
+        <font color='black' class="bmd-label-floating"><strong>Complemento:</strong></font>
+         </td>
        <td>
-<input type="text" class="form-control" name="usuario" value="" size="15" maxlength="48" placeholder="Crie o usuario" onchange="carregatexto(this.value)" />
-        </td>
+        <input type="text" class="form-control" name="complemento" size="30" maxlength="55" value="<?php echo $complemento;  ?>" onchange="carregatexto(this.value)" />
+         </td>
        <td>
-<font color='black' class="bmd-label-floating"><strong>Senha</strong></font>
-        </td>
+        <font color='black' class="bmd-label-floating"><strong>Tel:</strong></font>
+         </td>
        <td>
-<input type="password4" class="form-control" name="senha4" size="25" maxlength="25" value="123456" />
-        </td>
+        <input type="text" class="form-control" name="contato" size="30" maxlength="50" value="<?php echo $telefone;  ?>" onchange="carregatexto(this.value)" />
+         </td>
        <td>
-<font color='black' class="bmd-label-floating"><strong>Plano</strong></font>
-        </td>
+        <font color='black' class="bmd-label-floating"><strong>Data instalação:</strong></font>
+         </td>
        <td>
-<select name="plano" class="form-control" id="select">
-<option><?php if($plano == null){echo 'Escolha';}else{echo $plano;}  ?></option>
+        <input type="txt" class="form-control" name="data" size="25" maxlength="35" value="<?php echo $d = date("d/m/Y");?>" onchange="carregatexto(this.value)" />
+         </td>
+     </tr>
+    <tr>
+       <td>
+        <font color='black' class="bmd-label-floating"><strong>Usuario:<font color='red'>*</font></strong></font>
+         </td>
+       <td>
+        <input type="text" class="form-control" name="usuario" value="" size="15" maxlength="48" placeholder="Crie o usuario" onchange="carregatexto(this.value)" />
+         </td>
+       <td>
+        <font color='black' class="bmd-label-floating"><strong>Senha</strong></font>
+         </td>
+       <td>
+        <input type="password4" class="form-control" name="senha4" size="25" maxlength="25" value="123456" />
+         </td>
+       <td>
+        <font color='black' class="bmd-label-floating"><strong>Plano</strong></font>
+         </td>
+       <td>
+        <select name="plano" class="form-control" id="select">
+          <option><?php if($plano == null){echo 'Escolha';}else{echo $plano;}  ?></option>
 <?php
 $API = new RouterosAPI();
 $API->debug = false;
@@ -359,44 +358,43 @@ if($plano == "8M"){$valor = "40,00";}
            if($plano == "50M"){ $valor = "110,00";}
              if($plano == null){ $valor = "Valor";}
 ?> 
-</select>
+         </select>
+          </td>
+     </tr>
+    <tr>
+       <td>
+        <font color='black' class="bmd-label-floating"><strong>Vecimento</strong></font>
+         </td>
+       <td>
+        <select name="comentario4" class="form-control" id="select">
+         <option><?php echo $data;  ?></option>
+          <option>05</option>
+           <option>10</option>
+            <option>15</option>
+             <option>20</option>
+              <option>25</option></select>
+         </td>
+       <td>
+        <font color='black' class="bmd-label-floating"><strong>Valor R$:</strong></font>
+         </td>
+       <td>
+        <input type="text" class="form-control" name="valor" size="30" maxlength="25" value="<?php echo $valor;  ?>" onchange="carregatexto(this.value)" onkeypress="$(this).mask('#.##0,00', {reverse: true});" />
+         </td>
+       <td>
+        <font color='black' class="bmd-label-floating"><strong>Coonfirmar cadastro</strong></font>
+         </td>
+       <td>
+   SIM: <input type="radio" name="confirma" value="<?php  echo $nome;  ?>" />
+    NÃO: <input type="radio" name="confirma" value="nao" />
         </td>
      </tr>
     <tr>
        <td>
-<font color='black' class="bmd-label-floating"><strong>Vecimento</strong></font>
-        </td>
-       <td>
-<select name="comentario4" class="form-control" id="select">
-<option><?php echo $data;  ?></option>
-<option>05</option>
-<option>10</option>
-<option>15</option>
-<option>20</option>
-<option>25</option></select>
-        </td>
-       <td>
-<font color='black' class="bmd-label-floating"><strong>Valor R$:</strong></font>
-        </td>
-       <td>
-<input type="text" class="form-control" name="valor" size="30" maxlength="25" value="<?php echo $valor;  ?>" onchange="carregatexto(this.value)" onkeypress="$(this).mask('#.##0,00', {reverse: true});" />
-        </td>
-       <td>
-<font color='black' class="bmd-label-floating"><strong>Coonfirmar cadastro</strong></font>
-        </td>
-       <td>
-SIM: <input type="radio" name="confirma" value="<?php  echo $nome;  ?>" />
-NÃO: <input type="radio" name="confirma" value="nao" />
-        </td>
+        <a href='acao.php?id=$n1'>
+         <button type="submit" class="btn btn-primary pull-right">Salvar</button>
+        </li>
+         </td>
      </tr>
-    <tr>
-       <td>
-<a href='acao.php?id=$n1'>
-<button type="submit" class="btn btn-primary pull-right">Salvar</button>
-</li>
-        </td>
-     </tr>
-
 </table>
  </div>
   </form>
