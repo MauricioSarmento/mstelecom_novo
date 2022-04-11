@@ -394,7 +394,7 @@ if($vreg[1] == 1){echo     "<td><a href='confirmar2.php?id=$vreg[0]'>";}else{ech
 
 }
 echo "</table>"; 
- echo '<center>Estou mechendo em chamados, as vezes vai ter alterações!</center>';
+
 
 
 
