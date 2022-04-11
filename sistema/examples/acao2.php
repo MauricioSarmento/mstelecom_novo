@@ -5,9 +5,7 @@ require_once"painel.php";
 require_once'pag2.php';
 header("Refresh: 100");
 ?>
-
 <html lang="pt">
-
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -26,7 +24,6 @@ header("Refresh: 100");
 <!-- iOS Safari -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
   <!--     Fonts and icons     -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -35,50 +32,33 @@ header("Refresh: 100");
   <link href="../assets/css/material-dashboard.css?v=2.1.3" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
-  
-  
 </head>
-
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-      <!--
-        PAINEL PRINCIPAL
-    -->
-      <div class="logo"><a href="index.php" class="simple-text logo-normal">
-          MSTELECOM
-        </a></div>
-      <?php echo $menu; ?>
-    </div>
-    <div class="main-panel">
-          
-		  
-		   <!-- PESQUISA E NOTIFICAÇÕES -->
-     
-	 	<?php $id_serv = $_SESSION['$id_servidor'];
-	$sql="SELECT * FROM cadastro where id_cliente = '1' and id_servidor = '$id_serv'";
+      <!--        PAINEL PRINCIPAL    -->   
+<div class="logo"><a href="index.php" class="simple-text logo-normal">MSTELECOM</a></div>
+<?php echo $menu; ?>
+</div>
+<div class="main-panel">
+<!-- PESQUISA E NOTIFICAÇÕES -->
+<?php $id_serv = $_SESSION['$id_servidor'];
+$sql="SELECT * FROM cadastro where id_cliente = '1' and id_servidor = '$id_serv'";
 $res= mysqli_query($con,$sql);
 $lin=mysqli_num_rows($res);
-
- $user1 = $_SESSION['$vreg[2]'];
-
+$user1 = $_SESSION['$vreg[2]'];
 $sql="SELECT * FROM clientes where usuario = '$user1'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
- $user1 = $vreg[1];
-
-}
+$user1 = $vreg[1];}
 $sql="SELECT * FROM clientes where nome = '$user1' and usuario = '$user1'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
-$id_servserv = $vreg[7];
-
-}
+$id_servserv = $vreg[7];}
 $sql="SELECT * FROM chamado where id_serv = $id_servserv and status = '1' and nome_cliente = 'Instalação'";
 $res=mysqli_query($con,$sql);
 $lin2=mysqli_num_rows($res);
-$lin3 = $lin + $lin2;
-	 ?>
+$lin3 = $lin + $lin2; ?>
 	 	 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
@@ -91,15 +71,6 @@ $lin3 = $lin + $lin2;
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
-                  <div class="ripple-container"></div>
-                </button>
-              </div>
-            </form>
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="status.php">
@@ -117,30 +88,17 @@ $lin3 = $lin + $lin2;
                     Some Actions
                   </p>
                 </a>
-				
-				
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-				
 <?php
 $sql="SELECT * FROM cadastro where id_cliente = '1'";
 $res= mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
-echo '<a class="dropdown-item" href="confirmar.php">Instalação =  '. $vreg[10] .'</a>';
-	                                }
+echo '<a class="dropdown-item" href="confirmar.php">Instalação =  '. $vreg[10] .'</a>';}
 $sql="SELECT * FROM chamado where id_serv = $id_servserv and status = '1' ";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 	if($vreg[2]=='Instalação'){
-	echo '<a class="dropdown-item" href="chamados.php">'. $vreg[2] .' ver em chamados</a>';
-	}
-}						
-//$sql="SELECT * FROM cadastro";
-//$res= mysqli_query($con,$sql);
-//while($vreg=mysqli_fetch_row($res)){
-//echo '<a class="dropdown-item" href="#">Boleto =  '. $vreg[10] .'</a>';
-//	                                }
-?>
-                  
+	echo '<a class="dropdown-item" href="chamados.php">'. $vreg[2] .' ver em chamados</a>';	}}?>
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -162,11 +120,7 @@ while($vreg=mysqli_fetch_row($res)){
         </div>
       </nav>
       <!-- CAIXAS DE AVISOS  -->
-	  
-	  
-	  
-	  
-	  <script>
+<script>
 			$(function(){
 				//chama a função atualizaDados daqui à 1000ms (1s)
 				window.setTimeout(atualizaDados, 10000);
@@ -177,23 +131,16 @@ while($vreg=mysqli_fetch_row($res)){
 					window.setTimeout(atualizaDados, 10000);
 				}
 			});
-					</script>
-					
-					
+</script>
       <div class="content">
 	 <!--- //auto refresh -->
- 
-	 
 	   <div id="total_cliente_conectado" class="widget-int num-count">
 	  <!--- //auto refresh -->
 <?php  echo '<br>' . $painel;   ?>	
 </div>
-	  
-	  
-	  <form name="login" method="post" action="">
+<form name="login" method="post" action="">
 <input type="hidden" name="get" value="nada" /> 
 <table border="0" align="left" cellpadding="2" cellspacing="2" >
-
 <tr>
 <td><font color='black'><strong>Localizar Cliente:</strong></font>
 </td><td>
@@ -283,18 +230,6 @@ echo "<a href='clientes cadastrados.php' class='form-control'>VOLTAR</button></a
 #---------------------------------- FIM BUSCA --------------------------------------------#
 #-----------------------------------------------------------------------------------------#
 ?>
-
-<script type="text/javascript"> 
-var tempo = window.setInterval(carrega, 3000);
-function carrega()
-{
-$('#teste').load('teste.php');
-} 
-</script>
-	<div id="teste">
-aaaaaaaaaaaaa
-</div>
-
 <script type="text/javascript"> 
 var tempo = window.setInterval(carrega, 20000);
 function carrega()
@@ -302,10 +237,7 @@ function carrega()
 $('#cadastrado').load('clientes_refresh.php');
 } 
 </script>
-	<div id="cadastrado">
-	
-	
-
+<div id="cadastrado">
 <?php
 $API = new RouterosAPI();
 $API->debug = false;
@@ -342,7 +274,6 @@ echo '<div class="col-md-12">
 <th scope="col"> <center>ULTIMO LOGIN </center></th>
 <th scope="col"> <center>VENC </center></th>
 <th scope="col"> <center>STATUS </center></th>
-
 </tr>
 </thead>';
 function cmp($a, $b) {
@@ -360,7 +291,6 @@ while($vreg=mysqli_fetch_row($res)){
 $id2=$vreg[1];
 if($regtable['profile'] == 'Bloqueio2'){echo "<a href='acao.php?id=$n' class='form-control'>"; echo "<center><font color='red' ><table border='0' width='300'>" .$u = $vreg[2] . "</table></font></center>";
 }else{
-
 ///////////////////////// SE O PERFIL FOR BLOQUEIO EXIBIR O NOME EM VERMELHO ///////////
 if($regtable['profile'] == 'Bloqueio'){
 echo "<a href='acao.php?id=$n' class='form-control'> <center>"; echo "<font color='red'><table border='0' width='300'>" .$u = $vreg[2] . "</table></font></center>";}
@@ -407,20 +337,7 @@ array(
 ".id" => $arrID[0][".id"],
 "profile"  => $plano,
 "comment"  => $comment,
-)
-);
-########################### remover
-#$API->write('/interface/pppoe-server/print
-#?user='."$n1".'
-#.id=.id');
-#$find = $API->read();
-//Remove ID encontrado
-#foreach ($find as $find):
-#$API->write('/interface/pppoe-server/remove', false);
-#$API->write('=.id='.$find['.id']);
-#$API->read();
-#endforeach;
-}};
+));}};
 if($val == 3){$st = "<font color='#00CC00'> <center><button type='button' class='btn btn-success'>$mensalidade</button></center></font>";};
 ///////////////////////////////////////////////////
 //echo $regtable['name'];
@@ -439,7 +356,6 @@ else
 ///////////////////////// SE O PERFIL FOR NORMAL EXIBIR O NOME AZUL ////////////////////
 {echo "<a href='acao.php?id=$n' class='form-control'>"; echo "<table border='0' width='200'><center>".$n."</table></center>";}};
 }
-
 echo "</a></td>";
 echo "<td>";
 ///////////////////////// SE O PERFIL FOR BLOQUEIO EXIBIR O NOME EM VERMELHO ///////////
@@ -456,8 +372,6 @@ else
 {echo "<a href='acao.php?id=$n' class='form-control'>"; echo "<table border='0' width='160'><center>".$regtable['last-logged-out']."</table></center>";}};
 ////////////////////////////////////////////////////////////////////////////////////////
 }echo "</a></td>";
-
-
 echo "<td>";
 ///////////////////////// SE O PERFIL FOR BLOQUEIO EXIBIR O NOME EM VERMELHO ///////////
 if($regtable['profile'] == 'Bloqueio2'){
@@ -474,43 +388,27 @@ else
 }////////////////////////////////////////////////////////////////////////////////////////
 echo "</a></td>";
 echo 		"<td><a href='acao.php?id=$n'>".$st."</a></td>";
-
 echo "</td>";
 echo 	"</tr>";
 echo "</tbody>"; }
 echo "</table>";
 echo "</td></div>";
-
 }
 echo "</div>";
 }
-
 ?>
 </center>
-
-	  
-	  
-      
-      </div>
-      
-	  
-	  
-	  <footer class="footer">
-        <div class="container-fluid">
-          <nav class="float-left">
-           
-		   
-		   <!------------------------------------->
-		   
-          </nav>
-          <div class="copyright float-right">
-           
+</div>
+<footer class="footer">
+<div class="container-fluid">
+<nav class="float-left">
 <!------------------------------------->
-
-
-		   </div>
-        </div>
-      </footer>
+</nav>
+<div class="copyright float-right">
+<!------------------------------------->
+</div>
+</div>
+</footer>
     </div>
   </div>
   <div class="fixed-plugin">
