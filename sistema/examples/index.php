@@ -34,12 +34,12 @@ $id_serv = $_SESSION['$id_servidor'];
     </div>
 	<br>
     <div class="main-panel">
-      <!-- PESQUISA E NOTIFICAÇÕES -->
+      <!-- VERIFICA SE O USUARIO JA TEM SERVIDOR CADASTRADO -->
 		 <?php 
 $_SESSION['numIpp'];
 $t = $_SESSION['numIpp'];
-if($t == "Sem_Servidor"){echo"<center><br>VOCÊ NÃO TEM SERVIDOR CADASTRADO, POR FAVOR CADASTRE UM.<br>";
-?>
+if($t == "Sem_Servidor"){echo"<center><br>VOCÊ NÃO TEM SERVIDOR CADASTRADO, POR FAVOR CADASTRE UM.<br>";?>
+<!-- VSE NÃO TIVER ABRE UM FORMULARIO PARA CADASTRAR -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar">
 CADASTRO DE SERVIDOR
 </button>
@@ -82,11 +82,9 @@ CADASTRO DE SERVIDOR
 </div>
 </div>
 </div>
-
 </td>
 </center>
 <?php
-
 if(isset($_POST["descricao"])){
 $descricao=$_POST["descricao"];}
 if(isset($_POST["nome"])){
@@ -133,49 +131,27 @@ window.location.href=urlAtual;
 ';
 $_SESSION['numIpp']=$ipserv;
 $_SESSION['$nome_serv']=$nomeserv;
-}
-
-
-
-
-
-
-
-
-
-
-}else{
-		 
-		 
-		 
-	$sql="SELECT * FROM cadastro where id_cliente = '1' and id_servidor = '$id_serv'";
+}}else{$sql="SELECT * FROM cadastro where id_cliente = '1' and id_servidor = '$id_serv'";
 $res= mysqli_query($con,$sql);
 $lin=mysqli_num_rows($res);
-
- $user1 = $_SESSION['$vreg[2]'];
-
+$user1 = $_SESSION['$vreg[2]'];
 $sql="SELECT * FROM clientes where usuario = '$user1'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
- $user1 = $vreg[1];
-
-}
+$user1 = $vreg[1];}
 $sql="SELECT * FROM clientes where nome = '$user1' and usuario = '$user1'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
-$id_servserv = $vreg[7];
-
-}
+$id_servserv = $vreg[7];}
 $sql="SELECT * FROM chamado where id_serv = $id_servserv and status = '1' and nome_cliente = 'Instalação'";
 $res=mysqli_query($con,$sql);
 $lin2=mysqli_num_rows($res);
-
 	$sql="SELECT * FROM cadastro where id_cliente = '1'";
 	$res=mysqli_query($con,$sql);
 	$lin3=mysqli_num_rows($res);
-
 $lin4 = $lin + $lin2 + $lin3;
 	 ?>
+	 <!-- PESQUISA E NOTIFICAÇÕES -->
 	 	 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
@@ -216,10 +192,7 @@ $lin4 = $lin + $lin2 + $lin3;
                     Some Actions
                   </p>
                 </a>
-				
-				
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-				
 <?php
 $sql="SELECT * FROM cadastro where id_cliente = '1'";
 $res= mysqli_query($con,$sql);
@@ -231,11 +204,8 @@ $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 	if($vreg[2]=='Instalação'){
 	echo '<a class="dropdown-item" href="chamados.php">'. $vreg[2] .' ver em chamados</a>';
-	}
-}						
-?>
-                  
-                </div>
+	}}?>
+</div>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -256,10 +226,6 @@ while($vreg=mysqli_fetch_row($res)){
         </div>
       </nav>
       <!-- CAIXAS DE AVISOS  -->
-	  
-	  
-	  
-	  
 	  <script>
 			$(function(){
 				//chama a função atualizaDados daqui à 1000ms (1s)
@@ -271,19 +237,13 @@ while($vreg=mysqli_fetch_row($res)){
 					window.setTimeout(atualizaDados, 10000);
 				}
 			});
-					</script>
-					
-      <div class="content">
- <!--- //auto refresh -->
- 	   <div id="total_cliente_conectado" class="widget-int num-count">
-	  <!--- carrega a pagina auto_refresh_index.php-->	
-<?php  
-echo '<br>' . $painel; 
- ?>	  
-
-
+      </script>
+<div class="content">
+<!--- //auto refresh -->
+<div id="total_cliente_conectado" class="widget-int num-count">
+<!--- carrega a pagina auto_refresh_index.php-->	
+<?php  echo '<br>' . $painel;  ?>	  
 <!--- ATUALIZAÇÕES -->
-	
 			 <div class="col-md-12">
               <div class="card card-plain">
                 <div class="card-header card-header-primary">
@@ -294,7 +254,6 @@ echo '<br>' . $painel;
                   <div class="table-responsive">
                     <table class="table table-hover">
                       <thead class="">
-
 <th scope="col">USUARIO</th>
 <th scope="col">PLANO</th>
 <th scope="col">CONTATO</th>
@@ -303,6 +262,7 @@ echo '<br>' . $painel;
 <th scope="col">USUARIO</th>
 </tr>
 </thead>
+<!-- BOTÃO LOCALIZAR SE NÃO TIVER EXIBE A TABELA NORMAL -->
 <?php
 if(isset($_POST["localizar"])){
 $localizar=$_POST["localizar"];
@@ -319,7 +279,6 @@ while($vreg=mysqli_fetch_row($res)){
 				$plano=$vreg[9];
 					$contato=$vreg[10];
 						$inst=$vreg[11];
-	
 echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";} }} echo $n . "</a>"; 
 echo "</a></td>";
 echo "<td>";
@@ -329,11 +288,8 @@ echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'>
 echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<a href='acao.php?id=$usuario'><font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<a href='acao.php?id=$usuario'><font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";} }} echo $inst ."</a></td>";
 echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<a href='acao.php?id=$usuario'><font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<a href='acao.php?id=$usuario'><font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";} }} echo $oq ."</a></td>";
 echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<a href='acao.php?id=$usuario'><font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<a href='acao.php?id=$usuario'><font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";} }} echo $quem ."</a></td></font>";
-
-
-	echo "</td>";
+echo "</td>";
 echo "</tr>";		
-
 }}else{
 $sql="SELECT * FROM historico where id_servidor = $id_servserv ORDER BY data DESC limit 15";
 $res=mysqli_query($con,$sql);
@@ -348,50 +304,30 @@ while($vreg=mysqli_fetch_row($res)){
 				$plano=$vreg[9];
 					$contato=$vreg[10];
 						$inst=$vreg[11];
-	
-
 echo "<td>";
-
-
 if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<a href='acao.php?id=$usuario'><font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<a href='acao.php?id=$usuario'><font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";}} } echo $usuario . " </a></td>";
 echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<a href='acao.php?id=$usuario'><font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<a href='acao.php?id=$usuario'><font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";} }} echo $plano." </a></td>";
 echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<a href='acao.php?id=$usuario'><font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<a href='acao.php?id=$usuario'><font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";} }} echo $contato ."</a></td>";
 echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<a href='acao.php?id=$usuario'><font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<a href='acao.php?id=$usuario'><font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";} }} echo $inst ."</a></td>";
 echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<a href='acao.php?id=$usuario'><font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<a href='acao.php?id=$usuario'><font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";} }} echo $oq ."</a></td>";
 echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<a href='acao.php?id=$usuario'><font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<a href='acao.php?id=$usuario'><font color=black size=3>";}else{echo "<a href='acao.php?id=$usuario'><font color=#04B404 size=3>";} }} echo $quem ."</a></td></font>";
-
-
-	echo "</td>";
-echo "</tr>";	
-
-}
-}}
-?>
-  </tbody>
-                    </table>
-                  </div>
-                </div>
-				<!--- ATUALIZAÇÕES -->
-              </div>
-            </div>
-          </div>
-      
-      
-	  
-	  
-	  <footer class="footer">
+echo "</td>";
+echo "</tr>";}}}?>
+</tbody>
+</table>
+</div>
+</div>
+<!--- ATUALIZAÇÕES -->
+</div>
+</div>
+</div>
+<footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">
-           
-		   
-		   <!------------------------------------->
-		   
+<!------------------------------------->
           </nav>
           <div class="copyright float-right">
-           
 <!------------------------------------->
-
-
 		   </div>
         </div>
       </footer>
@@ -438,10 +374,6 @@ echo "</tr>";
             <img src="../assets/img/sidebar-4.jpg" alt="">
           </a>
         </li>
-        
-      
-        
-        
       </ul>
     </div>
   </div>
