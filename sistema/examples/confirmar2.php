@@ -173,7 +173,7 @@ while($vreg=mysqli_fetch_row($res)){
  	   <div id="total_cliente_conectado" class="widget-int num-count">
 	  <!--- carrega a pagina auto_refresh_index.php-->	
 	   <?php echo '<br>' . $painel;   ?> 
-</div>
+         </div>
 		
 <div class="container-fluid">
           <div class="card">
@@ -250,33 +250,31 @@ $data=$vreg[12];}
 
 ?>
 
-<form action="" method="post" name="login" id="login" class="login" onSubmit="return validaCampo(); return false;">
-<input type="hidden" name="get" value="nada" /> 
-<table  align="center" cellpadding="2" cellspacing="2" >
-<center>
-<tr>
-<td>
+
+<div class="table-responsive">
+ <table class="table table-hover" align="center" cellpadding="2" cellspacing="2" >
+  <form action="" method="post" name="login" id="login" class="login" onSubmit="return validaCampo(); return false;">
+     <tr>
+       <td>
 <font color='black' class="bmd-label-floating"><strong>Nome:</strong></font>
-</td>
-<td>
+       </td>
+       <td>
 <input type="text" class="form-control" name="nome1"   value="<?php echo $nome; ?>" onchange="carregatexto(this.value)" />
-</td>
-
-<td>
+        </td>
+       <td>
 <font color='black' class="bmd-label-floating"><strong>CPF:</strong></font>
-</td>
-<td>
+        </td>
+       <td>
 <input type="text" name="cpf" value="<?php echo $cpf; ?>" class="form-control" onkeypress="$(this).mask('000.000.000-00');" size="30" maxlength="18"  onchange="carregatexto(this.value)" />
-</td>
-
-<td>
+        </td>
+       <td>
 <font color='black' class="bmd-label-floating"><strong>Apelido:</strong></font>
-</td>
-<td>
+        </td>
+       <td>
 <input type="text" class="form-control" name="apelido" size="30" maxlength="35" value="<?php if(!isset($apelido))$c = null; echo $apelido;?>" onchange="carregatexto(this.value)" />
-</td>
-</tr>
-<tr>
+        </td>
+     </tr>
+    <tr>
 </tr>
 <td>
 <br>
@@ -421,10 +419,10 @@ NÃO: <input type="radio" name="confirma" value="nao" />
 <button type="submit" class="btn btn-primary pull-right">Salvar</button>
 </li>
 </td>
-<tr>
-</table>
-</form>
-
+</tr>
+   </form>
+    </table>
+     </div>
 
 <br>
 <br>
@@ -484,6 +482,19 @@ $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 $id=$vreg[1];
 }
+ /// INSERINDO EM CHAMADOS
+ $defalt = null;
+$status = "1";
+$dateC = date('d/m/y H:i:s');
+$data_con = "Em aberto";
+$tecnico = "No aguardo";
+$observacao = "Sem observações";
+$usuarioc = $_SESSION['$vreg[2]'];
+$nomec = "Instalação";
+$usuario = 'teste';
+	$res=mysqli_query($con,"insert into chamado values
+(NULL, '1', '$nomec', '$usuario', '$dateC', '$data_con', '$tecnico', '$usuarioc', '48');");
+
  /// MUDANDO STATUS DO CLIENTE
 $sql="UPDATE cadastro SET id_cliente = '$id' WHERE nome = '$nome' and id_servidor = '$id_serv'";
 $res=mysqli_query($con,$sql);
@@ -643,6 +654,7 @@ echo " <center> <font color='#00CC00'>Usuario criado com sucesso na RB!</font> <
 }
 	
 }}
+
 
 
  ?></center>

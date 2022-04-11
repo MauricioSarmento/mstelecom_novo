@@ -181,7 +181,12 @@ $id_servserv = $vreg[7];
 $sql="SELECT * FROM chamado where id_serv = $id_servserv and status = '1' and nome_cliente = 'Instalação'";
 $res=mysqli_query($con,$sql);
 $lin2=mysqli_num_rows($res);
-$lin3 = $lin + $lin2;
+
+	$sql="SELECT * FROM cadastro where id_cliente = '1'";
+	$res=mysqli_query($con,$sql);
+	$lin3=mysqli_num_rows($res);
+
+$lin4 = $lin + $lin2 + $lin3;
 	 ?>
 	 	 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
@@ -216,7 +221,7 @@ $lin3 = $lin + $lin2;
               <li class="nav-item dropdown">
                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
-                  <span class="notification"><?php echo $lin3;  ?></span>
+                  <span class="notification"><?php echo $lin4;  ?></span>
                   <p class="d-lg-none d-md-block">
                     Some Actions
                   </p>

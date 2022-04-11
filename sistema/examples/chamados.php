@@ -380,7 +380,24 @@ if($vreg[1] == 1){echo     "<td><a href='chamado2.php?id=$vreg[0]'>";}else{echo 
 if($vreg[1] == 1){echo     "<td><a href='chamado2.php?id=$vreg[0]'>";}else{echo "<td>";}echo $data=$vreg[6]; 
 if($vreg[1] == 1){echo     "<td><a href='chamado2.php?id=$vreg[0]'>";}else{echo "<td>";}echo $data=$vreg[7];
 echo "</td></tr>";}
-echo "</table>";
+
+
+	$sql="SELECT * FROM cadastro where id_cliente = '1'";
+	$res=mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+	echo     "<td><a href='confirmar2.php?id=$vreg[0]'>Instalação</td>";
+if($vreg[1] == 1){echo     "<td><a href='confirmar2.php?id=$vreg[0]'>";}else{echo "<td>";}echo $data=$vreg[2]; 
+ echo "</td><td><a href='confirmar2.php?id=$vreg[0]'>" . date('d/m/y H:i:s') . "</td>";
+ echo "</td><td><a href='confirmar2.php?id=$vreg[0]'>Em aberto</td>";
+ echo "</td><td><a href='confirmar2.php?id=$vreg[0]'>No aguardo</td>";
+ echo "</td><td><a href='confirmar2.php?id=$vreg[0]'>Cadastrar Cliente</td></tr>";
+
+}
+echo "</table>"; 
+ echo '<center>Estou mechendo em chamados, as vezes vai ter alterações!</center>';
+
+
+
 ?>
 			  
 			  

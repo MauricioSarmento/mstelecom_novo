@@ -87,10 +87,15 @@ $id_servserv = $vreg[7];
 }
 $sql="SELECT * FROM chamado where id_serv = $id_servserv and status = '1' ";
 $res=mysqli_query($con,$sql);
-$lin=mysqli_num_rows($res);
+$lin1=mysqli_num_rows($res);
+
+
+	$sql="SELECT * FROM cadastro where id_cliente = '1'";
+	$res=mysqli_query($con,$sql);
+	$lin2=mysqli_num_rows($res);
 
 			
-
+$lin = $lin1 + $lin2;
 $painel = '
   <!--- //auto refresh -->
               <div class="container-fluid">
