@@ -1,12 +1,8 @@
 ﻿<?php
 require_once '../login/protect.php';
 require_once 'conexao/conect.php';
-require_once"painel.php";
-#header("Refresh: 50");
-?>
-
+require_once"painel.php";?>
 <html lang="pt">
-
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -25,46 +21,34 @@ require_once"painel.php";
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
-
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-      <!--
-        PAINEL PRINCIPAL
-    -->
+      <!--        PAINEL PRINCIPAL    -->
       <div class="logo"><a href="index.php" class="simple-text logo-normal">
           MSTELECOM
         </a></div>
       <?php echo $menu; ?>
     </div>
     <div class="main-panel">
-      
 	   <!-- PESQUISA E NOTIFICAÇÕES -->
-     
 	<?php $id_serv = $_SESSION['$id_servidor'];
 	$sql="SELECT * FROM cadastro where id_cliente = '1' and id_servidor = '$id_serv'";
 $res= mysqli_query($con,$sql);
 $lin=mysqli_num_rows($res);
-
- $user1 = $_SESSION['$vreg[2]'];
-
+$user1 = $_SESSION['$vreg[2]'];
 $sql="SELECT * FROM clientes where usuario = '$user1'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
- $user1 = $vreg[1];
-
-}
+$user1 = $vreg[1];}
 $sql="SELECT * FROM clientes where nome = '$user1' and usuario = '$user1'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
-$id_servserv = $vreg[7];
-
-}
+$id_servserv = $vreg[7];}
 $sql="SELECT * FROM chamado where id_serv = $id_servserv and status = '1' and nome_cliente = 'Instalação'";
 $res=mysqli_query($con,$sql);
 $lin2=mysqli_num_rows($res);
-$lin3 = $lin + $lin2;
-	 ?>
+$lin3 = $lin + $lin2;	 ?>
 	 	 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
@@ -77,15 +61,6 @@ $lin3 = $lin + $lin2;
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
-                  <div class="ripple-container"></div>
-                </button>
-              </div>
-            </form>
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="status.php">
@@ -103,30 +78,18 @@ $lin3 = $lin + $lin2;
                     Some Actions
                   </p>
                 </a>
-				
-				
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-				
 <?php
 $sql="SELECT * FROM cadastro where id_cliente = '1'";
 $res= mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
-echo '<a class="dropdown-item" href="confirmar.php">Instalação =  '. $vreg[10] .'</a>';
-	                                }
+echo '<a class="dropdown-item" href="confirmar.php">Instalação =  '. $vreg[10] .'</a>';}
 $sql="SELECT * FROM chamado where id_serv = $id_servserv and status = '1' ";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 	if($vreg[2]=='Instalação'){
 	echo '<a class="dropdown-item" href="chamados.php">'. $vreg[2] .' ver em chamados</a>';
-	}
-}						
-//$sql="SELECT * FROM cadastro";
-//$res= mysqli_query($con,$sql);
-//while($vreg=mysqli_fetch_row($res)){
-//echo '<a class="dropdown-item" href="#">Boleto =  '. $vreg[10] .'</a>';
-//	                                }
-?>
-                  
+	}}?>
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -148,11 +111,7 @@ while($vreg=mysqli_fetch_row($res)){
         </div>
       </nav>
       <!-- CAIXAS DE AVISOS  -->
-	  
-	  
-	  
-	  
-	  <script>
+<script>
 			$(function(){
 				//chama a função atualizaDados daqui à 10000ms (1s)
 				window.setTimeout(atualizaDados, 10000);
@@ -163,24 +122,14 @@ while($vreg=mysqli_fetch_row($res)){
 					window.setTimeout(atualizaDados, 10000);
 				}
 			});
-					</script>
-					
-					
+</script>
       <div class="content">
 	 <!--- //auto refresh -->
  	   <div id="total_cliente_conectado" class="widget-int num-count">
 	  <!--- carrega a pagina auto_refresh_index.php-->	
 	   <?php echo '<br>' . $painel;   ?>  
-
-
 <!--- ATUALIZAÇÕES -->
-	
-
-				<!--- ATUALIZAÇÕES -->
               </div>
-			  
-			  
-			 
 <?php
 if(!isset($_GET["id"]))
 $_GET["id"]= null;
@@ -214,16 +163,7 @@ while($vreg=mysqli_fetch_row($res)){
 	$id_cliente=$vreg[15];
 	$apelido=$vreg[16];
 	$cpf=$vreg[17];
-	$email=$vreg[18];
-
-}
-///////////////////////////////
-///////////////////////////////
-///////////////////////////////
-
-///////////////////////////////
-//////////////////////////////
-///////////////////////////////
+	$email=$vreg[18];}
 $id_servidor;
 if(!isset($nome)) $nome = null;
 if(!isset($usuario)) $usuario = null; 
@@ -333,7 +273,6 @@ Numero:
 <td>Plano:
 </td><td>
 <select name="profile" id="select">
-
 <?php
 echo "<option>". $plano ."</option>";
 $API = new RouterosAPI();
@@ -510,10 +449,9 @@ if($dat <=5){$data="3";}
 {
 if($dat >=6 and $dat <20 ){$data="2";}	else {$data="3";}
 };
-
 /////////// quando o cliente for do dia 15 /////////////////////
 if( $c == 15){
-	
+
 	if($dat <=15 ){$data="3";}	else {$data="2";}
 	
 	};
