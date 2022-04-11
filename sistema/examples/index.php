@@ -2,13 +2,9 @@
 require_once '../login/protect.php';
 require_once 'conexao/conect.php';
 require_once"painel.php";
-header("Refresh: 50");
-#header("Refresh: 3; url = acao.php?id=$n1'");
 $id_serv = $_SESSION['$id_servidor'];
 ?>
-
 <html lang="pt">
-
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -27,13 +23,10 @@ $id_serv = $_SESSION['$id_servidor'];
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
-
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-      <!--
-        PAINEL PRINCIPAL
-    -->
+      <!--        PAINEL PRINCIPAL    -->
       <div class="logo"><a href="index.php" class="simple-text logo-normal">
           MSTELECOM
         </a></div>
@@ -42,16 +35,11 @@ $id_serv = $_SESSION['$id_servidor'];
 	<br>
     <div class="main-panel">
       <!-- PESQUISA E NOTIFICAÇÕES -->
-     
 		 <?php 
 $_SESSION['numIpp'];
 $t = $_SESSION['numIpp'];
 if($t == "Sem_Servidor"){echo"<center><br>VOCÊ NÃO TEM SERVIDOR CADASTRADO, POR FAVOR CADASTRE UM.<br>";
 ?>
-
-
-
-
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar">
 CADASTRO DE SERVIDOR
 </button>

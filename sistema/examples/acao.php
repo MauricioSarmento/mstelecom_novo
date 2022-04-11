@@ -2,14 +2,9 @@
 require_once '../login/protect.php';
 require_once 'conexao/conect.php';
 require_once"painel.php";
-
-#header("Refresh: 50");
-
-	$n1=$_GET["id"];
+$n1=$_GET["id"];
 ?>
-
 <html lang="pt">
-
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -28,68 +23,47 @@ require_once"painel.php";
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
-
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-      <!--
-        PAINEL PRINCIPAL
-    -->
+      <!--        PAINEL PRINCIPAL    -->
       <div class="logo"><a href="index.php" class="simple-text logo-normal">
           MSTELECOM
         </a></div>
       <?php echo $menu; ?>
     </div>
     <div class="main-panel">
-      
-	  
-	   <!-- PESQUISA E NOTIFICAÇÕES -->
-     
-	<?php 
+<!-- PESQUISA E NOTIFICAÇÕES -->
+<?php 
 	$sql="SELECT * FROM cadastro where id_cliente = '1'";
 $res= mysqli_query($con,$sql);
 $lin=mysqli_num_rows($res);
-
  $user1 = $_SESSION['$vreg[2]'];
-
 $sql="SELECT * FROM clientes where usuario = '$user1'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
- $user1 = $vreg[1];
-
-}
+ $user1 = $vreg[1];}
 $sql="SELECT * FROM clientes where nome = '$user1' and usuario = '$user1'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
-$id_servserv = $vreg[7];
-
-}
+$id_servserv = $vreg[7];}
 $sql="SELECT * FROM chamado where id_serv = $id_servserv and status = '1' and nome_cliente = 'Instalação'";
 $res=mysqli_query($con,$sql);
 $lin2=mysqli_num_rows($res);
 $lin3 = $lin + $lin2;
-	 ?>
-	 	 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">Usuario:   <?php echo $_SESSION['$vreg[2]']; ?></a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
+?>
+<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+ <div class="container-fluid">
+  <div class="navbar-wrapper">
+   <a class="navbar-brand" href="javascript:;">Usuario:   <?php echo $_SESSION['$vreg[2]']; ?></a>
+  </div>
+<button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+ <span class="sr-only">Toggle navigation</span>
+  <span class="navbar-toggler-icon icon-bar"></span>
+   <span class="navbar-toggler-icon icon-bar"></span>
+    <span class="navbar-toggler-icon icon-bar"></span>
+</button>
           <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
-                  <div class="ripple-container"></div>
-                </button>
-              </div>
-            </form>
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="status.php">
@@ -104,40 +78,25 @@ $lin3 = $lin + $lin2;
                   <i class="material-icons">notifications</i>
                   <span class="notification"><?php echo $lin3;  ?></span>
                   <p class="d-lg-none d-md-block">
-                    Notificações
+                    Some Actions
                   </p>
                 </a>
-				
-				
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-				
- 	 <?php 
-	$sql="SELECT * FROM cadastro";
+<?php
+$sql="SELECT * FROM cadastro where id_cliente = '1'";
 $res= mysqli_query($con,$sql);
-$lin=mysqli_num_rows($res);
-
- $user1 = $_SESSION['$vreg[2]'];
-
-$sql="SELECT * FROM clientes where usuario = '$user1'";
+while($vreg=mysqli_fetch_row($res)){
+echo '<a class="dropdown-item" href="confirmar.php">Instalação =  '. $vreg[10] .'</a>';
+	                                }
+$sql="SELECT * FROM chamado where id_serv = $id_servserv and status = '1' ";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
- $user1 = $vreg[1];
-
-}
-$sql="SELECT * FROM clientes where nome = '$user1' and usuario = '$user1'";
-$res=mysqli_query($con,$sql);
-while($vreg=mysqli_fetch_row($res)){
-$id_servserv = $vreg[7];
-
-}
-$sql="SELECT * FROM chamado where id_serv = $id_servserv and status = '1' and nome_cliente = 'Instalação'";
-$res=mysqli_query($con,$sql);
-$lin2=mysqli_num_rows($res);
-$lin3 = $lin + $lin2;
-	 ?>
-                  
-                </div>
-              </li>
+	if($vreg[2]=='Instalação'){
+	echo '<a class="dropdown-item" href="chamados.php">'. $vreg[2] .' ver em chamados</a>';
+	}}						
+?>
+</div>
+</li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
@@ -156,11 +115,8 @@ $lin3 = $lin + $lin2;
           </div>
         </div>
       </nav>
-      <!-- CAIXAS DE AVISOS  -->
-	  
-	  
-	  
-	  
+      <!-- FIM DE CAIXAS DE AVISOS  -->
+      <!-- ATUALIZAR PAGINA  -->
 	  <script>
 			$(function(){
 				//chama a função atualizaDados daqui à 10000ms (1s)
@@ -172,7 +128,7 @@ $lin3 = $lin + $lin2;
 					window.setTimeout(atualizaDados, 10000);
 				}
 			});
-					</script>
+      </script>
 	 <!--- //auto refresh -->
        <div class="content">
 	   <div id="total_cliente_conectado" class="widget-int num-count">
@@ -187,22 +143,15 @@ $lin3 = $lin + $lin2;
               <p class="card-category">Edite informações do cliente.</p>
             </div>
             <div class="card-body">
-			
-			
-			
-                  <div class="table-responsive">
+               <div class="table-responsive">
                     <table class="table table-hover" >
                       <thead class="">
-			
-			
-		<?php
-		
+<?php
 $user1 = $_SESSION['$vreg[2]'];
 $sql="SELECT * FROM clientes where usuario = '$user1'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
-$id_servidor = $vreg[5];
-}
+$id_servidor = $vreg[5];}
 $sql="SELECT * FROM db_clientes where id_cliente = $id_servidor and usuario = '$n1'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
@@ -223,8 +172,6 @@ $ven=$vreg[12];
 $statuss=$vreg[13];
 $valor=$vreg[14];
 $cpf=$vreg[15];}
-
-
 $nomee = $nome;
 $usuario = $user2;
 $e_mail = $email;
@@ -239,17 +186,13 @@ $vencimento = $ven;
 $statuss = $statuss;
 $valorr = $valor;
 $cpf2 = $cpf;
-
-
-
+######################## VERIFICANDO SE TEM SÓCIEDADE #############################
 $sql="SELECT * FROM sociedade where id_cliente = $id";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
-	$id_cliente_sociedade=$vreg[1];
-}
-
+	$id_cliente_sociedade=$vreg[1];}
 if(!isset($id_cliente_sociedade)) $id_cliente_sociedade= 'Não'; if($id_cliente_sociedade == $id){$id_cliente_sociedade = 'Sim';}; 
-######################## Adicionando mensalidade se n]ao tiver #############################
+######################## Adicionando mensalidade se nao tiver #############################
 $jan="1";
 $fev="1";
 $mar="1";
@@ -266,9 +209,7 @@ $ano = date("y");
 $sql="SELECT * FROM mensalidade where ano = '$ano' and id_clientes = '$id'";
 $res46=mysqli_query($con,$sql);
 $lin=mysqli_num_rows($res46);
-if($lin == 1 ){
-		
-}else{
+if($lin == 1 ){}else{
 $res55=mysqli_query($con,"INSERT INTO `mensalidade` (`id`, `id_clientes`, `usuario`, `Jan`, `Feb`,
 `Mar`, `Apr`, `May`, `Jun`, `Jul`, `Aug`, `Sep`, `Oct`, `Nov`, `Dez`, `ano`) VALUES 
 (NULL, '$id','Admin','$jan', $fev, '$mar','$abr', '$mai', '$jun', '$jul','$ago','$set','$out','$nov', '$dez', '$ano')");
@@ -288,8 +229,6 @@ if(!isset($apelido)) $apelido=null;
 if(!isset($_SESSION['$n4'])) $_SESSION['$n4']=null;
 if(!isset($user2)){$user2=$n1;}
 if(!isset($user2)){include "editar.php";}else{  ?>
-		
-		
 <!-------------------------------------------- INICIO DE TABELA MENU--------------------------------------------->
 <table border="0" >
 <td>
@@ -339,7 +278,6 @@ include "pagamentos.php";  ?></center>
 $carne = "<font color='#00CC00'> <center><button type='button' class='btn btn-primary'>Boleto loja</button></center></font>";
 echo 		"<td><a href='carne/index.php?id=$n' target='_blank'>".$carne."</a></td>";
 ?>
-
 <td>
 <!-------------------------------------------- Botão LIBERAR INTERNET --------------------------------------------->
 <!-- Botão para acionar modal -->
@@ -401,7 +339,6 @@ include 'excluir_acao.php';
 <!-------------------------------------------- AREA PARA Botão --------------------------------------------->
 <td>
 <!------------>
-
 <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#BLOQUEAR'>
 BLOQUEAR
 </button>
@@ -424,12 +361,10 @@ include 'bloqueio_acao.php';
 </div>
 </div>
 </div>
-
 <!------------>
 </td>
 <td>
 <!------------>
-
 <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#desconectar'>
 	DESCONECTAR
 </button>
@@ -452,7 +387,6 @@ include 'desconectar.php';
 </div>
 </div>
 </div>
-
 <!------------>
 </td>
 </table>
@@ -465,9 +399,7 @@ echo '
 <script type="text/javascript"> 
 var urlAtual = window.location.href;
 window.location.href=urlAtual;
-</script>';
-}
-
+</script>';}
 $id_s = $_SESSION['numIpp'];
 $usuario =$_SESSION['$vreg[2]'];
 $id_servidor= $_SESSION['$id_servidor'];
@@ -492,31 +424,23 @@ $macr = $vreg[7];
 };
 if($lin == 1 ){}else{
 $res=mysqli_query($con,"insert into roteador values
-(NULL, '$id_admin', '$user2', 'Não', 'Não', 'Não', 'Não' , '00:00:00:00:00:00');");
-
-}
+(NULL, '$id_admin', '$user2', 'Não', 'Não', 'Não', 'Não' , '00:00:00:00:00:00');");}
 if(!isset($nome)) $nome = null;	
 if(!isset($pagamento)) $pagamento = null;	
 if(!isset($valor2)) $valor2 = null;
 if(!isset($data2)) $data = null;
 if(!isset($user2)){$user2=$n1;}
-
 session_start();
-	$_SESSION['nome_user']=$n1;
-	
-	
-?> 			
-			  
-			  
-		<script type="text/javascript"> 
+$_SESSION['nome_user']=$n1;?> 			
+<script type="text/javascript"> 
 var tempo = window.setInterval(carrega, 2000);
 function carrega()
 {
 $('#empo_conexao').load('autorefresh_on_acao.php');
 } 
 </script>
-	<div id="empo_conexao">
-	<br>
+<div id="empo_conexao">
+<br>
  <?php 
 /////////////////autorefresh_on_acao//////////////////////////////////////////////////
 //////////MOSTRANDO O TEMPO QUE ESTA ONLINE////////////////////////
@@ -539,18 +463,11 @@ echo $botao;
 $sql="SELECT * FROM observacao where id_cliente_ob = '$id'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
-$obs_observacao=$vreg[4];
-}
+$obs_observacao=$vreg[4];}
 $obs_observacao;
 if($obs_observacao == null){$botao2 = "<button type='button' class='btn btn-success'>SEM OBSERVAÇÃO</button>";}else{
 {$botao2 = "<button type='button' class='btn btn-warning'>OBSERVAÇÃO</button>";}}
 echo $botao2;
-
-
-
-
-
-
 $sql="SELECT * FROM db_clientes where id_cliente = $id_servidor and usuario = '$n1'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
@@ -571,9 +488,7 @@ $ven=$vreg[12];
 $statuss=$vreg[13];
 $valor=$vreg[14];
 $cpf=$vreg[15];}
-?>
-
-			  
+?>  
 <!--------------------- Fim de roteador ------------------------------->
 <!--------------------- EDIÇÃO DO CLIENTE ----------------------------->
 
@@ -776,7 +691,6 @@ if(isset($_POST["comentario4"])){
 $c4=$_POST["comentario4"];}
 if(isset($_POST["senha4"])){
 $s4=$_POST["senha4"];}
-
 ///////////////////////////////////////////////////////////////////////////
 //////////////////  se mudar o plano ele desconecta o cliente /////////////
 ///////////////////////////////////////////////////////////////////////////
@@ -792,16 +706,7 @@ $API->write('/interface/pppoe-server/remove', false);
 $API->write('=.id='.$find['.id']);
 $API->read();
 endforeach;
-};
-
-///////////////////////////////////////////////////////////////////////////
-//////////////////  se mudar o plano ele desconecta o cliente /////////////
-///////////////////////////////////////////////////////////////////////////
-}}
-
-
-
-
+};}}
 $com= $p4."-".$c4;
 if(isset($_POST["nome1"])){
 $nome1=$_POST["nome1"];}
@@ -845,8 +750,10 @@ if(!isset($c4))
 $c4=null;
 $API = new RouterosAPI();
 $API->debug = false;
+///////////////////////////////////////////////////////////////////////////
+//////////////////  Alterando dados no mikrotik /////////////
+///////////////////////////////////////////////////////////////////////////
 if(isset($_POST["nome1"])){
-
 if ($API->connect("$servidor_mikrotik","$login_servidor_mikrotik","$senha_servidor_mikrotik")) {
 $ARRAY = $API->comm("/ppp/secret/print");
 if(!isset($n1))
@@ -867,14 +774,11 @@ array(
 "profile" => $p4,  
 "comment" => $com, 
 "service" => "pppoe",	))  ;
-
-
 $API->comm("/ppp/secret/set",
 array(
 ".id" => $arrID[0][".id"],
 
 "caller-id" => "",	));
-
 }}
 if(!isset($nome1))
 $nome1 = null;
@@ -910,7 +814,9 @@ if(!isset($n))
 $n=null;
 if(!isset($instalacao))
 $instalacao = null;
-	
+///////////////////////////////////////////////////////////////////////////
+//////////////////  Alterando dados do cliente no BD /////////////
+///////////////////////////////////////////////////////////////////////////
 if(isset($_POST["nome1"])){
 $sql="SELECT * FROM db_clientes where usuario = '$n1' and id_cliente = '$id_servidor'";
 $res= mysqli_query($con,$sql);
@@ -918,36 +824,27 @@ $lin=mysqli_num_rows($res);
 while($vreg=mysqli_fetch_row($res)){
 $id=$vreg[1];}
 if($lin == 1 ){
-
-	
 $sql="UPDATE db_clientes SET usuario = '$n4', nome = '$nome1',plano= '$p4',dia_vencimento= '$c4' , email= '$email', cpf= '$cpf' ,
 complemento= '$complemento', data_instalacao= '$instalacao', apelido = '$apelido', numero='$numero', endereco= '$endereco' WHERE id = $id";
 $res=mysqli_query($con,$sql);
 if(isset($_POST["valor"])){
 $valor2=$_POST["valor"];
-
-
 if($valor == $valor2){
-	if($plano !== $p4){
-	if($p4 == "8M"){$valor2 = "40,00";}
+if($plano !== $p4){
+if($p4 == "8M"){$valor2 = "40,00";}
  if($p4 == "10M"){$valor2 = "45,00";}
    if($p4 == "15M"){ $valor2 = "55,00";}
      if($p4 == "20M"){ $valor2 = "65,00";}
        if($p4 == "30M"){ $valor2 = "85,00";}
            if($p4 == "50M"){ $valor2 = "110,00";}
 if($p4 == null){ $valor2 = "00,00";}}} 
-
-  
 $sql="UPDATE db_clientes SET valor_plano = '$valor2' , telefone = '$contato' WHERE id = $id";
-$res=mysqli_query($con,$sql);
-}
-
+$res=mysqli_query($con,$sql);}
 echo '
 <script type="text/javascript"> 
 var urlAtual = window.location.href;
 window.location.href=urlAtual;
 </script>';
-
 $user = $_SESSION['$vreg[2]'];
 $username1 = $_SESSION['$vreg[1]'];
 $sql="SELECT * FROM clientes where usuario = '$user'";
@@ -961,8 +858,9 @@ while($vreg=mysqli_fetch_row($res)){
 $id_servserv = $vreg[7];
 }  	  
 $data_hora = date('d-m-y H:i:s');
-
-
+///////////////////////////////////////////////////////////////////////////
+//////////////////  colocando cada alteração feita no historico /////////////
+///////////////////////////////////////////////////////////////////////////
 if($nomee != $nome1){
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do nome', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
@@ -1017,11 +915,7 @@ if($cpf2 != $cpf){
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do cpf', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
 '$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
-}
-
-}
-else
-{
+}}else{
 $dat = date("d");
 /////////// quando o cliente for do dia 05 /////////////////////
 if( $c == 05){
@@ -1069,36 +963,20 @@ echo '<script type="text/javascript">
 var urlAtual = window.location.href;
 window.location.href=urlAtual;
 </script>';}}
-$_SESSION['$n4']=$n4;
-
-};
+$_SESSION['$n4']=$n4;};
 ?>
-
-
-
-
 </table>
 </div>
-
-
-
 <!--------------------- EDIÇÃO DO ROTEADOR ---------------------------->
 <!--------------------------------------------------------------------->
-
 <br>
 <br>
-
-
 <div class="card-header card-header-primary" >
 <h4 class="card-title">Roteador</h4>
 <p class="card-category">Informações sobre o roteador do cliente.</p>
 </div>
-
-
-      <div class="table-responsive">
-       <table class="table table-hover" >
-	   
-	   
+<div class="table-responsive">
+<table class="table table-hover" >
 <form name="login" method="post" action="" >
 <input type="hidden" name="get" value="nada" /> 
 <table width="800">
@@ -1239,7 +1117,6 @@ echo "<button><a href='http://$servidor_mikrotik:8099/graphs/iface/<pppoe-$n1>/'
 </table>
 </form>
 <?php
-
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////AMARRAR E REMOVER MAC///////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -1247,7 +1124,6 @@ if(isset($_POST["amarrarmac"])){
 $amarrarmac=$_POST["amarrarmac"];}
 if(isset($_POST["macr"])){
 $macr=$_POST["macr"];}
-
 if($amarrarmac == 'Sim'){
 if ($API->connect("$servidor_mikrotik","$login_servidor_mikrotik","$senha_servidor_mikrotik")) {
 $ARRAY = $API->comm("/ppp/secret/print");
@@ -1267,7 +1143,6 @@ array(
 "caller-id" => $macr,	));
 }
 }
-
 if($amarrarmac == 'Remover'){
 if ($API->connect("$servidor_mikrotik","$login_servidor_mikrotik","$senha_servidor_mikrotik")) {
 $ARRAY = $API->comm("/ppp/secret/print");
@@ -1285,8 +1160,7 @@ $API->comm("/ppp/secret/set",
 array(
 ".id" => $arrID[0][".id"],
 "caller-id" => "",	));
-}
-}
+}}
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////AMARRAR E REMOVER IP///////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -1294,7 +1168,6 @@ if(isset($_POST["amarraip2"])){
 $amarraip2=$_POST["amarraip2"];}
 if(isset($_POST["amarraip"])){
 $amarraip=$_POST["amarraip"];}
-
 if($amarraip == 'Amarrar'){
 if ($API->connect("$servidor_mikrotik","$login_servidor_mikrotik","$senha_servidor_mikrotik")) {
 $ARRAY = $API->comm("/ppp/secret/print");
@@ -1312,8 +1185,7 @@ $API->comm("/ppp/secret/set",
 array(
 ".id" => $arrID[0][".id"],
 "local-address" => $amarraip2,	));
-}
-}
+}}
 if($amarraip == 'Remover'){
 if ($API->connect("$servidor_mikrotik","$login_servidor_mikrotik","$senha_servidor_mikrotik")) {
 $ARRAY = $API->comm("/ppp/secret/print");
@@ -1331,27 +1203,19 @@ $API->comm("/ppp/secret/set",
 array(
 ".id" => $arrID[0][".id"],
 "local-address" => "0.0.0.0",	));
-}
-}
-
+}}
 ?>
-
-
 </table>
 </div>
-
 <br>
 <br>
-
-
 <br>
 <br>
-
 <div class="card-header card-header-primary" >
-                  <h4 class="card-title">Observação</h4>
-                  <p class="card-category">Observações a serem feitas sobre o cliente.</p>
-				  </div>
-				  <br>
+<h4 class="card-title">Observação</h4>
+<p class="card-category">Observações a serem feitas sobre o cliente.</p>
+</div>
+<br>
 <!--------------------------------------------------------------------->
 <!--------------------- EDIÇÃO DE DESCRIÇÃO --------------------------->
 <!--------------------------------------------------------------------->
@@ -1376,8 +1240,7 @@ $id_ob=null;
 $id_c_ob=null;
 $data_ob = date('d-m-y H:i:s');
 $porta_ob=null;
-$obs_ob= null;
-}
+$obs_ob= null;}
 ?>
 <form name="login" method="post" >
 <input type="hidden" name="acao" value="nada" /> 
@@ -1434,24 +1297,19 @@ if(isset($_POST["portaob"])){
 $portaob=$_POST["portaob"];}
 if(isset($_POST["descricaoob"])){
 $descricaoob=$_POST["descricaoob"];
-
-
 echo $data_ob = date('d-m-y H:i:s');
 $sql="UPDATE observacao SET data = '$data_ob' , porta_caixa = '$portaob' , obs = '$descricaoob' WHERE id_cliente_ob = $id";
 $res=mysqli_query($con,$sql);
 echo '<script type="text/javascript"> 
 var urlAtual = window.location.href;
 window.location.href=urlAtual;
-</script>';
-}
-}else{
+</script>';}}else{
 $res=mysqli_query($con,"insert into observacao values
-(NULL, '$id', '$data_ob','$portaob' ,'$descricaoob' );");
- }
+(NULL, '$id', '$data_ob','$portaob' ,'$descricaoob' );"); }
  if(isset($_POST["remover_obs"])){
 $remover_obs=$_POST["remover_obs"];
 if($remover_obs == 'Sim'){
-	$obss = null;
+$obss = null;
 $sql="UPDATE observacao SET data = '$data_ob' , porta_caixa = '$portaob' , obs = '$obss' WHERE id_cliente_ob = $id";
 $res=mysqli_query($con,$sql);
 $data_hora = date('d-m-y H:i:s');
@@ -1459,23 +1317,20 @@ $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Removeu observação', '$user' ,'NULL' ,'NULL','NULL','NULL',
 '$data_hora','NULL', 'NULL','NULL','NULL','NULL','NULL','NULL' );");
 }else{
-	
-	$data_hora = date('d-m-y H:i:s');
+$data_hora = date('d-m-y H:i:s');
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Adicionou observação', '$user' ,'NULL' ,'NULL','NULL','NULL',
 '$data_hora','NULL', 'NULL','NULL','NULL','NULL','NULL','NULL' );");
-}
-}
+}}
 ?>
 <br>
 <br>
 <div class="card-header card-header-primary">
-                  <p class="card-category">Mudar o cliente do servidor.</p>
-				  </div>
-      <div class="table-responsive">
-       <table class="table table-hover" >
-				  <br>
-				  <br>
+<p class="card-category">Mudar o cliente do servidor.</p>
+</div>
+<div class="table-responsive">
+<table class="table table-hover" >
+<br><br>
 <!--------------------------------------------------------------------->
 <!-------------------- MUDANDO CLIENTE DE SERVIDOR -------------------->
 <!--------------------------------------------------------------------->
@@ -1508,8 +1363,7 @@ $res=mysqli_query($con,$sql);
      $idserv=$vreg[1];
 	 echo "<option>";
 echo $serv=$vreg[2];
-echo "</option>";
-}
+echo "</option>";}
  ?> 
 </select>
 </td>
@@ -1576,26 +1430,24 @@ window.location.href=urlAtual;
 }
 ?>
 <!--------------------------------------------------------------------->
-<!---------------- FIM MUDANDO CLIENTE DE SERVIDOR -------------------->
+<!---------------- atualizações do cliente no historico --------------->
 <!--------------------------------------------------------------------->
 <br>
 <br>
 </table>
 </div>
-
 <div class="col-md-12">
-              <div class="card card-plain">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title mt-0"> Atualizações</h4>
-                  <p class="card-category"> Todas as mudanças feitas no cadastro do cliente.</p>
-                </div>
-                <div class="card-body">
- <div class="table-responsive">
-       <table class="table table-hover" >
-
+<div class="card card-plain">
+<div class="card-header card-header-primary">
+<h4 class="card-title mt-0"> Atualizações</h4>
+<p class="card-category"> Todas as mudanças feitas no cadastro do cliente.</p>
+</div>
+<div class="card-body">
+<div class="table-responsive">
+<table class="table table-hover" >
 <table width="400">
-                      <thead class="">
-    <tr>
+<thead class="">
+<tr>
 <th scope="col">DATA E HORA</th>
 <th scope="col">ALTERAÇÃO</th>
 <th scope="col">USUARIO</th>
@@ -1615,50 +1467,26 @@ while($vreg=mysqli_fetch_row($res)){
 				$plano=$vreg[9];
 					$contato=$vreg[10];
 						$inst=$vreg[11];
-	
-
 echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<font color=black size=3>";}else{echo "<font color=#04B404 size=3>";} }} echo $inst ."</a></td>";
 echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<font color=black size=3>";}else{echo "<font color=#04B404 size=3>";} }} echo $oq ."</a></td>";
 echo "<td >"; if($oq=="Cliente Excluido"){echo "<a href='acao4.php?id=$usuario'><font color=red size=3>";}else{if($oq=="Pagamento"){echo "<font color=blue size=3>";}else{if($oq=="Bloqueio"){echo "<font color=black size=3>";}else{echo "<font color=#04B404 size=3>";} }} echo $quem ."</font></a></td>";
-
-
-	echo "</td>";
-echo "</tr>";	
-
-}
-
+echo "</td>";
+echo "</tr>";}
 mysqli_close($con);
 }
 ?>
 </table>
-
-			
-             
-			  
-			  
-			   </table>
-			  
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-	  
-	  
-	  
-	   
-     </div>
-  
-
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-
-
-
- 
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
   <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
       <a href="#" data-toggle="dropdown">
