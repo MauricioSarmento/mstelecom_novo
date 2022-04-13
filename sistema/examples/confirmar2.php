@@ -465,7 +465,6 @@ $tecnico = "No aguardo";
 $observacao = "Sem observações";
 $usuarioc = $_SESSION['$vreg[2]'];
 $nomec = "Instalação";
-$usuario = 'teste';
 	$res=mysqli_query($con,"insert into chamado values
 (NULL, '1', '$nomec', '$usuario', '$dateC', '$data_con', '$tecnico', '$usuarioc', '48');");
 
@@ -579,10 +578,13 @@ $res=mysqli_query($con,"insert into roteador values
 /////////
 /////////
 /////////
+$d = date("d/m/Y");
+$usuarioc = $_SESSION['$vreg[2]'];
+if(isset($_POST["usuario"])){
+$usuario=$_POST["usuario"];}
 $res=mysqli_query($con,"insert into historico values
-(default, '$nome','$usuario', '$id_servserv',NOW(),'Cliente Novo', '$user' ,'$rua' ,'$complemento','$plano','$telefone',
-'$instalacao','$numero', '$c','$valor','$id','$apelido','$cpf','$email' );");	
-
+(NULL, '$nome','$usuario', '$id_servserv',NOW(),'Cliente Novo', '$usuarioc' ,'$rua' ,'$complemento','$plano','$telefone',
+'$d','NULL', '$data','NULL','NULL','NULL','$cpf','NULL' );");
 ///////////////////////////////////////////////////////////////////////////////////////////
 $sql="SELECT * FROM mensalidade where id_clientes = $id and ano = $ano ";
 $res=mysqli_query($con,$sql);
