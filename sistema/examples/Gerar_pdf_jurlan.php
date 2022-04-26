@@ -10,7 +10,7 @@ echo "<meta charset='utf-8'>
 </tr>";
 #puxando Dados da tabela
 
-$sql="SELECT * FROM sociedade";
+$sql="SELECT * FROM sociedade where sociedade ='Jurlan'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 $html .= '<td>' . $vreg[1] . ' </td>';
@@ -21,7 +21,7 @@ $html .= '</tr>';
 #Formatando o arquivo
  header("Content-type: application/vnd.ms-excel");
  header("Content-type: application/force-download");
- header("Content-Disposition: attachment; filename=Clientes.xls");
+ header("Content-Disposition: attachment; filename=Clientes_Jurlan.xls");
  header("Pragma: no-cache");
 
 #enviar o conteudo do arquivo

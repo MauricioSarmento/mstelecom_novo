@@ -422,26 +422,87 @@ echo '<div class="container-fluid">
 
 				<!--- ATUALIZAÇÕES -->
               </div>
-			  
-			  
-Informações da RB
-<script type="text/javascript"> 
-var tempo = window.setInterval(carrega, 1000);
-function carrega()
+<?php
+	$sql="SELECT * FROM sociedade where sociedade = 'Jurlan' ORDER BY usuario";
+$res=mysqli_query($con,$sql);
+$jurlan=mysqli_num_rows($res);
+
+$sql="SELECT * FROM sociedade where sociedade = 'Bimbo' ORDER BY usuario";
+$res=mysqli_query($con,$sql);
+$Bimbo=mysqli_num_rows($res);
+	
+		?>
+					  <div class="col-md-12">
+              <div class="card card-plain">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title mt-0"> Clientes</h4>
+                  <p class="card-category"> Todos os clientes em sociedade</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+				  
+				  <style type="text/css">
+table
 {
-$('#mk').load('mk.php');
+float:left;
 }
-</script>
-<div id="mk">
-<center><strong>Carregando informações do sistema!</strong></center>
+</style>
+                    <table width="400" border=4>
+                      <thead class="">
+			  <tr>
+			  <td>CLIENTES DE JULAN =  <?php echo $jurlan;?> <a href='Gerar_pdf_jurlan.php'>Gerar Exel</a></td>	
+			  </tr>
+			  <tr>
+			 
+<?php
+	########################SÓCIEDADE #############################
+$sql="SELECT * FROM sociedade ORDER BY usuario";
+$res=mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+		echo '<tr>';
+	$sociedade=$vreg[3];
+	$id_cliente_sociedade=$vreg[1];
+	if($sociedade == 'Jurlan'){echo '<td>' . $cliente_sociedade=$vreg[2] . '</td>';}
+		echo '</tr>';
+	}
+?>
+	           
+			   </tr>
+</table>
+
+
+
+                  <table width="400" border=4 style="margin-left: 5px;">
+                      <thead class="">
+			  <tr>
+			  <td>CLIENTES DE BIMBO =  <?php echo $Bimbo;?> <a href='Gerar_pdf_bimbo.php'>Gerar Exel</a></td>	
+			  </tr>
+			  <tr>
+			 
+<?php
+	########################SÓCIEDADE #############################
+$sql="SELECT * FROM sociedade where sociedade = 'Bimbo' ORDER BY usuario";
+$res=mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+		echo '<tr>';
+	$sociedade=$vreg[3];
+	$id_cliente_sociedade=$vreg[1];
+	if($sociedade == 'Bimbo'){echo '<td>' . $cliente_sociedade=$vreg[2] . '</td>';}
+		echo '</tr>';
+	}
+?>
+	           
+</tr>
+</table>
+
+
+</div>
+</div>
+</div>
 </div>
 
 
-		
-	
-	
-			  
-			  
+
            </div>
           </div>
 	  <footer class="footer">

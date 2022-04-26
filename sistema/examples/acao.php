@@ -3,6 +3,7 @@ require_once '../login/protect.php';
 require_once 'conexao/conect.php';
 require_once"painel.php";
 $n1=$_GET["id"];
+$date = date('d/m/y H:i:s');
 ?>
 <html lang="pt">
 <head>
@@ -192,6 +193,7 @@ $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 	$id_cliente_sociedade=$vreg[1];
 	$cliente_sociedade=$vreg[2];
+	$sociedade=$vreg[3];
 	}
 if(!isset($id_cliente_sociedade)) $id_cliente_sociedade= 'Não'; if($id_cliente_sociedade == $id){$id_cliente_sociedade = 'Sim';}; 
 ######################## Adicionando mensalidade se nao tiver #############################
@@ -486,7 +488,6 @@ $id_servserv = $vreg[7];
 }
 $defalt = null;
 $status = "1";
-$date = date('d/m/y H:i:s');
 $data_con = "Em aberto";
 $tecnico = "No aguardo";
 $observacao = "Sem observações";
@@ -702,8 +703,11 @@ $cpf=$vreg[15];}
 </td>
 <td>
 <select name="sociedade" class="form-control" id="select">
-<option><?php echo $id_cliente_sociedade;  ?></option>
-<option>Sim</option>
+
+<?php if($sociedade == 'Jurlan'){echo '<option>' . $sociedade . '</option>';}else{if($sociedade == 'Bimbo'){echo '<option>' . $sociedade . '</option>';} else{echo '<option>Não</option>';}}
+if($sociedade == 'Jurlan'){echo '<option>' . $sociedade . '</option>';}else{echo '<option>Jurlan</option>';} 
+if($sociedade == 'Bimbo'){echo '<option>' . $sociedade . '</option>';} else{echo '<option>Bimbo</option>';} 
+ ?>
 <option>Não</option>
 </select>
 </td>
@@ -962,13 +966,13 @@ $data_hora = date('d-m-y H:i:s');
 ///////////////////////e adicionar ou remover sociedade////////////////////
 if(isset($_POST["sociedade"])){
 $sociedade=$_POST["sociedade"];
-if($sociedade == 'Sim'){
+if($sociedade == 'Jurlan'){
 $data_hora = date('d-m-y H:i:s');		
 if($cliente_sociedade == $n1){}else{
 $res=mysqli_query($con,"insert into sociedade values
-(default, '$id','$n1');");
+(default, '$id','$n1','$sociedade');");
 $res=mysqli_query($con,"insert into historico values
-(default, '$nome1','$n1', '$id_servserv',NOW(),'Adicionando Sociedade', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
+(default, '$nome1','$n1', '$id_servserv',NOW(),'Sociedade Jurlan', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
 '$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
 }}else{
 $sql="delete FROM sociedade where id_cliente = $id and usuario = '$n1'";
@@ -976,7 +980,24 @@ $res=mysqli_query($con,$sql);
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Removendo Sociedade', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
 '$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");	
-}}
+}
+if($sociedade == 'Bimbo'){
+$data_hora = date('d-m-y H:i:s');		
+if($cliente_sociedade == $n1){}else{
+$res=mysqli_query($con,"insert into sociedade values
+(default, '$id','$n1','$sociedade');");
+$res=mysqli_query($con,"insert into historico values
+(default, '$nome1','$n1', '$id_servserv',NOW(),'Sociedade Bimbo', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
+}}else{
+$sql="delete FROM sociedade where id_cliente = $id and usuario = '$n1'";
+$res=mysqli_query($con,$sql);	
+$res=mysqli_query($con,"insert into historico values
+(default, '$nome1','$n1', '$id_servserv',NOW(),'Removendo Sociedade', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");	
+}
+
+}
 if($nomee != $nome1){
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do nome', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
