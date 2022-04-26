@@ -208,7 +208,8 @@ while($vreg=mysqli_fetch_row($res)){
 </table>
 </form> 
 <br>
-<a href='Gerar pdf.php'>Gerar Exel</a>
+<br>
+<a href='Gerarpdfcompleto.php'>Gerar Exel com dados compledo</a><br><a href='Gerarpdfusuario.php'>Gerar Exel apenas usuario</a>
 <?php 
 ///////////////////////////////
 $mes = array("defalt,jan,fev,mar,abr,mai,jun,jul,ago,set,out,nov,dez");

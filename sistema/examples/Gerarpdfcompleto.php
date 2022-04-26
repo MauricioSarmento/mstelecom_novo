@@ -48,7 +48,7 @@ $html .= '</tr>';
 #Formatando o arquivo
  header("Content-type: application/vnd.ms-excel");
  header("Content-type: application/force-download");
- header("Content-Disposition: attachment; filename=Clientes.xls");
+ header("Content-Disposition: attachment; filename=Clientes_completo.xls");
  header("Pragma: no-cache");
 
 #enviar o conteudo do arquivo
