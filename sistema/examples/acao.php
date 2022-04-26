@@ -190,7 +190,9 @@ $cpf2 = $cpf;
 $sql="SELECT * FROM sociedade where id_cliente = $id";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
-	$id_cliente_sociedade=$vreg[1];}
+	$id_cliente_sociedade=$vreg[1];
+	$cliente_sociedade=$vreg[2];
+	}
 if(!isset($id_cliente_sociedade)) $id_cliente_sociedade= 'Não'; if($id_cliente_sociedade == $id){$id_cliente_sociedade = 'Sim';}; 
 ######################## Adicionando mensalidade se nao tiver #############################
 $jan="1";
@@ -387,6 +389,8 @@ include 'desconectar.php';
 </div>
 </div>
 </div>
+</td>
+<td>
 <!------------>
 <!------------>
 <button type='button' class='btn btn-warning' data-toggle='modal' data-target='#chamado'>
@@ -409,7 +413,7 @@ include 'desconectar.php';
 <table align="center" border="1" cellpadding="2" cellspacing="2" >
 <tr>
 <td>Tipo de chamado: </td><td>
-<select name="nome" id="select">
+<select name="chamado" id="select">
 <option>Sem internet</option>
 <option>Desconectado</option>
 <option>Internet Lenta</option>
@@ -453,8 +457,8 @@ include 'desconectar.php';
 </form>
 
 <?php
-if(isset($_POST["nome"])){
-$nome=$_POST["nome"];
+if(isset($_POST["chamado"])){
+$nome=$_POST["chamado"];
 if(isset($_POST["endereco"])){
 $endereco=$_POST["endereco"];}
 if(isset($_POST["descricao"])){
@@ -730,12 +734,7 @@ $API = new RouterosAPI();
 if ($API->connect("$servidor_mikrotik","$login_servidor_mikrotik","$senha_servidor_mikrotik")) {
 $ARRAY = $API->comm("/ppp/profile/print");
 foreach ($ARRAY as $regtable) {
-if($regtable['name'] == '8M'){echo "<option>" . $regtable['name'] . "</option>";}
-if($regtable['name'] == '10M'){echo "<option>" . $regtable['name'] . "</option>";}
-if($regtable['name'] == '15M'){echo "<option>" . $regtable['name'] . "</option>";}
-if($regtable['name'] == '20M'){echo "<option>" . $regtable['name'] . "</option>";}
-if($regtable['name'] == '30M'){echo "<option>" . $regtable['name'] . "</option>";}
-if($regtable['name'] == '50M'){echo "<option>" . $regtable['name'] . "</option>";}
+echo "<option>" . $regtable['name'] . "</option>";
 }}
 ?> 
 <br>
@@ -781,15 +780,6 @@ if($regtable['name'] == '50M'){echo "<option>" . $regtable['name'] . "</option>"
 <?php
 if(isset($_POST["nome4"])){
 $n4=$_POST["nome4"];
-if(isset($_POST["sociedade"])){
-$sociedade=$_POST["sociedade"];
-if($sociedade == 'Sim'){
-$res=mysqli_query($con,"insert into sociedade values
-(default, '$id','$n1');");
-}else{
-$sql="delete FROM sociedade where id_cliente = $id and usuario = '$n1'";
-$res=mysqli_query($con,$sql);		
-}}
 if(isset($_POST["profile4"])){
 $p4=$_POST["profile4"];
 if(isset($_POST["contato"])){
@@ -968,8 +958,25 @@ $id_servserv = $vreg[7];
 }  	  
 $data_hora = date('d-m-y H:i:s');
 ///////////////////////////////////////////////////////////////////////////
-//////////////////  colocando cada alteração feita no historico /////////////
-///////////////////////////////////////////////////////////////////////////
+//////////////////  colocando cada alteração feita no historico ///////////
+///////////////////////e adicionar ou remover sociedade////////////////////
+if(isset($_POST["sociedade"])){
+$sociedade=$_POST["sociedade"];
+if($sociedade == 'Sim'){
+$data_hora = date('d-m-y H:i:s');		
+if($cliente_sociedade == $n1){}else{
+$res=mysqli_query($con,"insert into sociedade values
+(default, '$id','$n1');");
+$res=mysqli_query($con,"insert into historico values
+(default, '$nome1','$n1', '$id_servserv',NOW(),'Adicionando Sociedade', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
+}}else{
+$sql="delete FROM sociedade where id_cliente = $id and usuario = '$n1'";
+$res=mysqli_query($con,$sql);	
+$res=mysqli_query($con,"insert into historico values
+(default, '$nome1','$n1', '$id_servserv',NOW(),'Removendo Sociedade', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");	
+}}
 if($nomee != $nome1){
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do nome', '$user' ,'$endereco' ,'$complemento','$p4','$contato',

@@ -406,11 +406,11 @@ if($val == 1){$st = "<font color='red'><center><center><button type='button' cla
 if($val == 2){$st = "<font color='blue'> <center><center><button type='button' class='btn btn-primary'>$mensalidade</button></center></font>";};
 if($val == 3){$st = "<font color='#00CC00'> <center><button type='button' class='btn btn-success'>$mensalidade</button></center></font>";};
 ///////////////////////////////////////////////////
-echo "<tbody><tr><td><a href='acao.php?id=$busca_usuario' class='form-control'><table border='0' width='300'>" . $busca_nome ;
+echo "<tbody><tr><td><a href='acao.php?id=$busca_usuario' target='_blank' class='form-control'><table border='0' width='300'>" . $busca_nome ;
 echo "</table></center></a></td>";
-echo "<td><a href='acao.php?id=$busca_usuario' class='form-control'><table border='0' width='300'>" . $busca_usuario ;
+echo "<td><a href='acao.php?id=$busca_usuario' target='_blank'class='form-control'><table border='0' width='300'>" . $busca_usuario ;
 echo "</table></center></a></td>";
-echo "<td><a href='acao.php?id=$busca_usuario' class='form-control'><table border='0' width='15'>" . $busca_vencimento ;
+echo "<td><a href='acao.php?id=$busca_usuario' target='_blank' class='form-control'><table border='0' width='15'>" . $busca_vencimento ;
 echo "</table></center></a></td>";
 echo 		"<td><a href='acao.php?id=$n'>".$st."</a></td>";
 
@@ -497,10 +497,10 @@ if($val == 3){$st = "<font color='#00CC00'> <center><button type='button' class=
 
 
 
-echo "<td ><a href='acao.php?id=$n'><table border='0' width='300'> <font color=#04B404 size=3>". $nome."</table></a></td>";
-echo "<td><a href='acao.php?id=$n'><table border='0' width='170'>".$n ." </table></a></td>";
-echo "<td><a href='acao.php?id=$n'><table border='0' width='80'>".$instalaçao ." </table></a></td>";
-echo "<td><a href='acao.php?id=$n'><table border='0' width='20'>".$ven."</table></a></td>";
+echo "<td ><a href='acao.php?id=$n' target='_blank'><table border='0' width='300'> <font color=#04B404 size=3>". $nome."</table></a></td>";
+echo "<td><a href='acao.php?id=$n' target='_blank'><table border='0' width='170'>".$n ." </table></a></td>";
+echo "<td><a href='acao.php?id=$n' target='_blank'><table border='0' width='80'>".$instalaçao ." </table></a></td>";
+echo "<td><a href='acao.php?id=$n' target='_blank'><table border='0' width='20'>".$ven."</table></a></td>";
 echo "<td><a href='historico3.php?id=$n'>$st</a></td>";
 echo "</td>";
 echo "</tr>";	}}
