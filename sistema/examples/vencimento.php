@@ -190,28 +190,94 @@ while($vreg=mysqli_fetch_row($res)){
 	  <!--- //auto refresh -->
 	   <?php echo '<br>' . $painel;   ?>
 </div>
-	  
-	  
-	  <form name="login" method="post" action="">
-<input type="hidden" name="get" value="nada" /> 
-<table border="0" align="left" cellpadding="2" cellspacing="2" >
 
+<form name="login" method="post" action="">
+<input type="hidden" name="acao" value="nada" /> 
+<table border="0" cellpadding="1" cellspacing="1">
+Buscar valores de outros meses
 <tr>
-<td><font color='black'><strong>Localizar Cliente:</strong></font>
+<td>
+Ano 20
 </td><td>
-<input type="text" class='form-control' name="localizar" size="30" maxlength="25" placeholder="Pesquisar..."/>
+<select name="Ano" id="select">
+<option><?php echo date('y'); ?></option>
+<option><?php echo date('y')-1; ?></option>
+<option><?php echo date('y')-2; ?></option>
+<option><?php echo date('y')-3; ?></option>
+</td></tr>
+<tr>
+<td>
+Mes
+</td><td>
+<select name="Mes" id="select">
+<?php
+if(isset($_POST["Mes"])){
+echo '<option>'.$_POST["Mes"].'</option>';
+}
+?>
+<option>01</option>
+<option>02</option>
+<option>03</option>
+<option>04</option>
+<option>05</option>
+<option>06</option>
+<option>07</option>
+<option>08</option>
+<option>09</option>
+<option>10</option>
+<option>11</option>
+<option>12</option>
+</td></tr>
+<tr>
+<td>
+Dia
 </td>
 <td>
-<td>
-<button type="submit" value="Localizar" class="btn btn-white btn-round btn-just-icon">
-<i class="material-icons">search</i>
+<select name="Dia" id="select">
+<?php
+if(isset($_POST["Dia"])){
+echo '<option>'.$_POST["Dia"].'</option>';
+}
+?>
+<option>01</option>
+<option>02</option>
+<option>03</option>
+<option>04</option>
+<option>05</option>
+<option>06</option>
+<option>07</option>
+<option>08</option>
+<option>09</option>
+<option>10</option>
+<option>11</option>
+<option>12</option>
+<option>13</option>
+<option>14</option>
+<option>15</option>
+<option>16</option>
+<option>17</option>
+<option>18</option>
+<option>19</option>
+<option>20</option>
+<option>21</option>
+<option>22</option>
+<option>23</option>
+<option>24</option>
+<option>25</option>
+<option>26</option>
+<option>27</option>
+<option>28</option>
+<option>29</option>
+<option>30</option>
+<option>31</option>
+</select>
+<input type="submit" name="entrar" value="Enviar" />
 </td>
 </tr>
-</table>
-</form> 
+</form>  
+
+ 
 <br>
-
-
 <center>
 <form name="login" method="post" action="">
 <input type="hidden" name="acao" value="nada" /> 
@@ -241,30 +307,37 @@ Dia de vencimento:
 </td>
 </tr>
 </form>  
-Dia selecionado: <?php 
+<?php 
 if(isset($_POST["dia"])){
 $dia=$_POST["dia"];
 $_SESSION['dia']=$dia;
 if(isset($_POST["vencido"])){
 $vencido=$_POST["vencido"];}
 $_SESSION['vencido']=$vencido;
-
 echo '
 <script type="text/javascript"> 
 var urlAtual = window.location.href;
 window.location.href=urlAtual;
 </script>
 ';}
-
-
-
-
-
-
+if(isset($_POST["Mes"])){
+$data_m=$_POST["Mes"];
+if(isset($_POST["Ano"])){
+$data_y=$_POST["Ano"];}
+if(isset($_POST["Dia"])){
+$data_dia=$_POST["Dia"];}
+session_start();
+	$_SESSION['data_m']=$data_m;
+	$_SESSION['data_y']=$data_y;
+	$_SESSION['data_d']=$data_dia;
+echo "<a href='Gerar_pdf.php'>Gerar Exel das finanças da data celecionada</a>";
+}else{
+$data_dia = date('d');
+$data_m = date('m');
+$data_y = date('y');
+}
 if(!isset($_SESSION['dia']))
 $_SESSION['dia']= "05";
- echo  $dia=$_SESSION['dia']; 
-
 if(!isset($dia))
 $dia = "Todos";
 if(!isset($vencido))
@@ -278,167 +351,88 @@ while($vreg=mysqli_fetch_row($res)){
 $priv=$vreg[6];
 $id_serv=$vreg[7];}
 //////////////// VERIFICANDO SE O USUARIO É ADMINISTRADOR////////////////////
-$data_dia = date('d');
-$data_m = date('m');
-$data_y = date('y');
-
-
-
-
-
-
 if($priv == 3 or $priv == 1 ) {
 $sql="SELECT SUM(valor_plano) AS total FROM db_clientes WHERE id_cliente = '$IP'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 $vtotal=$vreg[0];
 }
-
-
-
 echo "<br>";
-echo "Valor total a receber = "; echo 'R$ ' . number_format( $vtotal , 2 );
+echo "Valor bruto de todos os clientes = "; echo 'R$ ' . number_format( $vtotal , 2 );
 ///////////////////////////////////////////
-
 $sql="SELECT SUM(valor) AS total FROM pagamentos WHERE data_dia ='$data_dia' and data_mes ='$data_m' and data_ano ='$data_y' and id_servidor = '$IP'  ";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 $vtotal2=$vreg[0];
 }
-
 echo "<br>";
-echo "Total que ja foi faturado hoje = "; echo 'R$ ' . number_format( $vtotal2 , 2 );
+echo "Total que ja foi faturado " . $data_dia .'/'. $data_m .'/'. $data_y ." = "; echo 'R$ ' . number_format( $vtotal2 , 2 );
 ///////////////////////////////////////////
 ///////////////////////////////////////////
-
-
 $sql="SELECT SUM(valor) AS total FROM pagamentos WHERE data_dia in (1,2,3,4,5,6,7) and data_mes ='$data_m' and data_ano ='$data_y' and id_servidor = '$IP'  ";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 $vtotal4=$vreg[0];
 }
-
 echo "<br>";
 echo "Primeira semana do Mês = "; echo 'R$ ' . number_format( $vtotal4 , 2 );
 ///////////////////////////////////////////
 ///////////////////////////////////////////
-
 $sql="SELECT SUM(valor) AS total FROM pagamentos WHERE data_dia in (8,9,10,11,12,13,14) and data_mes ='$data_m' and data_ano ='$data_y' and id_servidor = '$IP'  ";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 $vtotal4=$vreg[0];
 }
-
 echo "<br>";
 echo "Segunda semana do Mês = "; echo 'R$ ' . number_format( $vtotal4 , 2 );
 ///////////////////////////////////////////
 ///////////////////////////////////////////
-
 $sql="SELECT SUM(valor) AS total FROM pagamentos WHERE data_dia in (15,16,17,18,19,20,21) and data_mes ='$data_m' and data_ano ='$data_y' and id_servidor = '$IP'  ";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 $vtotal4=$vreg[0];
 }
-
 echo "<br>";
 echo "Terceira semana do Mês = "; echo 'R$ ' . number_format( $vtotal4 , 2 );
 ///////////////////////////////////////////
 ///////////////////////////////////////////
-
 $sql="SELECT SUM(valor) AS total FROM pagamentos WHERE data_dia in (21,22,23,24,25,26,27,28,29,30,31) and data_mes ='$data_m' and data_ano ='$data_y' and id_servidor = '$IP'  ";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 $vtotal4=$vreg[0];
 }
-
 echo "<br>";
 echo "Quarta semana do Mês = "; echo 'R$ ' . number_format( $vtotal4 , 2 );
 ///////////////////////////////////////////
 ///////////////////////////////////////////
 ///////////////////////////////////////////
-
 $sql="SELECT SUM(valor) AS total FROM pagamentos WHERE data_mes ='$data_m' and data_ano ='$data_y' and id_servidor = '$IP'  ";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 $vtotal3=$vreg[0];
 }
-
 echo "<br>";
 echo "Total faturado no mês = "; echo 'R$ ' . number_format( $vtotal3 , 2 );
 ///////////////////////////////////////////
 ///////////////////////////////////////////
-
 };
 //////////////////////////////////////////////////////////////////////////
-if(isset($_POST["localizar"])){
-$localizar=$_POST["localizar"];
-echo '<div class="col-md-12">
-              <div class="card card-plain">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title mt-0"> Clientes</h4>
-                  <p class="card-category"> Todos os clientes cadastrados</p>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead class="">
-<tr>
-<th scope="col"> <center>NOME DO CLIENTEbb </center></th>
-<th scope="col"> <center>NOME DO USUARIO </center></th>
-<th scope="col"> <center>VENC </center></th>
-<th scope="col"> <center>STATUS </center></th>
-
-</tr>
-</thead>';
-$sql="SELECT * FROM db_clientes where usuario LIKE '%$localizar%' or nome LIKE '%$localizar%'";
-$res=mysqli_query($con,$sql);
-while($vreg=mysqli_fetch_row($res)){
-$nnn=$vreg[2];
-$busca_nome=$vreg[2];
-$busca_usuario=$vreg[3];
-$busca_vencimento=$vreg[12];
-$val = $vreg[13];
-if($vreg[0] == $IP){
-	$dat = date("m");
-	$mensalidade = $mes[$dat];
-	//////////////// BOTÕES ///////////////////////////
-if($val == 1){$st = "<font color='red'><center><center><button type='button' class='btn btn-danger'>$mensalidade </button></center></font>";};
-if($val == 2){$st = "<font color='blue'> <center><center><button type='button' class='btn btn-primary'>$mensalidade</button></center></font>";};
-if($val == 3){$st = "<font color='#00CC00'> <center><button type='button' class='btn btn-success'>$mensalidade</button></center></font>";};
-///////////////////////////////////////////////////
-echo "<tbody><tr><td><a href='acao.php?id=$busca_usuario' target='_blank' class='form-control'><table border='0' width='300'>" . $busca_nome ;
-echo "</table></center></a></td>";
-echo "<td><a href='acao.php?id=$busca_usuario' target='_blank'class='form-control'><table border='0' width='300'>" . $busca_usuario ;
-echo "</table></center></a></td>";
-echo "<td><a href='acao.php?id=$busca_usuario' target='_blank' class='form-control'><table border='0' width='15'>" . $busca_vencimento ;
-echo "</table></center></a></td>";
-echo 		"<td><a href='acao.php?id=$n'>".$st."</a></td>";
-
-
-echo "</a></td>";
-echo "</tr>";
-echo "</tbody>"; 
-}}echo "</table>";
-echo "<a href='clientes cadastrados.php' class='form-control'>VOLTAR</a></p><br>'";
-}else{
-	
 if($vencido == 'Sim'){
 $a = "and dia_vencimento = $dia and status_cliente = '1'";}else{$a = "and dia_vencimento = $dia";}
 if($dia == "Todos"){if($vencido == 'Sim'){$a = "and status_cliente = 1";}else{$a = null;}};	
 $sql="SELECT * FROM db_clientes where id_cliente = '$IP' $a ORDER BY usuario";
 $res= mysqli_query($con,$sql);
 $lin=mysqli_num_rows($res);
-echo '<br><strong>Encontrados: </strong>' . $lin;
-	
 echo '<div class="col-md-12">
               <div class="card card-plain">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title mt-0"> Clientes</h4>
-                  <p class="card-category"> Todos os clientes cadastrados</p>
+                  <p class="card-category"> Todos os clientes com vencimento selecionado</p>
                 </div>
-                <div class="card-body">
+				 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-hover">
+				   <table class="table table-hover">
+				   Dia selecionado: ' .$dia=$_SESSION['dia'] . ' <br> <strong>Encontrados: </strong>' . $lin . '
                       <thead class="">
 <tr>
 <th scope="col" > <center>NOME </center></th>
@@ -503,7 +497,7 @@ echo "<td><a href='acao.php?id=$n' target='_blank'><table border='0' width='80'>
 echo "<td><a href='acao.php?id=$n' target='_blank'><table border='0' width='20'>".$ven."</table></a></td>";
 echo "<td><a href='historico3.php?id=$n'>$st</a></td>";
 echo "</td>";
-echo "</tr>";	}}
+echo "</tr>";	}
 mysqli_close($con);
 ?>
 </table>

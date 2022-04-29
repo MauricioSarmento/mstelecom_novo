@@ -974,7 +974,8 @@ $res=mysqli_query($con,"insert into sociedade values
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Sociedade Jurlan', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
 '$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
-}}else{
+}}
+if($cliente_sociedade == $n1){	
 $sql="delete FROM sociedade where id_cliente = $id and usuario = '$n1'";
 $res=mysqli_query($con,$sql);	
 $res=mysqli_query($con,"insert into historico values
@@ -989,14 +990,7 @@ $res=mysqli_query($con,"insert into sociedade values
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Sociedade Bimbo', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
 '$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
-}}else{
-$sql="delete FROM sociedade where id_cliente = $id and usuario = '$n1'";
-$res=mysqli_query($con,$sql);	
-$res=mysqli_query($con,"insert into historico values
-(default, '$nome1','$n1', '$id_servserv',NOW(),'Removendo Sociedade', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");	
-}
-
+}}
 }
 if($nomee != $nome1){
 $res=mysqli_query($con,"insert into historico values

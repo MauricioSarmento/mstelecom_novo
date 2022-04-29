@@ -2,7 +2,7 @@
 require_once '../login/protect.php';
 require_once 'conexao/conect.php';
 require_once"painel.php";
-require_once'pag2.php';
+//require_once'pag2.php';
 //header("Refresh: 100");
 ?>
 
