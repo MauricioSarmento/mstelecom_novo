@@ -104,11 +104,11 @@ $instalaçao=$vreg[6];
 $endereço=$vreg[7];
 $numero=$vreg[8];
 $complemento=$vreg[9];
-$apelido=$vreg[10];
+$bairro=$vreg[10];
 $plano=$vreg[11];
 $ven=$vreg[12];
 $valor=$vreg[14];
-$apelido=$vreg[10];
+$bairro=$vreg[10];
 $cpf=$vreg[15];
 #$res=mysqli_query($con,"DELETE FROM `mensalidade` WHERE `id_clientes` = $id");
 }
@@ -124,14 +124,14 @@ if(!isset($complemento)) $complemento = "Não informado";
 if(!isset($plano)) $plano = "Não informado";	
 if(!isset($ven)) $ven = "Não informado";
 if(!isset($tel)) $tel = "Não informado";
-if(!isset($apelido)) $apelido="Não informado";
+if(!isset($bairro)) $bairro="Não informado";
 
 
 
 $data_hora = date('d-m-y H:i:s');
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome','$usuario', '$id_servserv',NOW(),'Cliente Excluido', '$user' ,'$endereço' ,'$complemento','$plano','$tel',
-'$data_hora','$numero', '$ven','$valor','$id','$apelido','$cpf','$email' );");
+'$data_hora','$numero', '$ven','$valor','$id','$bairro','$cpf','$email' );");
 echo "<center><font color='#00CC00'>Cliente Excluido com sucesso do banco de Dados!</font></center>";
 header("Refresh: 3; url = http://mstelecom.org/sistema/examples/acao4.php?id=$n1'");
 }

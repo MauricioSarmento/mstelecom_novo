@@ -214,10 +214,10 @@ while($vreg=mysqli_fetch_row($res)){
 </td>
 
 <td>
-<font color='black' class="bmd-label-floating"><strong>Apelido:</strong></font>
+<font color='black' class="bmd-label-floating"><strong>Bairro:</strong></font>
 </td>
 <td>
-<input type="text" class="form-control" name="apelido" size="30" maxlength="35" placeholder="Se tiver" onchange="carregatexto(this.value)" />
+<input type="text" class="form-control" name="bairro" size="30" maxlength="35" placeholder="Se tiver" onchange="carregatexto(this.value)" />
 </td>
 </tr>
 <tr>
@@ -382,8 +382,8 @@ if(isset($_POST["nome1"])){
 $nome=$_POST["nome1"];}
 if(isset($_POST["cpf"])){
 $cpf=$_POST["cpf"];}
-if(isset($_POST["apelido"])){
-$apelido=$_POST["apelido"];}
+if(isset($_POST["bairro"])){
+$bairro=$_POST["bairro"];}
 if(isset($_POST["email"])){
 $email=$_POST["email"];}
 if(isset($_POST["endereco"])){
@@ -438,7 +438,7 @@ $instalacao = date("d/m/Y");
  /// CRIANDO CLIENTE NO BANCO DE DADOS
 $res=mysqli_query($con,"insert into db_clientes values
 ('$id_serv', default, '$nome','$usuario', '$email', '$telefone', '$instalacao','$rua',
-'$numero','$complemento','$apelido', '$plano', '$Vecimento', '3', '$valor', '$cpf'  );");
+'$numero','$complemento','$bairro', '$plano', '$Vecimento', '3', '$valor', '$cpf'  );");
 
 
  /// VERIFICA SE O CLIENTE FOI CRIADO NO BANCO
@@ -550,7 +550,7 @@ $res=mysqli_query($con,"insert into roteador values
 /////////
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome','$usuario', '$id_servserv',NOW(),'Cliente Novo', '$user' ,'$endereco' ,'$complemento','$plano','$contato',
-'$instalacao','$numero', '$c','$valor','$apelido' );");	
+'$instalacao','$numero', '$c','$valor','$bairro' );");	
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 $sql="SELECT * FROM mensalidade where id_clientes = $id and ano = $ano ";

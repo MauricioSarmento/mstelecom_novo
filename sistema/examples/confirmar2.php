@@ -271,10 +271,10 @@ $data=$vreg[12];}
         <input type="text" name="cpf" value="<?php echo $cpf; ?>" class="form-control" onkeypress="$(this).mask('000.000.000-00');" size="30" maxlength="18"  onchange="carregatexto(this.value)" />
          </td>
        <td>
-         <font color='black' class="bmd-label-floating"><strong>Apelido:</strong></font>
+         <font color='black' class="bmd-label-floating"><strong>Bairro:</strong></font>
          </td>
        <td>
-        <input type="text" class="form-control" name="apelido" size="30" maxlength="35" value="<?php if(!isset($apelido))$c = null; echo $apelido;?>" onchange="carregatexto(this.value)" />
+        <input type="text" class="form-control" name="bairro" size="30" maxlength="35" value="<?php if(!isset($bairro))$c = null; echo $bairro;?>" onchange="carregatexto(this.value)" />
          </td>
      </tr>
     <tr>
@@ -409,8 +409,8 @@ if($plano == "8M"){$valor = "40,00";}
 <?php   
 if(isset($_POST["confirma"])){
 $confirma=$_POST["confirma"];
-if(isset($_POST["apelido"])){
-$apelido=$_POST["apelido"];}
+if(isset($_POST["bairro"])){
+$bairro=$_POST["bairro"];}
 if(isset($_POST["usuario"])){
 $usuario=$_POST["usuario"];}
 if(isset($_POST["plano"])){
@@ -450,7 +450,7 @@ if($num !== $num2 ){
  /// CRIANDO CLIENTE NO BANCO DE DADOS
 $res=mysqli_query($con,"insert into db_clientes values
 ('$id_serv', default, '$nome','$usuario', '$email', '$telefone', '$instalacao','$rua',
-'$numero','$complemento','$apelido', '$plano', '$data', '3', '$valor', '$cpf'  );");
+'$numero','$complemento','$bairro', '$plano', '$data', '3', '$valor', '$cpf'  );");
 $sql="SELECT * FROM db_clientes where usuario = '$usuario'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){

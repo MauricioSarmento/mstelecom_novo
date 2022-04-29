@@ -70,7 +70,7 @@ $instalaçao=$vreg[6];
 $endereço=$vreg[7];
 $numero=$vreg[8];
 $complemento=$vreg[9];
-$apelido=$vreg[10];
+$bairro=$vreg[10];
 $plano=$vreg[11];
 $ven=$vreg[12];
 $valor=$vreg[14];}
@@ -93,7 +93,7 @@ $res22=mysqli_query($con,$sql);
 $data_hora = date('d-m-y H:i:s');
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome','$n', '$id_servserv',NOW(),'Bloqueio', '$user' ,'$endereco' ,'$complemento','$plano','$contato',
-'$data_hora','$numero', '$c','$valor','$id_cliente','$apelido','$cpf','$email' );");
+'$data_hora','$numero', '$c','$valor','$id_cliente','$bairro','$cpf','$email' );");
 
 echo 'Cliente bloqueado!';
 }

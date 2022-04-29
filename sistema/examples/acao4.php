@@ -161,7 +161,7 @@ while($vreg=mysqli_fetch_row($res)){
 	$ven=$vreg[13];
 	$valor=$vreg[14];
 	$id_cliente=$vreg[15];
-	$apelido=$vreg[16];
+	$bairro=$vreg[16];
 	$cpf=$vreg[17];
 	$email=$vreg[18];}
 $id_servidor;
@@ -217,13 +217,13 @@ return true;
 <tr>
 <td>Id do cliente:
 </td><td>
-<input type="text" name="apelido" size="30" maxlength="35" value="<?php echo $id_cliente;?>" onchange="carregatexto(this.value)" />
+<input type="text" name="bairro" size="30" maxlength="35" value="<?php echo $id_cliente;?>" onchange="carregatexto(this.value)" />
 </td>
 </tr>
 <tr>
-<td>Apelido
+<td>Bairro
 </td><td>
-<input type="text" name="email" size="30" maxlength="35" value="<?php echo $apelido;?>" onchange="carregatexto(this.value)" />
+<input type="text" name="email" size="30" maxlength="35" value="<?php echo $bairro;?>" onchange="carregatexto(this.value)" />
 </td>
 </tr><tr>
 <td>E-mail:
@@ -438,8 +438,8 @@ if(isset($_POST["data"])){
 $instalacao=$_POST["data"];}
 if(isset($_POST["numero"])){
 $numero=$_POST["numero"];}
-if(isset($_POST["apelido"])){
-$apelido=$_POST["apelido"];}
+if(isset($_POST["bairro"])){
+$bairro=$_POST["bairro"];}
 if(isset($_POST["email"])){
 $email=$_POST["email"];}
 $dat = date("d");
@@ -489,8 +489,8 @@ if(!isset($numero))
 $numero = "Não informado";
 if(!isset($complemento))
 $complemento = "Não informado";
-if(!isset($apelido))
-$apelido = "Não informado";
+if(!isset($bairro))
+$bairro = "Não informado";
 if(!isset($valor))
 $valor = "Não informado";
 if(!isset($cpf))
@@ -498,7 +498,7 @@ $cpf = "Não informado";
 
 
 $res=mysqli_query($con,"insert into db_clientes values
-('$serv', '$apelido', '$nome','$n', '$email', '$contato', '$instalacao','$endereco',
+('$serv', '$bairro', '$nome','$n', '$email', '$contato', '$instalacao','$endereco',
 '$numero','$complemento','null', '$plano', '$c', '$data', '$valor', '$cpf'  );");
 $sql="SELECT * FROM db_clientes where nome = '$nome'";
 $res= mysqli_query($con,$sql);
@@ -619,7 +619,7 @@ $ipip=$vreg[3];
 $data_hora = date('d-m-y H:i:s');
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome','$n', '$id_servserv',NOW(),'Cliente Recuperado', '$user' ,'$endereco' ,'$complemento','$plano','$contato',
-'$data_hora','$numero', '$c','$valor','$id_cliente','$apelido','$cpf','$email' );");	
+'$data_hora','$numero', '$c','$valor','$id_cliente','$bairro','$cpf','$email' );");	
 header("Refresh: 3; url = acao.php?id=$n1'");
 
 ///////////////////////////////////////////////////////////////////////////////////////////

@@ -64,9 +64,9 @@ return true;
 </td>
 </tr>
 <tr>
-<td>Apelido:
+<td>bairro:
 </td><td>
-<input type="text" name="apelido" class="form-control" size="30" maxlength="98"  onchange="carregatexto(this.value)" />
+<input type="text" name="bairro" class="form-control" size="30" maxlength="98"  onchange="carregatexto(this.value)" />
 </td>
 </tr>
 <tr>
@@ -293,8 +293,8 @@ if(isset($_POST["data"])){
 $instalacao=$_POST["data"];}
 if(isset($_POST["numero"])){
 $numero=$_POST["numero"];}
-if(isset($_POST["apelido"])){
-$apelido=$_POST["apelido"];}
+if(isset($_POST["bairro"])){
+$bairro=$_POST["bairro"];}
 if(isset($_POST["email"])){
 $email=$_POST["email"];}
 $data="3";		
@@ -315,15 +315,15 @@ if(!isset($numero))
 $numero = "Não informado";
 if(!isset($complemento))
 $complemento = "Não informado";
-if(!isset($apelido))
-$apelido = "Não informado";
+if(!isset($bairro))
+$bairro = "Não informado";
 if(!isset($valor))
 $valor = "Não informado";
 if(!isset($cpf))
 $cpf = "Não informado";
 $res=mysqli_query($con,"insert into db_clientes values
 ('$serv', default, '$nome','$n', '$email', '$contato', '$instalacao','$endereco',
-'$numero','$complemento','$apelido', '$plano', '$c', '$data', '$valor', '$cpf'  );");
+'$numero','$complemento','$bairro', '$plano', '$c', '$data', '$valor', '$cpf'  );");
 $sql="SELECT * FROM db_clientes where nome = '$nome'";
 $res= mysqli_query($con,$sql);
 $lin=mysqli_num_rows($res);
@@ -430,7 +430,7 @@ $res=mysqli_query($con,"insert into roteador values
 /////////
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome','$n', '$id_servserv',NOW(),'Cliente Novo', '$user' ,'$endereco' ,'$complemento','$plano','$contato',
-'$instalacao','$numero', '$c','$valor','$apelido' );");	
+'$instalacao','$numero', '$c','$valor','$bairro' );");	
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 $sql="SELECT * FROM mensalidade where id_clientes = $id and ano = $ano ";

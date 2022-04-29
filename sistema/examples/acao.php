@@ -167,7 +167,7 @@ $instalaçao=$vreg[6];
 $endereço=$vreg[7];
 $numero=$vreg[8];
 $complemento=$vreg[9];
-$apelido=$vreg[10];
+$bairro2=$vreg[10];
 $plano=$vreg[11];
 $ven=$vreg[12];
 $statuss=$vreg[13];
@@ -181,7 +181,6 @@ $data = $instalaçao;
 $endereco2 = $endereço;
 $numeroo = $numero;
 $comple = $complemento;
-$apelidoo = $apelido;
 $planoo = $plano;
 $vencimento = $ven;
 $statuss = $statuss;
@@ -229,7 +228,7 @@ if(!isset($plano)) $plano = null;
 if(!isset($ven)) $ven = null;
 if(!isset($email)) $email = null;
 if(!isset($tel)) $tel = null;
-if(!isset($apelido)) $apelido=null;
+if(!isset($bairro2)) $bairro2=null;
 if(!isset($_SESSION['$n4'])) $_SESSION['$n4']=null;
 if(!isset($user2)){$user2=$n1;}
 if(!isset($user2)){include "editar.php";}else{  ?>
@@ -582,26 +581,6 @@ $obs_observacao;
 if($obs_observacao == null){$botao2 = "<button type='button' class='btn btn-success'>SEM OBSERVAÇÃO</button>";}else{
 {$botao2 = "<button type='button' class='btn btn-warning'>OBSERVAÇÃO</button>";}}
 echo $botao2;
-$sql="SELECT * FROM db_clientes where id_cliente = $id_servidor and usuario = '$n1'";
-$res=mysqli_query($con,$sql);
-while($vreg=mysqli_fetch_row($res)){
-$id_admin=$vreg[0];
-$id=$vreg[1];
-$id_soc=$vreg[1];
-$nome=$vreg[2];
-$user2=$vreg[3];
-$email=$vreg[4];
-$tel=$vreg[5];
-$instalaçao=$vreg[6];
-$endereço=$vreg[7];
-$numero=$vreg[8];
-$complemento=$vreg[9];
-$apelido=$vreg[10];
-$plano=$vreg[11];
-$ven=$vreg[12];
-$statuss=$vreg[13];
-$valor=$vreg[14];
-$cpf=$vreg[15];}
 ?>  
 <!--------------------- Fim de roteador ------------------------------->
 <!--------------------- EDIÇÃO DO CLIENTE ----------------------------->
@@ -625,10 +604,10 @@ $cpf=$vreg[15];}
 </td>
 
 <td>
-<font color='black' class="bmd-label-floating"><strong>Apelido:</strong></font>
+<font color='black' class="bmd-label-floating"><strong>Bairro:</strong></font>
 </td>
 <td>
-<input type="text" class="form-control" name="apelido" size="30" maxlength="35" value="<?php if(!isset($apelido))$c = null; echo $apelido;?>" onchange="carregatexto(this.value)" />
+<input type="text" class="form-control" name="bairro" size="30" maxlength="35" value="<?php if(!isset($bairro2))$c = null; echo $bairro2;?>" onchange="carregatexto(this.value)" />
 </td>
 </tr>
 <tr>
@@ -825,8 +804,6 @@ if(isset($_POST["data"])){
 $instalacao=$_POST["data"];}
 if(isset($_POST["numero"])){
 $numero=$_POST["numero"];}
-if(isset($_POST["apelido"])){
-$apelido=$_POST["apelido"];}
 if(!isset($nome1))
 $nome1=null;
 if(!isset($nome1))
@@ -845,8 +822,6 @@ if(!isset($numero))
 $numero=null;
 if(!isset($complemento))
 $complemento=null;
-if(!isset($apelido))
-$apelido=null;
 if(!isset($p4))
 $p4=null;
 if(!isset($c4))
@@ -907,14 +882,16 @@ if(isset($_POST["data"])){
 $instalacao=$_POST["data"];}
 if(isset($_POST["numero"])){
 $numero=$_POST["numero"];}
-if(isset($_POST["apelido"])){
-$apelido=$_POST["apelido"];}
+if(isset($_POST["bairro"])){
+$bairro=$_POST["bairro"];}
 if(isset($_POST["email"])){
 $email=$_POST["email"];}
 if(isset($_POST["cpf"])){
 $cpf=$_POST["cpf"];}
 if(!isset($n))
 $n=null;
+if(!isset($bairro))
+$bairro=null;
 if(!isset($instalacao))
 $instalacao = null;
 ///////////////////////////////////////////////////////////////////////////
@@ -928,7 +905,7 @@ while($vreg=mysqli_fetch_row($res)){
 $id=$vreg[1];}
 if($lin == 1 ){
 $sql="UPDATE db_clientes SET usuario = '$n4', nome = '$nome1',plano= '$p4',dia_vencimento= '$c4' , email= '$email', cpf= '$cpf' ,
-complemento= '$complemento', data_instalacao= '$instalacao', apelido = '$apelido', numero='$numero', endereco= '$endereco' WHERE id = $id";
+complemento= '$complemento', data_instalacao= '$instalacao', bairro = '$bairro', numero='$numero', endereco= '$endereco' WHERE id = $id";
 $res=mysqli_query($con,$sql);
 if(isset($_POST["valor"])){
 $valor2=$_POST["valor"];
@@ -973,14 +950,14 @@ $res=mysqli_query($con,"insert into sociedade values
 (default, '$id','$n1','$sociedade');");
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Sociedade Jurlan', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$bairro','$cpf','$email' );");
 }}
 if($cliente_sociedade == $n1){	
 $sql="delete FROM sociedade where id_cliente = $id and usuario = '$n1'";
 $res=mysqli_query($con,$sql);	
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Removendo Sociedade', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");	
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$bairro','$cpf','$email' );");	
 }
 if($sociedade == 'Bimbo'){
 $data_hora = date('d-m-y H:i:s');		
@@ -989,63 +966,63 @@ $res=mysqli_query($con,"insert into sociedade values
 (default, '$id','$n1','$sociedade');");
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Sociedade Bimbo', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$bairro','$cpf','$email' );");
 }}
 }
 if($nomee != $nome1){
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do nome', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$bairro','$cpf','$email' );");
 }
 if($e_mail != $email){
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do e-mail', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$bairro','$cpf','$email' );");
 }
 if($telefone != $contato){
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do contato', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$bairro','$cpf','$email' );");
 }
 if($endereco2 != $endereco){
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do endereço', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$bairro','$cpf','$email' );");
 }
 if($numeroo != $numero){
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do numero da casa', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$bairro','$cpf','$email' );");
 }
 if($comple != $complemento){
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do complemento', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c','$valor2','$id_cliente','$apelido','$cpf','$email' );");
+'$data_hora','$numero', '$c','$valor2','$id_cliente','$bairro','$cpf','$email' );");
 }
-if($apelidoo != $apelido){
+if($bairro2 != $bairro){
 $res=mysqli_query($con,"insert into historico values
-(default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do apelido', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
+(default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do bairro', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$bairro','$cpf','$email' );");
 }
 if($planoo != $p4){
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do plano', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$bairro','$cpf','$email' );");
 }
 if($vencimento != $c4){
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do vecimento', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$bairro','$cpf','$email' );");
 }
 if($valor2 != $valor){
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do valor', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$bairro','$cpf','$email' );");
 }
 if($cpf2 != $cpf){
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$id_servserv',NOW(),'Atualização do cpf', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c4','$valor2','$id_cliente','$apelido','$cpf','$email' );");
+'$data_hora','$numero', '$c4','$valor2','$id_cliente','$bairro','$cpf','$email' );");
 }}else{
 $dat = date("d");
 /////////// quando o cliente for do dia 05 /////////////////////
@@ -1084,12 +1061,12 @@ if($dat > $data){$data = "2";};
 if($dat <= $data){$data = "3";};
 $res=mysqli_query($con,"insert into db_clientes values
 ('$serv', default, '$nome1','$n4', '$email', '$contato', '$instalacao','$endereco',
-'$numero','$complemento','$apelido', '$p4', '$c4', '$data', '$valor', '$cpf'  );");
+'$numero','$complemento','$bairro', '$p4', '$c4', '$data', '$valor', '$cpf'  );");
 $user = $_SESSION['$vreg[2]'];
 $data_hora = date('d-m-y H:i:s');
 $res=mysqli_query($con,"insert into historico values
 (default, '$nome1','$n1', '$serv',NOW(),'Já cadastrado na RB', '$user' ,'$endereco' ,'$complemento','$p4','$contato',
-'$data_hora','$numero', '$c','$valor','$id_cliente','$apelido','$cpf','$email' );");
+'$data_hora','$numero', '$c','$valor','$id_cliente','$bairro','$cpf','$email' );");
 echo '<script type="text/javascript"> 
 var urlAtual = window.location.href;
 window.location.href=urlAtual;

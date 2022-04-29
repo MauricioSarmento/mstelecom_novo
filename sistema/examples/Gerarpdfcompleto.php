@@ -14,7 +14,7 @@ echo "<meta charset='utf-8'>
 <td>Endereço</td>
 <td>Numero</td>
 <td>Complemento</td>
-<td>Apelido</td>
+<td>Bairro</td>
 <td>Plano</td>
 <td>Vencimento</td>
 <td>Status</td>
