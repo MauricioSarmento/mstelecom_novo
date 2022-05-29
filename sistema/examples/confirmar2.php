@@ -466,7 +466,7 @@ $observacao = "Sem observações";
 $usuarioc = $_SESSION['$vreg[2]'];
 $nomec = "Instalação";
 	$res=mysqli_query($con,"insert into chamado values
-(NULL, '1', '$nomec', '$usuario', '$dateC', '$data_con', '$tecnico', '$usuarioc', '48');");
+(NULL, '1', '$nomec', '$usuario', '$dateC', '$data_con', '$tecnico', '$usuarioc', '$id_serv');");
 
  /// MUDANDO STATUS DO CLIENTE
 $sql="UPDATE cadastro SET id_cliente = '$id' WHERE nome = '$nome' and id_servidor = '$id_serv'";
@@ -556,20 +556,6 @@ $ano = null;
 $res=mysqli_query($con,"INSERT INTO `mensalidade` (`id`, `id_clientes`, `usuario`, `Jan`, `Feb`,
 `Mar`, `Apr`, `May`, `Jun`, `Jul`, `Aug`, `Sep`, `Oct`, `Nov`, `Dez`, `ano`) VALUES 
 (NULL, '$id','$user','$jan', $fev, '$mar','$abr', '$mai', '$jun', '$jul','$ago','$set','$out','$nov', '$dez', '$ano')");
-
-///////////////////////////////////////////////////////////////////////////////////////////
-$user = $_SESSION['$vreg[2]'];
-$username1 = $_SESSION['$vreg[1]'];
-$sql="SELECT * FROM clientes where usuario = '$user'";
-$res=mysqli_query($con,$sql);
-while($vreg=mysqli_fetch_row($res)){
-$useruser = $vreg[1];
-}
-$sql="SELECT * FROM clientes where usuario = '$useruser'";
-$res=mysqli_query($con,$sql);
-while($vreg=mysqli_fetch_row($res)){
-$id_servserv = $vreg[7];
-}
 ///////////////////////////////////////////////////////////////////////////////////////////
 $d = date("d/m/Y");
 $res=mysqli_query($con,"insert into roteador values
@@ -583,7 +569,7 @@ $usuarioc = $_SESSION['$vreg[2]'];
 if(isset($_POST["usuario"])){
 $usuario=$_POST["usuario"];}
 $res=mysqli_query($con,"insert into historico values
-(NULL, '$nome','$usuario', '$id_servserv',NOW(),'Cliente Novo', '$usuarioc' ,'$rua' ,'$complemento','$plano','$telefone',
+(NULL, '$nome','$usuario', '$id_serv',NOW(),'Cliente Novo', '$usuarioc' ,'$rua' ,'$complemento','$plano','$telefone',
 '$d','NULL', '$data','NULL','NULL','NULL','$cpf','NULL' );");
 ///////////////////////////////////////////////////////////////////////////////////////////
 $sql="SELECT * FROM mensalidade where id_clientes = $id and ano = $ano ";

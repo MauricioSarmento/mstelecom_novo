@@ -10,7 +10,7 @@ $id_serv = $_SESSION['$id_servidor'];?>
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-   INICIO
+   FINANÇAS
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -137,6 +137,12 @@ while($vreg=mysqli_fetch_row($res)){
 	 
 	 <br>
 	 <br>
+	 <div class="col-md-12">
+              <div class="card card-plain">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title mt-0"> Clientes</h4>
+                  <p class="card-category"> Todos os clientes que foram colocados como pago</p>
+                </div>
 	 <br>
 	 <br>
 	 
@@ -159,8 +165,7 @@ Ano 20
 <option><?php echo date('y')-1; ?></option>
 <option><?php echo date('y')-2; ?></option>
 <option><?php echo date('y')-3; ?></option>
-</td></tr>
-<tr>
+</td>
 <td>
 Mes
 </td><td>
@@ -183,8 +188,7 @@ echo '<option>'.$_POST["Mes"].'</option>';
 <option>10</option>
 <option>11</option>
 <option>12</option>
-</td></tr>
-<tr>
+</td>
 <td>
 Dia
 </td>
@@ -230,6 +234,14 @@ echo '<option>'.$_POST["Dia"].'</option>';
 <option>Todos</option>
 </select>
 </td>
+<td>
+Ordenar
+</td><td>
+<select name="ordenar" id="select">
+<option>Normal</option>
+<option>Nome</option>
+<option>Sociedade</option>
+</td>
 </tr>
 <tr>
 <td>
@@ -239,10 +251,15 @@ echo '<option>'.$_POST["Dia"].'</option>';
 </form>  
 <table>
 <tr><td>
-
 </td>
 <td>
 <?php
+if(isset($_POST["ordenar"])){
+$ordenar=$_POST["ordenar"];}
+if($ordenar == 'Normal'){$ordem_alfabetica = '';}
+if($ordenar == 'Nome'){$ordem_alfabetica = 'ORDER BY nome_cliente';}
+if($ordenar == 'Sociedade'){$ordem_alfabetica = 'ORDER BY socio';}
+
 if(isset($_POST["Mes"])){
 $data_m=$_POST["Mes"];
 if(isset($_POST["Ano"])){
@@ -304,15 +321,7 @@ $lin=mysqli_num_rows($res);
 ' ||---|| Clientes de Mauricio = ' . $lin_mauricio . ' ||---|| Clientes de Jurlan = ' . $lin_jurlan . ' ||---|| Clientes de Bimbo = ' . $lin_bimbo; ?>
 <br>
 <br>
-
-
-            <div class="col-md-12">
-              <div class="card card-plain">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title mt-0"> Clientes</h4>
-                  <p class="card-category"> Todos os clientes que foram colocados como pago</p>
-                </div>
-				 <div class="card-body">
+           		 <div class="card-body">
                   <div class="table-responsive">
 				   <table class="table table-hover">
                       <thead class="">
@@ -329,7 +338,8 @@ $lin=mysqli_num_rows($res);
 
 
 <?php
-$sql="SELECT * FROM pagamentos where data_ano = '$data_y' and data_mes = '$data_m' $data_dia";
+
+$sql="SELECT * FROM pagamentos where data_ano = '$data_y' and data_mes = '$data_m' $data_dia $ordem_alfabetica";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 echo '<tr><td>' . $cliente=$vreg[3] . '</td>';
@@ -338,10 +348,95 @@ echo '<td>' . $venvimento=$vreg[8] . '</td>';
 echo '<td>' . $data_pagamento=$vreg[9] . '</td>';
 echo '<td>' . $sociedade=$vreg[10] . '</td></tr>';
 }
- }
-
+echo '<table>';
+ }else{
 ?>
-<table>
+
+<br>
+<br>
+<?php
+	 ////////////////////////////////////////////////////////////////////////////
+	 ////////////////////////////////////////////////////////////////////////////
+	 ////////////////////////////////////////////////////////////////////////////
+$data_dian = "id_servidor ='133'";	 
+$data_y = date('y');
+$data_m= date('m');
+	 $sql="SELECT SUM(valor) AS total FROM pagamentos where data_ano = '$data_y' and data_mes = '$data_m' and $data_dian";
+$res=mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+echo 'Total Faturado R$:' . number_format( $vtotal4=$vreg[0] , 2);
+}
+//// TOTAL FATURADO Mauricio
+$sql="SELECT SUM(valor) AS total FROM pagamentos where data_ano = '$data_y' and data_mes = '$data_m' and $data_dian and socio = 'Mauricio' ";
+$res=mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+echo '<br>Total Faturado Mauricio R$:' . number_format( $vreg[0] , 2);
+}
+$sql="SELECT * FROM pagamentos where data_ano = '$data_y' and data_mes = '$data_m' and $data_dian and socio = 'Mauricio' ";
+$res=mysqli_query($con,$sql);
+$lin_mauricio=mysqli_num_rows($res);
+//// TOTAL FATURADO Jurlan
+$sql="SELECT SUM(valor) AS total FROM pagamentos where data_ano = '$data_y' and data_mes = '$data_m' and $data_dian and socio = 'Jurlan' ";
+$res=mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+echo '<br>Total Faturado Jurlan R$:' . number_format( $vreg[0] , 2);
+}
+$sql="SELECT * FROM pagamentos where data_ano = '$data_y' and data_mes = '$data_m' and $data_dian and socio = 'Jurlan' ";
+$res=mysqli_query($con,$sql);
+$lin_jurlan=mysqli_num_rows($res);
+//// TOTAL FATURADO Bimdo
+$sql="SELECT SUM(valor) AS total FROM pagamentos where data_ano = '$data_y' and data_mes = '$data_m' and $data_dian and socio = 'Bimbo'";
+$res=mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+echo '<br>Total Faturado Bimbo R$:' . number_format( $vreg[0] , 2);
+}
+$sql="SELECT * FROM pagamentos where data_ano = '$data_y' and data_mes = '$data_m' and $data_dian and socio = 'Bimbo'";
+$res=mysqli_query($con,$sql);
+$lin_bimbo=mysqli_num_rows($res);
+//////////////////////////////////////////////////
+if($data_dia == 'Todos'){$data_dia = "and id_servidor ='133'";}else{$data_dia = "and data_dia = '$data_dia' and id_servidor ='133'";}
+$sql="SELECT * FROM pagamentos where data_ano = '$data_y' and data_mes = '$data_m'";
+$res=mysqli_query($con,$sql);
+$lin=mysqli_num_rows($res);
+	 echo '      
+	 
+	 </td></tr>
+</table>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br> <strong>Encontrados: </strong>' . $lin . 
+' ||---|| Clientes de Mauricio = ' . $lin_mauricio . ' ||---|| Clientes de Jurlan = ' . $lin_jurlan . ' ||---|| Clientes de Bimbo = ' . $lin_bimbo .'
+	 <div class="card-body">
+                  <div class="table-responsive">
+				   <table class="table table-hover">
+                      <thead class="">
+<tr>
+<th scope="col"> <center>NOME DO USUARIO </center></th>
+<th scope="col"> <center>VALOR</center></th>
+<th scope="col"> <center>VENCIMENTO </center></th>
+<th scope="col"> <center>DATA DE PAGAMENTO</center></th>
+<th scope="col"> <center>SOCIEDADE</center></th>
+
+</tr>
+</thead>';
+
+$sql="SELECT * FROM pagamentos where data_ano = '$data_y' and data_mes = '$data_m'";
+$res=mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+echo '<tr><td>' . $cliente=$vreg[3] . '</td>';
+echo '<td>' . $valor=$vreg[7] . '</td>';
+echo '<td>' . $venvimento=$vreg[8] . '</td>';
+echo '<td>' . $data_pagamento=$vreg[9] . '</td>';
+echo '<td>' . $sociedade=$vreg[10] . '</td></tr>';
+}	 
+	 
+echo '<table>';	 
+ }
+?>
 </div>
 </div>
 <!--- ATUALIZAÇÕES -->

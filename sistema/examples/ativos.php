@@ -291,9 +291,11 @@ $ARRAY = $API->comm("/ppp/active/print", array(
 "count-only"=> "",
 ));$cliente_conectado = $ARRAY;
 $ARRAY = $API->comm("/ppp/active/print");
-echo '<div class="col-md-12">
-              <div class="card card-plain">
-                <div class="card-header card-header-primary">
+echo '
+   <div class="content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-header card-header-primary">
                   <h4 class="card-title mt-0"> Clientes</h4>
                   <p class="card-category"> Todos os clientes online no momento</p>
                 </div>
@@ -350,10 +352,10 @@ if($val == 2){$st = "<font color='blue'> <center><center><button type='button' c
 if($val == 3){$st = "<font color='#00CC00'> <center><button type='button' class='btn btn-success'>$mensalidade</button></center></font>";};
 //echo $regtable['name'];
 echo "</a></td>";
-echo "<td><a href='acao.php?id=$n' class='form-control' target='_blank'><table border='0' width='170'>".$n."</table></a></td>";
-echo "<td><a href='acao.php?id=$n' class='form-control' target='_blank'><table border='0' width='140'>".$regtable['address']."</table></a></td>";
-echo "<td><a href='acao.php?id=$n' class='form-control' target='_blank'><table border='0' width='140'>".$regtable['uptime']."</table></a></td>";
-echo "<td><a href='acao.php?id=$n' class='form-control' target='_blank'>".$st."</a></td>";
+echo "<td><a href='acao.php?id=$n' class='form-control'><table border='0' width='170'>".$n."</table></a></td>";
+echo "<td><a href='acao.php?id=$n' class='form-control'><table border='0' width='140'>".$regtable['address']."</table></a></td>";
+echo "<td><a href='acao.php?id=$n' class='form-control'><table border='0' width='140'>".$regtable['uptime']."</table></a></td>";
+echo "<td><a href='acao.php?id=$n'>".$st."</a></td>";
 echo "</tr>";
 echo "</tbody>";}		
 echo "</table>";

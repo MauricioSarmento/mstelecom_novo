@@ -251,9 +251,10 @@ while($vreg=mysqli_fetch_row($res)){
 <!--- carrega a pagina auto_refresh_index.php-->	
 <?php  echo '<br>' . $painel;  ?>	  
 <!--- ATUALIZAÇÕES -->
-			 <div class="col-md-12">
-              <div class="card card-plain">
-                <div class="card-header card-header-primary">
+   <div class="content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-header card-header-primary">
                   <h4 class="card-title mt-0"> Alterações</h4>
                   <p class="card-category"> Ultimas alterações feitas</p>
                 </div>

@@ -14,7 +14,7 @@ $servidor_mikrotik = null;
 if(!isset($_SESSION['numIpp']))
 $_SESSION['numIpp'] = null;
 $con = mysqli_connect("localhost","root","88255925");
-mysqli_select_db($con,"inovanet");
+mysqli_select_db($con,"sistema_ms_inovanet");
 $sql="select * from clientes where usuario = '$usuario' and senha = '$senha'";
 $res=mysqli_query($con,$sql);
 $linha=mysqli_affected_rows($con);

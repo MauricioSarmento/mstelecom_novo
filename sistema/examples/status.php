@@ -423,6 +423,14 @@ echo '<div class="container-fluid">
 				<!--- ATUALIZAÇÕES -->
               </div>
 <?php
+//////////////// VERIFICANDO SE O USUARIO É ADMINISTRADOR////////////////////
+$user1 = $_SESSION['$vreg[2]'];
+$sql="SELECT * FROM clientes where usuario = '$user1'";
+$res= mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+$priv=$vreg[6];
+$id_serv=$vreg[7];}
+if($priv == 3 or $priv == 1 ) {
 	$sql="SELECT * FROM sociedade where sociedade = 'Jurlan' ORDER BY usuario";
 $res=mysqli_query($con,$sql);
 $jurlan=mysqli_num_rows($res);
@@ -465,19 +473,7 @@ while($vreg=mysqli_fetch_row($res)){
 	//$sql="UPDATE pagamentos SET socio = 'Jurlan' WHERE nome_cliente ='$vreg[2]'";
 	//$res2=mysqli_query($con,$sql);
 	}
-	
-	
-	
-//	$sql="SELECT * FROM pagamentos";
-//res=mysqli_query($con,$sql);
-//while($vreg=mysqli_fetch_row($res)){
-//		$sociedade=$vreg[10];
-//if($sociedade == 'Bimbo' or $sociedade == 'Jurlan'){}
-//else{
-//	$sql="UPDATE pagamentos SET socio = 'Mauricio' WHERE nome_cliente ='$vreg[3]'";
-//	$res2=mysqli_query($con,$sql);
-//}
-//}
+
 ?>
 	           
 			   </tr>
@@ -502,7 +498,8 @@ echo "<td><a href='acao.php?id=$vreg[2]' class='form-control' target='_blank'>" 
 		echo '</tr>';
 	//$sql="UPDATE pagamentos SET socio = 'Bimbo' WHERE nome_cliente ='$vreg[2]'";
 	//$res2=mysqli_query($con,$sql);
-	}
+}
+}
 ?>
 	           
 </tr>

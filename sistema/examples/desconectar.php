@@ -19,7 +19,7 @@ SELECIONE O CLIENTE E O DESCONECTE.
 <td>Usuario :
 </td><td>
 <input type="text" name="des"  maxlength="50" value="
-<?php echo $n3; ?>" onchange="carregatexto(this.value)" />
+<?php echo $vreg[3]; ?>" onchange="carregatexto(this.value)" />
 </td>
 </tr> <td colspan="2">
 <input type="submit" name="entrar" value="Desconectar" />

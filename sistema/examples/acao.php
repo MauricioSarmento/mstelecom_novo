@@ -251,7 +251,7 @@ $res= mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 $priv=$vreg[6];
 $id_serv=$vreg[7];}
-if($priv == 2 ) { 
+if($priv == 3 or $priv == 1 ) { 
 ?>
 <td>
 <!-------------------------------------------- Botão PAGAMENTO --------------------------------------------->

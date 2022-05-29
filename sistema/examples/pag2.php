@@ -253,8 +253,8 @@ $res45=mysqli_query($con,$sql);
 #####################################################
 
 #teste de crontab
-$sql="UPDATE db_clientes SET status_cliente = '2' WHERE usuario = 'casa'";
-$res56=mysqli_query($con,$sql);	
+//$sql="UPDATE db_clientes SET status_cliente = '2' WHERE usuario = 'casa'";
+//$res56=mysqli_query($con,$sql);	
 
 
 #	$res55=mysqli_query($con,"INSERT INTO `mensalidade` (`id`, `id_clientes`, `usuario`, `Jan`, `Feb`,

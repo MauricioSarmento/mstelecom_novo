@@ -148,36 +148,15 @@ while($vreg=mysqli_fetch_row($res)){
         </div>
       </nav>
       <!-- CAIXAS DE AVISOS  -->
-	  
-	  
-	  
-	  
-	  <script>
-			$(function(){
-				//chama a função atualizaDados daqui à 1000ms (1s)
-				window.setTimeout(atualizaDados, 10000);
-				function atualizaDados() {
-					//carrega o conteúdo do arquivo "auto_refresh.php" para dentro da div#total_cliente_conectado
-					$("#total_cliente_conectado").load('clientes_refresh_painel.php');
-					//para perpetuar a chamada da função sempre a cada 1s
-					window.setTimeout(atualizaDados, 10000);
-				}
-			});
-					</script>
-					
-					
-      <div class="content">
+ <div class="content">
 	 <!--- //auto refresh -->
  	   <div id="total_cliente_conectado" class="widget-int num-count">
 	  <!--- carrega a pagina auto_refresh_index.php-->	
 	   <?php echo '<br>' . $painel;   ?> 
-
-
-
-
-
-
-
+<a href='produtos.php'><button> ESTOQUE </button></a>
+<a href='vendas.php'><button> VENDAS </button></a>
+<a href='roteador_teste.php'><button> ROTEADORES DE TESTE </button></a>
+<a href='clientes_teste.php'><button> TESTE </button></a>
               </div>
 			  
 			  

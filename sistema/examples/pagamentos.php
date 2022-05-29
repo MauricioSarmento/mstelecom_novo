@@ -115,20 +115,13 @@ while($vreg=mysqli_fetch_row($res)){
 $id_servserv = $vreg[7];
 }  	  
 $data_hora = date('d-m-y H:i:s');
-
-
+//////////// PAGAMENTO SOCIEDADE
+$sql="UPDATE pagamento_sociedade SET status = '2' where status = '1' and usuario = '$n'";
+$res2=mysqli_query($con,$sql);
 
 $res=mysqli_query($con,"insert into historico values
 (null, '$nome','$n', '$id_servserv',NOW(),'Pagamento', '$user' ,'$endereco' ,'$complemento','$plano','$tel',
 '$data_hora','$numero', '$complemento','$valor','$id_cliente','$bairro','$cpf','$email' );");
-//////////// PAGAMENTO SOCIEDADE
-$sql="SELECT * FROM pagamento_sociedade where status = '1' and usuario = '$n'";
-$res=mysqli_query($con,$sql);
-	while($vreg=mysqli_fetch_row($res)){
-$id_user_sociedade=$vreg[2];
-$sql="UPDATE pagamento_sociedade SET status = '2' WHERE id ='$id_user_sociedade'";
-	$res2=mysqli_query($con,$sql);}
-
 if(date("m") == 1 ){$jan = 2;}else{$jan="1";};
 if(date("m") == 2 ){$fev = 2;}else{$fev="1";};
 if(date("m") == 3 ){$mar = 2;}else{$mar="1";};
@@ -169,8 +162,6 @@ $res2=mysqli_query($con,$sql);
 $data = date("d");
 if($data >= $ven +1 and $data <= $ven +6){$sql="UPDATE `db_clientes` SET `status_cliente` = '2' WHERE `db_clientes`.`id` = $id;";
 $res2=mysqli_query($con,$sql);}else{
-$sql="UPDATE pagamento_sociedade SET status = '2' WHERE usuario ='$n1'";
-$res222=mysqli_query($con,$sql);
 }
 }}else{
 $res=mysqli_query($con,"INSERT INTO `mensalidade` (`id`, `id_clientes`, `usuario`, `Jan`, `Feb`,

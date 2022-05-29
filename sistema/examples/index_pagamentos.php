@@ -10,7 +10,7 @@ $id_serv = $_SESSION['$id_servidor'];?>
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-   INICIO
+   PAGAMENTOS SOCIO
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -164,7 +164,7 @@ $priv=$vreg[6];}	 if($priv == 3 or $priv == 1 ) {
 			     </div>
                   </div>
 			';
-$sql="SELECT * FROM pagamento_sociedade";
+$sql="SELECT * FROM pagamento_sociedade ORDER BY id DESC";
 $res=mysqli_query($con,$sql);
 	while($vreg=mysqli_fetch_row($res)){
 $id=$vreg[0];

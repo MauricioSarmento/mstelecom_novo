@@ -5,6 +5,7 @@ $sql="SELECT * FROM clientes where usuario = 'Mauricio'";
 $res= mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
 echo $login_servidor_mikrotik=$vreg[2];
+echo '<br>';
 echo $senha_servidor_mikrotik=$vreg[3];
      $servidor_mikrotik=$vreg[7];
 }
@@ -192,4 +193,6 @@ echo "</table>";
 echo "</td></div>";
 }
 echo "</div>";
+
+//shell_exec ('mysqldump -hlocalhost -uroot -p88255925 --opt mstelecom --routines > /var/www/html/sistema/bkp/mstelecom_`date +\%d\%m\%Y`.sql';)
 ?>

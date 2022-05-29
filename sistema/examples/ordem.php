@@ -17,9 +17,11 @@ $ARRAY = $API->comm("/ppp/active/print", array(
 "count-only"=> "",
 ));$cliente_conectado = $ARRAY;
 $ARRAY = $API->comm("/ppp/active/print");
-echo '<div class="col-md-12">
-              <div class="card card-plain">
-                <div class="card-header card-header-primary">
+echo '
+<div class="content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-header card-header-primary">
                   <h4 class="card-title mt-0"> Clientes</h4>
                   <p class="card-category"> Todos os clientes por tempo de conexão</p>
                 </div>
