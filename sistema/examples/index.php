@@ -131,9 +131,8 @@ window.location.href=urlAtual;
 ';
 $_SESSION['numIpp']=$ipserv;
 $_SESSION['$nome_serv']=$nomeserv;
-}}else{$sql="SELECT * FROM cadastro where id_cliente = '1' and id_servidor = '$id_serv'";
-$res= mysqli_query($con,$sql);
-$lin=mysqli_num_rows($res);
+}
+}else{
 $user1 = $_SESSION['$vreg[2]'];
 $sql="SELECT * FROM clientes where usuario = '$user1'";
 $res=mysqli_query($con,$sql);
@@ -150,7 +149,7 @@ $lin2=mysqli_num_rows($res);
 	$sql="SELECT * FROM cadastro where id_cliente = '1'";
 	$res=mysqli_query($con,$sql);
 	$lin3=mysqli_num_rows($res);
-$lin4 = $lin + $lin2 + $lin3;
+$lin4 = $lin2 + $lin3;
 	 ?>
 	 <!-- PESQUISA E NOTIFICAÇÕES -->
 	 	 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">

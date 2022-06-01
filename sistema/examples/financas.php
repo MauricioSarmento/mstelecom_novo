@@ -2,7 +2,15 @@
 require_once '../login/protect.php';
 require_once '../login/conect.php';
 require_once"painel.php";
-$id_serv = $_SESSION['$id_servidor'];?>
+$id_serv = $_SESSION['$id_servidor'];
+$user1 = $_SESSION['$vreg[2]'];
+$sql="SELECT * FROM clientes where usuario = '$user1'";
+$res= mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+$priv=$vreg[6];
+}
+if($priv == 1 or $priv == 3) { 
+?>
 <html lang="pt">
 <head>
   <meta charset="utf-8" />
@@ -725,6 +733,11 @@ echo '<table>';
 
     });
   </script>
+  <?php
+  }else{
+	
+	echo "<center>VOCÊ NÃO TEM PERMIÇÃO PARA VISUALIZAR ESTA PAGINA, AREA EXCLUSIVA DO ADMINISTRADOR DO SISTEMA.</center>";
+}
+ ?>  
 </body>
-
 </html>

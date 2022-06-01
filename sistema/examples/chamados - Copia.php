@@ -2,18 +2,7 @@
 require_once '../login/protect.php';
 require_once '../login/conect.php';
 require_once"painel.php";
-require_once'pag2.php';
-#header("Refresh: 20");
-$vencido=$_SESSION['vencido'];
-$dia=$_SESSION['dia'];
-//require_once 'conexao/conect.php';
-$user1 = $_SESSION['$vreg[2]'];
-$sql="SELECT * FROM clientes where usuario = '$user1'";
-$res= mysqli_query($con,$sql);
-while($vreg=mysqli_fetch_row($res)){
-$priv=$vreg[6];
-}
-if($priv == 1 or $priv == 3) { 
+#header("Refresh: 50");
 ?>
 
 <html lang="pt">
@@ -24,29 +13,17 @@ if($priv == 1 or $priv == 3) {
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-   VENCIMENTOS
+   MSTELECOM
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-  <!--  gabriel-->
-  <!--mudar a cor do navegador -->
-<!-- Chrome, Firefox OS and Opera -->
-<meta name="theme-color" content="#000000" />
-<!-- Windows Phone -->
-<meta name="msapplication-navbutton-color" content="#000000" />
-<!-- iOS Safari -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
   <!--     Fonts and icons     -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
-  <link href="../assets/css/material-dashboard.css?v=2.1.3" rel="stylesheet" />
+  <link href="../assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
-  
-  
 </head>
 
 <body class="">
@@ -61,11 +38,10 @@ if($priv == 1 or $priv == 3) {
       <?php echo $menu; ?>
     </div>
     <div class="main-panel">
-          
-		  
-		   <!-- PESQUISA E NOTIFICAÇÕES -->
      
-	  	<?php $id_serv = $_SESSION['$id_servidor'];
+	  <!-- PESQUISA E NOTIFICAÇÕES -->
+     
+	<?php $id_serv = $_SESSION['$id_servidor'];
 	$sql="SELECT * FROM cadastro where id_cliente = '1' and id_servidor = '$id_serv'";
 $res= mysqli_query($con,$sql);
 $lin=mysqli_num_rows($res);
@@ -192,336 +168,245 @@ while($vreg=mysqli_fetch_row($res)){
 					
       <div class="content">
 	 <!--- //auto refresh -->
- 
-	 
-	   <div id="total_cliente_conectado" class="widget-int num-count">
-	  <!--- //auto refresh -->
-	   <?php echo '<br>' . $painel;   ?>
-</div>
+ 	   <div id="total_cliente_conectado" class="widget-int num-count">
+	  <!--- carrega a pagina auto_refresh_index.php-->	
+	   <?php echo '<br>' . $painel;   ?>  
 
+
+<!--- ATUALIZAÇÕES -->
+	
+
+				<!--- ATUALIZAÇÕES -->
+              </div>
+			  <!------------>
+<center>
+<button type='button' class='btn btn-warning' data-toggle='modal' data-target='#chamado'>
+ABRIR CHAMADOS
+</button>
+<!-- Modal -->
+<div class='modal fade' id='chamado' tabindex='-1' role='dialog' aria-labelledby='chamado' aria-hidden='true'>
+<div class='modal-dialog' role='document'>
+<div class='modal-content'>
+<div class='modal-header'>
+<h2 class='modal-title' id='chamado'>Abrir chamados preenchendo o formulário.</h2>
+<button type='button' class='close' data-dismiss='modal' aria-label='Fechar'>
+<span aria-hidden='true'>&times;</span>
+</button>
+</div>
+<div class='modal-body'><center>
+<!-------------------------------------------- chamados --------------------------------------------->
+<h4 class="card-title mt-0"> Abrir chamados preenchendo o formulário.</h4>
 <form name="login" method="post" action="">
 <input type="hidden" name="acao" value="nada" /> 
-<table border="0" cellpadding="1" cellspacing="1">
-Buscar valores de outros meses
+<table align="center" border="1" cellpadding="2" cellspacing="2" >
 <tr>
-<td>
-Ano 20
-</td><td>
-<select name="Ano" id="select">
-<option><?php echo date('y'); ?></option>
-<option><?php echo date('y')-1; ?></option>
-<option><?php echo date('y')-2; ?></option>
-<option><?php echo date('y')-3; ?></option>
-</td></tr>
-<tr>
-<td>
-Mes
-</td><td>
-<select name="Mes" id="select">
-<?php
-if(isset($_POST["Mes"])){
-echo '<option>'.$_POST["Mes"].'</option>';
-}
-?>
-<option><?php echo date('m'); ?></option>
-<option>01</option>
-<option>02</option>
-<option>03</option>
-<option>04</option>
-<option>05</option>
-<option>06</option>
-<option>07</option>
-<option>08</option>
-<option>09</option>
-<option>10</option>
-<option>11</option>
-<option>12</option>
-</td></tr>
-<tr>
-<td>
-Dia
-</td>
-<td>
-<select name="Dia" id="select">
-<?php
-if(isset($_POST["Dia"])){
-echo '<option>'.$_POST["Dia"].'</option>';
-}
-?>
-<option><?php echo date('d'); ?></option>
-<option>01</option>
-<option>02</option>
-<option>03</option>
-<option>04</option>
-<option>05</option>
-<option>06</option>
-<option>07</option>
-<option>08</option>
-<option>09</option>
-<option>10</option>
-<option>11</option>
-<option>12</option>
-<option>13</option>
-<option>14</option>
-<option>15</option>
-<option>16</option>
-<option>17</option>
-<option>18</option>
-<option>19</option>
-<option>20</option>
-<option>21</option>
-<option>22</option>
-<option>23</option>
-<option>24</option>
-<option>25</option>
-<option>26</option>
-<option>27</option>
-<option>28</option>
-<option>29</option>
-<option>30</option>
-<option>31</option>
-</select>
-<input type="submit" name="entrar" value="Enviar" />
+<td>Tipo de chamado: </td><td>
+<select name="nome" id="select">
+<option>Sem internet</option>
+<option>Desconectado</option>
+<option>Internet Lenta</option>
+<option>Instalação</option>
+<option>Pagamento</option>
+<option>Retorno ao Cliente</option>
+<option>Mudança de endereço</option>
+<option>Trocar Cabeamento</option>
+<option>Trocar Climp</option>
+<option>Problemas na rede</option>
 </td>
 </tr>
-</form>  
+<tr>
+<td>Nome de usuario:</td><td>
+<input type="text" name="cliente" size="15" maxlength="25" value="" />
+</td>
+</tr>
+<td>Endereço:</td><td>
+<input type="text" name="endereco" size="15" maxlength="50" value="" />
+</td>
+</tr>
+<td>Contato:</td><td>
+<input type="text" name="contato" size="15" maxlength="25" value="" />
+</td>
+</tr>
+<tr>
+<td>Descrição do problema: </td><td>
+<textarea id="story" name="descricao" rows="5" value="<?php echo $user1;  ?>" cols="33"></textarea>
+</td>
+</tr>
+<tr>
+<td>Data:</td><td>
+<input type="text" name="data" size="9" maxlength="25" value="<?php echo date("d/m/Y"); ?>" />
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<input type="submit" name="entrar" value="Cadastrar" />
+</td>
+</tr>
+</table>
+</form>
+<!----Modal------>
 
- 
+</div>
+</div>
+</div>
+</div>
+</center>
+<!------------>
+			  
+			  
+
+
+
+
+
 <br>
-<center>
+</td>
+<?php
+if(isset($_POST["nome"])){
+$nome=$_POST["nome"];}
+if(isset($_POST["endereco"])){
+$endereco=$_POST["endereco"];}
+if(isset($_POST["descricao"])){
+$descricao=$_POST["descricao"];}
+if(isset($_POST["data"])){
+$data=$_POST["data"];}
+if(!isset($nome)){
+$nome=null;}
+if(!isset($endereco)){
+$endereco=null;}
+if(!isset($data)){
+$data=null;}
+if(isset($_POST["cliente"])){
+$cliente=$_POST["cliente"];}
+if(isset($_POST["contato"])){
+$contato=$_POST["contato"];}
+if(isset($nome)){
+$user1 = $_SESSION['$vreg[2]'];
+$usuario = $_SESSION['$vreg[2]'];
+$sql="SELECT * FROM clientes where usuario = '$user1'";
+$res=mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+$user1 = $vreg[1];
+}
+$sql="SELECT * FROM clientes where nome = '$user1' and usuario = '$user1'";
+$res=mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+$id_servserv = $vreg[7];
+}
+$defalt = null;
+$status = "1";
+$date = date('d/m/y H:i:s');
+$data_con = "Em aberto";
+$tecnico = "No aguardo";
+$observacao = "Sem observações";
+$descri = "Nome: " .$cliente . " , Endereço: " . $endereco . " , Contato: " . $contato . " , Descrição: "  . $descricao . " , Usuario: " . $usuario;
+if($nome == "Instalação"){
+	$res=mysqli_query($con,"insert into chamado values
+(NULL, '$status', '$nome', '$cliente ', '$date', '$data_con', '$tecnico', '$usuario', '$id_servserv');");
+}else{
+$res=mysqli_query($con,"insert into chamado values
+(NULL, '$status', '$nome', '$descri ', '$date', '$data_con', '$tecnico', '$observacao', '$id_servserv');");
+}
+}
+?>
+<!-------------------------------------------- fim CADASTRO --------------------------------------------->
+   <div class="content">
+        <div class="container-fluid">
+          <div class="card">
 <form name="login" method="post" action="">
 <input type="hidden" name="acao" value="nada" /> 
 <table border="0" align="center" cellpadding="1" cellspacing="1">
 <tr>
 <td>
-Dia de vencimento:
+VER CHAMADOS:
 </td><td>
-<select name="dia" id="select">
-<option><?php echo $dia; ?></option>
+<select name="chamado" id="select">
+<option>Selecione</option>
+<option>Aberto</option>
+<option>Concluidos</option>
 <option>Todos</option>
-<option>05</option>
-<option>10</option>
-<option>15</option>
-<option>20</option>
-<option>25</option></td></tr>
-<tr>
-<td>Vencidos:
-</td>
-<td>
-<select name="vencido" id="select">
-<option><?php echo $vencido; ?></option>
-<option>Sim</option>
-<option>Não</option>
-</select>
 <input type="submit" name="entrar" value="Enviar" />
 </td>
 </tr>
 </form>  
-<?php 
-echo "<br><a href='financas.php'>finanças</a><br>";
-if(isset($_POST["dia"])){
-$dia=$_POST["dia"];
-$_SESSION['dia']=$dia;
-if(isset($_POST["vencido"])){
-$vencido=$_POST["vencido"];}
-$_SESSION['vencido']=$vencido;
-echo '
-<script type="text/javascript"> 
-var urlAtual = window.location.href;
-window.location.href=urlAtual;
-</script>
-';}
-if(isset($_POST["Mes"])){
-$data_m=$_POST["Mes"];
-if(isset($_POST["Ano"])){
-$data_y=$_POST["Ano"];}
-if(isset($_POST["Dia"])){
-$data_dia=$_POST["Dia"];}
-session_start();
-	$_SESSION['data_m']=$data_m;
-	$_SESSION['data_y']=$data_y;
-	$_SESSION['data_d']=$data_dia;
-echo "<br><a href='Gerar_pdf.php'>Gerar Exel das finanças do mes completo</a><br>";
-echo "<a href='Gerar_pdf_dia.php'>Gerar Exel das finanças da data celecionada</a><br>";
-}else{
-$data_dia = date('d');
-$data_m = date('m');
-$data_y = date('y');
-}
-if(!isset($_SESSION['dia']))
-$_SESSION['dia']= "05";
-if(!isset($dia))
-$dia = "Todos";
-if(!isset($vencido))
-$vencido = "Sim";
-$u = $_SESSION['$vreg[2]'];
-///////////////////////////////////////////////////////////////////////////
-$sql="SELECT * FROM clientes where usuario = '$u'";
-$res= mysqli_query($con,$sql);
-while($vreg=mysqli_fetch_row($res)){
-$priv=$vreg[6];
-$id_serv=$vreg[7];}
-//////////////// VERIFICANDO SE O USUARIO É ADMINISTRADOR////////////////////
-if($priv == 3 or $priv == 1 ) {
-$sql="SELECT SUM(valor_plano) AS total FROM db_clientes WHERE id_cliente = '$IP'";
-$res=mysqli_query($con,$sql);
-while($vreg=mysqli_fetch_row($res)){
-$vtotal=$vreg[0];
-}
-echo "<br>";
-echo "Valor bruto de todos os clientes = "; echo 'R$ ' . number_format( $vtotal , 2 );
-///////////////////////////////////////////
-$sql="SELECT SUM(valor) AS total FROM pagamentos WHERE data_dia ='$data_dia' and data_mes ='$data_m' and data_ano ='$data_y' and id_servidor = '$IP'  ";
-$res=mysqli_query($con,$sql);
-while($vreg=mysqli_fetch_row($res)){
-$vtotal2=$vreg[0];
-}
-echo "<br>";
-echo "Total que ja foi faturado " . $data_dia .'/'. $data_m .'/'. $data_y ." = "; echo 'R$ ' . number_format( $vtotal2 , 2 );
-///////////////////////////////////////////
-///////////////////////////////////////////
-$sql="SELECT SUM(valor) AS total FROM pagamentos WHERE data_dia in (1,2,3,4,5,6,7) and data_mes ='$data_m' and data_ano ='$data_y' and id_servidor = '$IP'  ";
-$res=mysqli_query($con,$sql);
-while($vreg=mysqli_fetch_row($res)){
-$vtotal4=$vreg[0];
-}
-echo "<br>";
-echo "Primeira semana do Mês = "; echo 'R$ ' . number_format( $vtotal4 , 2 );
-///////////////////////////////////////////
-///////////////////////////////////////////
-$sql="SELECT SUM(valor) AS total FROM pagamentos WHERE data_dia in (8,9,10,11,12,13,14) and data_mes ='$data_m' and data_ano ='$data_y' and id_servidor = '$IP'  ";
-$res=mysqli_query($con,$sql);
-while($vreg=mysqli_fetch_row($res)){
-$vtotal4=$vreg[0];
-}
-echo "<br>";
-echo "Segunda semana do Mês = "; echo 'R$ ' . number_format( $vtotal4 , 2 );
-///////////////////////////////////////////
-///////////////////////////////////////////
-$sql="SELECT SUM(valor) AS total FROM pagamentos WHERE data_dia in (15,16,17,18,19,20,21) and data_mes ='$data_m' and data_ano ='$data_y' and id_servidor = '$IP'  ";
-$res=mysqli_query($con,$sql);
-while($vreg=mysqli_fetch_row($res)){
-$vtotal4=$vreg[0];
-}
-echo "<br>";
-echo "Terceira semana do Mês = "; echo 'R$ ' . number_format( $vtotal4 , 2 );
-///////////////////////////////////////////
-///////////////////////////////////////////
-$sql="SELECT SUM(valor) AS total FROM pagamentos WHERE data_dia in (21,22,23,24,25,26,27,28,29,30,31) and data_mes ='$data_m' and data_ano ='$data_y' and id_servidor = '$IP'  ";
-$res=mysqli_query($con,$sql);
-while($vreg=mysqli_fetch_row($res)){
-$vtotal4=$vreg[0];
-}
-echo "<br>";
-echo "Quarta semana do Mês = "; echo 'R$ ' . number_format( $vtotal4 , 2 );
-///////////////////////////////////////////
-///////////////////////////////////////////
-///////////////////////////////////////////
-$sql="SELECT SUM(valor) AS total FROM pagamentos WHERE data_mes ='$data_m' and data_ano ='$data_y' and id_servidor = '$IP'  ";
-$res=mysqli_query($con,$sql);
-while($vreg=mysqli_fetch_row($res)){
-$vtotal3=$vreg[0];
-}
-echo "<br>";
-echo "Total faturado no mês = "; echo 'R$ ' . number_format( $vtotal3 , 2 );
-///////////////////////////////////////////
-///////////////////////////////////////////
-};
-//////////////////////////////////////////////////////////////////////////
-if($vencido == 'Sim'){
-$a = "and dia_vencimento = $dia and status_cliente = '1'";}else{$a = "and dia_vencimento = $dia";}
-if($dia == "Todos"){if($vencido == 'Sim'){$a = "and status_cliente = 1";}else{$a = null;}};	
-$sql="SELECT * FROM db_clientes where id_cliente = '$IP' $a ORDER BY usuario";
-$res= mysqli_query($con,$sql);
-$lin=mysqli_num_rows($res);
-echo '<div class="col-md-12">
-              <div class="card card-plain">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title mt-0"> Clientes</h4>
-                  <p class="card-category"> Todos os clientes com vencimento selecionado</p>
+<?php
+if(!isset($chamado)){
+$chamado= "Aberto";}
+if(isset($_POST["chamado"])){
+$chamado=$_POST["chamado"];}
+if($chamado == "Aberto"){$status = 1;}
+if($chamado == "Concluidos"){$status = "2";}
+if($chamado == "Selecione"){$chamado = "Todos";}
+if(!isset($status)){
+$status=null;}
+$a = "and status = $status";
+if($chamado == "Todos"){$a = null;};
+?>
+            <div class="card-header card-header-primary">
+                  <h4 class="card-title mt-0"> Chamados</h4>
+                  <p class="card-category"> Todos os Chamados em aberto.</p>
                 </div>
-				 <div class="card-body">
+                <div class="card-body">
                   <div class="table-responsive">
 				   <table class="table table-hover">
-				   Dia selecionado: ' .$dia=$_SESSION['dia'] . ' <br> <strong>Encontrados: </strong>' . $lin . '
                       <thead class="">
-<tr>
-<th scope="col" > <center>NOME </center></th>
-<th scope="col"> <center>NOME DO USUARIO </center></th>
-<th scope="col"> <center>INTALAÇÃO</center></th>
-<th scope="col"> <center>VENCIMENTO </center></th>
-<th scope="col"> <center>STATUS </center></th>
-
-</tr>
-</thead>';
-$sql="SELECT * FROM clientes where usuario = '$u'";
+<th scope="col">CHAMADO</th>
+<th scope="col">INFORMAÇÃO DO CHAMADO</th>
+<th scope="col">DATA</th>
+<th scope="col">CONCLUSÃO</th>
+<th scope="col">TECNICO</th>
+<th scope="col">OBS</th>
+</thead>
+<?php
+$user1 = $_SESSION['$vreg[2]'];
+$sql="SELECT * FROM clientes where usuario = '$user1'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
-$serv=$vreg[5];};
-$mes = array("defalt,jan,fev,mar,abr,mai,jun,jul,ago,set,out,nov,dez");
-$mes[0]='defalt';
-$mes['01']='Janeiro';
-$mes['02']='Fevereiro';
-$mes['03']='Março';
-$mes['04']='Abril';
-$mes['05']='Maio';
-$mes['06']='Junho';
-$mes['07']='Julho';
-$mes['08']='Agosto';
-$mes['09']='Setembro';
-$mes[10]='Outubro';
-$mes[11]='Novembro';
-$mes[12]='Dezembro';
-
-$sql="SELECT * FROM db_clientes where id_cliente = '$IP' $a ORDER BY usuario";
+$user1 = $vreg[1];
+}
+$sql="SELECT * FROM clientes where nome = '$user1' and usuario = '$user1'";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
-$n = $vreg[3];	
-$id_admin=$vreg[0];
-$id=$vreg[1];
-$nome=$vreg[2];
-$usuario=$vreg[10];
-$email=$vreg[4];
-$tel=$vreg[5];
-$instalaçao=$vreg[6];
-$endereço=$vreg[7];
-$numero=$vreg[8];
-$complemento=$vreg[9];
-$bairro=$vreg[3];
-$plano=$vreg[11];
-$ven=$vreg[12];
-$regular = 1;
-$atraso = 2;
-$pago = 3;
-$val = $vreg[13];
-$dat = date("m");
-$mensalidade = $mes[$dat];
-if($val == 1){$st = "<font color='red'><center><center><button type='button' class='btn btn-danger'>$mensalidade </button></center></font>";};
-if($val == 2){$st = "<font color='blue'> <center><center><button type='button' class='btn btn-primary'>$mensalidade</button></center></font>";};
-if($val == 3){$st = "<font color='#00CC00'> <center><button type='button' class='btn btn-success'>$mensalidade</button></center></font>";};
+$id_servserv = $vreg[7];
+}
+
+$sql="SELECT * FROM chamado where id_serv = $id_servserv $a ORDER BY id DESC";
+$res=mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+if($vreg[1] == 1){if($vreg[2] == "Instalação"){echo "<tr><td><a href='acao.php?id=$vreg[3]'>";}else{echo "<tr><td><a href='chamado2.php?id=$vreg[0]'>";}}else{echo "<tr><td>";} echo $nome=$vreg[2];
+if($vreg[1] == 1){if($vreg[2] == "Instalação"){echo "<td><a href='acao.php?id=$vreg[3]'>";}else{echo     "<td><a href='chamado2.php?id=$vreg[0]'>";}}else{echo "<td>";}echo $reclamacao=$vreg[3];
+if($vreg[1] == 1){echo     "<td><a href='chamado2.php?id=$vreg[0]'>";}else{echo "<td>";}echo $data=$vreg[4]; 
+if($vreg[1] == 1){echo     "<td><a href='chamado2.php?id=$vreg[0]'>";}else{echo "<td>";}echo $data=$vreg[5]; 
+if($vreg[1] == 1){echo     "<td><a href='chamado2.php?id=$vreg[0]'>";}else{echo "<td>";}echo $data=$vreg[6]; 
+if($vreg[1] == 1){echo     "<td><a href='chamado2.php?id=$vreg[0]'>";}else{echo "<td>";}echo $data=$vreg[7];
+echo "</td></tr>";}
+
+
+	$sql="SELECT * FROM cadastro where id_cliente = '1'";
+	$res=mysqli_query($con,$sql);
+while($vreg=mysqli_fetch_row($res)){
+	echo     "<td><a href='confirmar2.php?id=$vreg[0]'>Instalação</td>";
+if($vreg[1] == 1){echo     "<td><a href='confirmar2.php?id=$vreg[0]'>";}else{echo "<td>";}echo $data=$vreg[2]; 
+ echo "</td><td><a href='confirmar2.php?id=$vreg[0]'>" . date('d/m/y H:i:s') . "</td>";
+ echo "</td><td><a href='confirmar2.php?id=$vreg[0]'>Em aberto</td>";
+ echo "</td><td><a href='confirmar2.php?id=$vreg[0]'>No aguardo</td>";
+ echo "</td><td><a href='confirmar2.php?id=$vreg[0]'>Cadastrar Cliente</td></tr>";
+
+}
+echo "</table>"; 
 
 
 
-echo "<td ><a href='acao.php?id=$n' target='_blank'><table border='0' width='300'> <font color=#04B404 size=3>". $nome."</table></a></td>";
-echo "<td><a href='acao.php?id=$n' target='_blank'><table border='0' width='170'>".$n ." </table></a></td>";
-echo "<td><a href='acao.php?id=$n' target='_blank'><table border='0' width='80'>".$instalaçao ." </table></a></td>";
-echo "<td><a href='acao.php?id=$n' target='_blank'><table border='0' width='20'>".$ven."</table></a></td>";
-echo "<td><a href='historico3.php?id=$n'>$st</a></td>";
-echo "</td>";
-echo "</tr>";	}
-mysqli_close($con);
+
 ?>
-</table>
-</center>
-</center>
-
-	  
-	  
-      
-      </div>
-      
-	  
-	  
+			  
+			  
+			  
+           </div>
+          </div>
+          </div>
+          </div>
+          </div>
 	  <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">
@@ -809,11 +694,6 @@ mysqli_close($con);
 
     });
   </script>
-  <?php
-  }else{
-	
-	echo "<center>VOCÊ NÃO TEM PERMIÇÃO PARA VISUALIZAR ESTA PAGINA, AREA EXCLUSIVA DO ADMINISTRADOR DO SISTEMA E DO FINANCEIRO.</center>";
-}
- ?> 
 </body>
+
 </html>

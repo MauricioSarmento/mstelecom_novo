@@ -310,6 +310,9 @@ $res=mysqli_query($con,"insert into chamado values
 }
 ?>
 <!-------------------------------------------- fim CADASTRO --------------------------------------------->
+   <div class="content">
+        <div class="container-fluid">
+          <div class="card">
 <form name="login" method="post" action="">
 <input type="hidden" name="acao" value="nada" /> 
 <table border="0" align="center" cellpadding="1" cellspacing="1">
@@ -339,15 +342,13 @@ $status=null;}
 $a = "and status = $status";
 if($chamado == "Todos"){$a = null;};
 ?>
-<div class="col-md-12">
-              <div class="card card-plain">
-                <div class="card-header card-header-primary">
+            <div class="card-header card-header-primary">
                   <h4 class="card-title mt-0"> Chamados</h4>
                   <p class="card-category"> Todos os Chamados em aberto.</p>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-hover">
+				   <table class="table table-hover">
                       <thead class="">
 <th scope="col">CHAMADO</th>
 <th scope="col">INFORMAÇÃO DO CHAMADO</th>
@@ -355,7 +356,6 @@ if($chamado == "Todos"){$a = null;};
 <th scope="col">CONCLUSÃO</th>
 <th scope="col">TECNICO</th>
 <th scope="col">OBS</th>
-</tr>
 </thead>
 <?php
 $user1 = $_SESSION['$vreg[2]'];
@@ -373,13 +373,18 @@ $id_servserv = $vreg[7];
 $sql="SELECT * FROM chamado where id_serv = $id_servserv $a ORDER BY id DESC";
 $res=mysqli_query($con,$sql);
 while($vreg=mysqli_fetch_row($res)){
-if($vreg[1] == 1){if($vreg[2] == "Instalação"){echo "<tr><td><a href='acao.php?id=$vreg[3]'>";}else{echo "<tr><td><a href='chamado2.php?id=$vreg[0]'>";}}else{echo "<tr><td>";} echo $nome=$vreg[2];
+if($vreg[1] == 1){if($vreg[2] == "Instalação"){echo "<tr><td><a href='acao.php?id=$vreg[3]'>";}else{
+echo "<tr><td><a href='chamado2.php?id=$vreg[0]'>";}}else{echo "<tr><td>";}
+if($vreg[2] == "Desconectado"){echo "<tr><td><a href='chamado2.php?id=$vreg[0]'><font color=red>";}
+echo $nome=$vreg[2];
 if($vreg[1] == 1){if($vreg[2] == "Instalação"){echo "<td><a href='acao.php?id=$vreg[3]'>";}else{echo     "<td><a href='chamado2.php?id=$vreg[0]'>";}}else{echo "<td>";}echo $reclamacao=$vreg[3];
 if($vreg[1] == 1){echo     "<td><a href='chamado2.php?id=$vreg[0]'>";}else{echo "<td>";}echo $data=$vreg[4]; 
 if($vreg[1] == 1){echo     "<td><a href='chamado2.php?id=$vreg[0]'>";}else{echo "<td>";}echo $data=$vreg[5]; 
 if($vreg[1] == 1){echo     "<td><a href='chamado2.php?id=$vreg[0]'>";}else{echo "<td>";}echo $data=$vreg[6]; 
 if($vreg[1] == 1){echo     "<td><a href='chamado2.php?id=$vreg[0]'>";}else{echo "<td>";}echo $data=$vreg[7];
-echo "</td></tr>";}
+if($vreg[2] == "Desconectado"){echo "</font></a></td></tr>";}else{
+echo "</a></td></tr>";}
+}
 
 
 	$sql="SELECT * FROM cadastro where id_cliente = '1'";
@@ -403,6 +408,9 @@ echo "</table>";
 			  
 			  
            </div>
+          </div>
+          </div>
+          </div>
           </div>
 	  <footer class="footer">
         <div class="container-fluid">
